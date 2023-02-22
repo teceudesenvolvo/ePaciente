@@ -61,10 +61,10 @@ class menu extends Component{
     return (      
         <nav className='menu'>
                         
-            <a href='/'  className={this.state.linkMenu}><FaStethoscope /></a> 
-            <a href='/favoritos' className={this.state.linkMenu2}> < FaHandHoldingHeart/> </a> 
-            <a href='/Compras' className={this.state.linkMenu3}> <FaSyringe /> </a>
-            <a href='/Notificacoes' className={this.state.linkMenu4}> <FaFileMedical /> </a>
+            <a href='/consultas'  className={this.state.linkMenu}><FaStethoscope /></a> 
+            <a href='/exames' className={this.state.linkMenu2}> < FaHandHoldingHeart/> </a> 
+            <a href='/vacinas' className={this.state.linkMenu3}> <FaSyringe /> </a>
+            <a href='/receitas' className={this.state.linkMenu4}> <FaFileMedical /> </a>
             <a href='/Mais' className={this.state.linkMenu5}> <FaBars /> </a>
                
         </nav>

@@ -68,25 +68,17 @@
 }
 
 
-.header-home>a>img {
-  width: 45px;
-  height: 45px;
-  margin-top: 17px;
+.header-home>p>img{
+  height: 80px;
+  position: relative;
+  top: -30px;
   margin-right: 15px;
-}
-
-.titleHeader{
-  font-size: 25px;
-  font-weight: bold;
-  color: white;
-  text-align: left;
-  margin-left: 20px;
-  margin-bottom: 10px;
+  margin-bottom: -55px;
 }
 
 .inputPesquisar {
   width: 85%;
-  margin-top: 0px;
+  margin-bottom: -10px;
   margin-left: 20px;
   height: 40px;
   border-radius: 14px;

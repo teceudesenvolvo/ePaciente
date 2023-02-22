@@ -4,6 +4,8 @@ import '../App.css'
 
 //Imagens
 
+import Logo from '../assets/e-paciente-15.png'
+
 // Icones
 import {
     FaSistrix
@@ -38,7 +40,7 @@ class topBar extends Component {
         return (
             <>
                 <div className='header-home'>
-                    <p className='titleHeader'>{this.state.helloText}</p>
+                    <p className='titleHeader'><img src={Logo} onClick={()=> {window.location.href = "/"}}/></p>
                     <input type="text" placeholder={`Pesquisar`} className='inputPesquisar' />
                     <FaSistrix className='PesquisarLogo' />
                     <div className='categoriasHomeDesktop'>
