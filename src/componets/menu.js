@@ -33,13 +33,13 @@ class menu extends Component{
 
   btnHome = () =>{
        switch (this.state.window) {
-      case `/`:
+      case `/consultas`:
         return this.setState({linkMenu: 'linkMenu link-active'})
-      case `/favoritos`:
+      case `/exames`:
         return this.setState({linkMenu2: 'linkMenu link-active'})
-      case `/Compras`:
+      case `/vacinas`:
         return this.setState({linkMenu3: 'linkMenu link-active'})
-      case `/Notificacoes`:
+      case `/receitas`:
         return this.setState({linkMenu4: 'linkMenu link-active'})
       case `/Mais`:
         return this.setState({linkMenu5: 'linkMenu link-active'})
