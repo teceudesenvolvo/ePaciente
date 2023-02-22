@@ -38,9 +38,8 @@
 .header-home {
   display: inline-flex;
   width: 100%;
-  flex: 1;
-  flex-direction: row;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: left;
   background-color: #ff0f39;
   border-radius: 0px 0px 10px 10px;
   padding-bottom: 16px;
@@ -54,12 +53,16 @@
   margin-right: 15px;
 }
 
-
-
+.titleHeader{
+  font-size: 25px;
+  text-align: left;
+  margin-left: 20px;
+}
 
 .inputPesquisar {
   width: 85%;
-  margin-top: 20px;
+  margin-top: 0px;
+  margin-left: 20px;
   height: 40px;
   border-radius: 14px;
   border: 0;
@@ -76,7 +79,7 @@
 }
 
 .PesquisarLogo {
-  margin-top: 30px;
+  top: 76px;
   left: 85%;
   position: absolute;
   color: #9e9e9e;
@@ -179,25 +182,24 @@
 
 .vistosHome {
   flex-direction: row;
-  display: inline-block;
+  display: block;
   width: 90%;
   align-items: center;
   justify-content: center;
   list-style: none;
-  margin-left: -30px;
+  margin-left: -20px;
   margin-bottom: 100px;
 }
 
 .productItem {
   list-style: none;
-  width: 46%;
+  width: 100%;
   height: 100%;
-  max-width: 150px;
-  display: inline-block;
+  display: block;
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  background-color: #e1e1e1;
+  background-color: #bbb;
   border-radius: 12px;
   margin: 0 10px 20px 0;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
@@ -273,9 +275,9 @@
 
 .areaTextDescProduct {
   text-align: left;
-  background-color: #545454;
+  background-color: #bbb;
   height: 40px;
-  color: #fff;
+  color: #5a5a5a;
   margin-bottom: -10px;
   padding: 1px 0 15px 10px;
   border-radius: 0 0 10px 10px;
@@ -296,7 +298,7 @@
   font-weight: bold;
   margin-bottom: -10px;
   margin-top: 10px;
-  color: white;
+  color: #5a5a5a;
 }
 
 .valueProductP {
@@ -311,7 +313,7 @@
 .descricaoProduct {
   font-size: 9px;
   margin-bottom: 15px;
-  color: white;
+  color: #5a5a5a;
 }
 
 @keyframes App-logo-spin {
