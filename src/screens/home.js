@@ -22,32 +22,24 @@ class Home extends Component {
 
         {/* Search */}
         <div className='header-home'>
-          <TopBar/>
+          <TopBar />
         </div>
-        
+
 
         <div className='conteinerHome'>
+          <div>
+            <input className='btnHomeAcess btnLoginHome' type="button" value="Primeiro Acesso" />
+            <input className='btnHomeAcess btnCadastroHome' type="button" value="Acessar Portal" />
+          </div>
 
           {/* Carrosel */}
           <p className='textoDestaques'>Destaques</p>
- 
+
           <div className='HomeDesktopCarrosel'>
-          <SlideFeacures />
-        
+            <SlideFeacures />
+
           </div>
-
-
-          {/* Categories */}
-
-          {/* <p className='textoDestaques'>Categorias</p>
-          <div className='categoriasHome'>
-            <Categories />
-          </div> */}
-
-
-
-          {/* View Latest */}
-          {/* <p className='textoDestaques'>Ultimos Vistos</p> */}
+          {/* Destaque Lista */}
           <div className=''>
             <ProductsList />
           </div>

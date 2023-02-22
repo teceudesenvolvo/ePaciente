@@ -38,7 +38,7 @@ class topBar extends Component {
         return (
             <>
                 <div className='header-home'>
-                    <h1 className='titleHeader'>{this.state.helloText}</h1><br />
+                    <p className='titleHeader'>{this.state.helloText}</p>
                     <input type="text" placeholder={`Pesquisar`} className='inputPesquisar' />
                     <FaSistrix className='PesquisarLogo' />
                     <div className='categoriasHomeDesktop'>
