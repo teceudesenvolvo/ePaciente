@@ -1,6 +1,6 @@
 import './App.css';
 
-import {Switch, Route} from 'react-router-dom'
+import { Switch, Route } from 'react-router-dom'
 
 
 //Screen Navigate
@@ -47,40 +47,42 @@ function App() {
   return (
     <div className="App">
       <Switch>
-        <Route exact path="/" component={Home}/>
-        <Route path="/login" component={login}/>
-        <Route path="/register" component={register}/>
-        <Route path="/favoritos" component={favoritos}/>
-        <Route path="/Compras" component={Minhas_Compras}/>
-        <Route path="/Notificacoes" component={Notificacoes}/>
-        <Route path="/Mais" component={Mais}/>
-        <Route path="/Servico" component={Servico}/>
-        <Route path="/Produto" component={Produto}/>
-        <Route path="/Carrinho" component={Carrinho}/>
-        <Route path="/pesquisar" component={Pesquisar}/>
-        <Route path="/categorias" component={categorias}/>
-        <Route path="/pagamento" component={pagamento}/>
-        <Route path="/utilider" component={utilider}/>
-        <Route path="/pagamentoUtilider" component={pagamentoUtilider}/>
-        <Route path="/Perfil" component={Perfil}/>
-        <Route path="/loginDashboard" component={loginDashboard}/>
-        <Route path="/registerDashboard" component={registerDashboard}/>
-        <Route path="/registerEndereco" component={registerEndereco}/>
-        <Route path="/registerLoja" component={registerLoja}/>
-        <Route path="/addProducts" component={addProducts}/>
-        <Route path="/servicosDashboard" component={servicosDashboard}/>
-        <Route path="/homeDashboard" component={homeDashboard}/>
-        <Route path="/NotDashboard" component={NotDashboard}/>
+        <Route exact path="/" component={Home} />
+        <Route path="/login" component={login} />
+        <Route path="/register" component={register} />
+        <Route path="/favoritos" component={favoritos} />
+        <Route path="/Compras" component={Minhas_Compras} />
+        <Route path="/Notificacoes" component={Notificacoes} />
+        <Route path="/Mais" component={Mais} />
+        <Route path="/Servico" component={Servico} />
+        <Route path="/Produto" component={Produto} />
+        <Route path="/Carrinho" component={Carrinho} />
+        <Route path="/pesquisar" component={Pesquisar} />
+        <Route path="/categorias" component={categorias} />
+        <Route path="/pagamento" component={pagamento} />
+        <Route path="/utilider" component={utilider} />
+        <Route path="/pagamentoUtilider" component={pagamentoUtilider} />
+        <Route path="/Perfil" component={Perfil} />
+        <Route path="/loginDashboard" component={loginDashboard} />
+        <Route path="/registerDashboard" component={registerDashboard} />
+        <Route path="/registerEndereco" component={registerEndereco} />
+        <Route path="/registerLoja" component={registerLoja} />
+        <Route path="/addProducts" component={addProducts} />
+        <Route path="/servicosDashboard" component={servicosDashboard} />
+        <Route path="/homeDashboard" component={homeDashboard} />
+        <Route path="/NotDashboard" component={NotDashboard} />
 
-        
-          
+
+
 
       </Switch>
-      <Menu/>
-      <MenuDesktop/>
-     
+      <Menu />
+      <MenuDesktop />
+      <footer className='footer'>
+        <p> &copy; 2023 - eudesenvolvo</p>
+      </footer>
 
-      
+
     </div>
   );
 }

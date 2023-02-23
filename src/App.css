@@ -54,6 +54,7 @@
 }
 
 .header-home {
+  margin-top: 0px;
   display: inline-flex;
   width: 100%;
   flex-direction: column;
@@ -1966,6 +1967,14 @@ textarea {
 }
 
 
+/* Footer */
+.footer{
+  margin-bottom: 50px;
+  background-color: #ff0f39;
+  color: #fff;
+  font-size: 12px;
+  padding: 10px;
+}
 
 
 
