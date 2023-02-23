@@ -46,7 +46,7 @@ class ProductsList extends Component {
 
 
     render() {
-        const posts = this.state.posts
+        const posts = this.state.posts.reverse()
         
         if(posts.length > 1){
             posts.length = 1

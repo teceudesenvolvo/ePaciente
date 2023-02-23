@@ -57,6 +57,11 @@ class slideFeactures extends Component {
 
     render() {
         const posts = this.state.posts
+
+        if(posts.length > 8){
+            posts.length = 8
+        }
+
         const listPosts = posts.map((post) =>
             <SplideSlide key={post.id} className="slidesFeacture"
                 onClick={
