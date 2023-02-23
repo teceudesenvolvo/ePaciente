@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { Splide, SplideSlide } from '@splidejs/react-splide';
+import axios from 'axios'
 
 // use Redux
-import {connect} from 'react-redux'
-import {clickButton} from '../store/actions/index'
+import { connect } from 'react-redux'
+import { clickButton } from '../store/actions/index'
 import { bindActionCreators } from 'redux';
 
 // Default theme
@@ -23,100 +24,70 @@ import '@splidejs/react-splide/css/core';
 //mudança de páginas
 
 class slideFeactures extends Component {
-    state = {
-        servicos: [
-            {
-                id: '1',
-                image: 'https://utilider.com/wp-content/uploads/2022/04/BATERIA-ALFACELL-LITHIUM-3V-CARTELA-C-2.webp',
-                desc: 'Descrição do Produto  1',
-              
-            }, 
-            {
-                id: '2',
-                image: 'https://utilider.com/wp-content/uploads/2022/04/PILHA-ALFACELL-COMUM-PQ-AA-1.5V-C-4-CARTELA.webp',
-                desc: 'Descrição do  Produto 2',
-              
-            }, 
-            {
-                id: '3',
-                image: 'https://utilider.com/wp-content/uploads/2022/04/PISTOLA-PCOLA-QUENTE.webp',
-                desc: 'Descrição do Produto 3',
-               
-            }, 
-            {
-                id: '4',
-                image: 'https://utilider.com/wp-content/uploads/2022/04/VDA06020-PETISQUEIRA-DE-VIDRO-D.webp',
-                desc: 'Descrição do  Produto 4',
-             
-            }, 
-            {
-                id: '5',
-                image: 'https://utilider.com/wp-content/uploads/2022/04/POTE-C-TAMPA-CLEAN-PRA.jpg',
-                desc: 'Descrição do  Produto 5',
-              
-            }, 
-            {
-                id: '6',
-                image: 'https://utilider.com/wp-content/uploads/2022/04/tabua-bambu-nv.webp',
-                desc: 'Descrição do  Produto 6',
-             
-            }, 
-            {
-                id: '7',
-                image: 'https://utilider.com/wp-content/uploads/2022/04/JARRA-DE-VIDRO-LOSANGO-416x416.jpg',
-                desc: 'Descrição do  Produto 7',
-              
-            }, 
-            {
-                id: '8',
-                image: 'https://utilider.com/wp-content/uploads/2022/04/POTE-DE-VIDRO-RT-C-DIV.jpg',
-                desc: 'Descrição do  Produto 8',
-                
-            }, 
-        ]
+    constructor(props) {
+        super(props)
+        this.state = {
+            posts: []
+        }
+    }
+    loadNoticias = async () => {
+        await axios.get(`https://www.maracanau.ce.gov.br/wp-json/wp/v2/posts`)
+            .catch(err => console.log(`o erro foi esse aqui: ${err}`))
+            .then(
+                res => {
+                const postsAll = res.data
+                let posts = []
+                for (let key in postsAll){
+                    posts.push({
+                        ...postsAll[key],
+                        id: key
+                    })
+                }
+                this.setState({posts: posts})
+                console.log(res.data)
+            })
+
     }
 
-   
+    componentDidMount(){
+        const loadPage = () => this.loadNoticias()
+        loadPage()
+    }
 
 
     render() {
-        const servicos = this.state.servicos 
+        const posts = this.state.posts
+        const listPosts = posts.map((post) =>
+            <SplideSlide key={post.id} className="slidesFeacture"
+                onClick={
+                    () => {
+                        this.setState({ id: post.id }, () => {
+                            (this.props.clickButton(this.state))
+                            console.log(this.state)
+                                // (window.location.href = "/produto")
 
-        if(servicos.length > 8){
-            servicos.length = 8
-        }
-        // const randomObject = servicos[Math.floor(Math.random() * servicos.length)];
-
-        const listServicos = servicos.map((servico) => 
-        <SplideSlide key={(servico.id)} className="slidesFeacture"
-        onClick={
-            () => {this.setState({id: servico.id}, () => {
-                (this.props.clickButton(this.state))
-                console.log(this.props.idProduct)
-                (window.location.href = "/produto")
-              
-            })}
-          }
-        >
-              {/* <img src={aviso.imageUrl}/> */}
-            
-              <img class="imagDestaques"  src={servico.image} alt=""></img>
-              <div class="DestaquesDescricao" >
-                <p>{servico.desc}</p>
-              </div>
-      </SplideSlide>
-    )
+                        })
+                    }
+                }
+            >
+                <img class="imagDestaques" src={post.yoast_head_json.og_image[0].url} alt=""></img>
+                <div class="DestaquesDescricao" >
+                    <h5>{post.yoast_head_json.title}</h5> 
+                    <p>{post.yoast_head_json.twitter_creator}</p> 
+                </div>
+            </SplideSlide>
+        )
 
 
         return (
             <>
-                <Splide 
-                options={{
-                    perPage: 3,
-                    focus  : 'center',
-                    drag: 'free'
-                }} aria-label="My Favorite Images" className='slideMatriz' >
-                    {listServicos}
+                <Splide
+                    options={{
+                        perPage: 3,
+                        focus: 'center',
+                        drag: 'free'
+                    }} aria-label="My Favorite Images" className='slideMatriz' >
+                    {listPosts}
                 </Splide>
             </>
 
@@ -129,7 +100,8 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => {
-    return bindActionCreators({clickButton}, dispatch);
+    return bindActionCreators({ clickButton }, dispatch);
 }
-  
-  export default connect(mapStateToProps, mapDispatchToProps)(slideFeactures);
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(slideFeactures);

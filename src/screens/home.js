@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import '../App.css'
+import axios from 'axios'
 
 //Imagens
 import Logo from '../assets/logoLaranga.png';
@@ -15,6 +16,7 @@ import ProductsList from '../componets/productsListHome';
 //mudança de páginas
 
 class Home extends Component {
+  
   render() {
     return (
 
