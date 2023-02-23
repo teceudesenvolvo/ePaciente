@@ -207,7 +207,7 @@
   list-style: none;
   margin-top: 0px;
   margin-left: -20px;
-  margin-bottom: 90px;
+  margin-bottom: 0px;
 }
 
 .productItem {
@@ -294,7 +294,7 @@
 
 .areaTextDescProduct {
   text-align: left;
-  background-color: #bbb;
+  background-color: #cfcfcf;
   height: 45px;
   color: #5a5a5a;
   margin-bottom: -10px;
@@ -304,7 +304,7 @@
 
 .areaTextDescProductF {
   text-align: left;
-  background-color: #545454;
+  background-color: #cfcfcf;
   height: 50px;
   color: #fff;
   margin-bottom: -10px;
@@ -619,7 +619,7 @@ video {
   align-items: center;
   width: 132px !important;
   height: 123px !important;
-  background-color: #e1e1e1;
+  background-color: #cfcfcf;
   border-radius: 12px !important;
   margin-right: 10px !important;
 
@@ -648,7 +648,7 @@ video {
   text-align: left;
   width: 93%;
   height: 38%;
-  background-color: #bbb !important;
+  background-color: #cfcfcf !important;
   font-size: 8px;
   border-radius: 0 0 10px 10px !important;
 }
