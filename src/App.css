@@ -205,8 +205,9 @@
   align-items: center;
   justify-content: center;
   list-style: none;
+  margin-top: 0px;
   margin-left: -20px;
-  margin-bottom: 100px;
+  margin-bottom: 90px;
 }
 
 .productItem {
@@ -1969,11 +1970,14 @@ textarea {
 
 /* Footer */
 .footer{
-  margin-bottom: 50px;
-  background-color: #ff0f39;
-  color: #fff;
+  margin-top: -90px;
+  color: #000 !important;
   font-size: 12px;
   padding: 10px;
+}
+footer > p {
+  color: #000 !important;
+  font-size: 12px;
 }
 
 

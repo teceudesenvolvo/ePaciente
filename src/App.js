@@ -79,7 +79,7 @@ function App() {
       <Menu />
       <MenuDesktop />
       <footer className='footer'>
-        <p> &copy; 2023 - eudesenvolvo</p>
+        <p> Copyright &copy; 2023 - eudesenvolvo</p>
       </footer>
 
 
