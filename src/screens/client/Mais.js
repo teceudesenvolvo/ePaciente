@@ -35,32 +35,32 @@ class Mais extends Component {
         </div>
         <div className='Mais-content'>
           <div className='Mais-item'>
-            <a href='/favoritos' className='Mais-icon' >
+            <a href='/consultas' className='Mais-icon' >
               <span className='Mais-item-title'>Consultas</span>
             </a>
           </div>
           <div className='Mais-item'>
-            <a href='/ofertas' className='Mais-icon' >
+            <a href='/exames' className='Mais-icon' >
               <span className='Mais-item-title'>Exames</span>
             </a>
           </div>
           <div className='Mais-item'>
-            <a href='/Compras' className='Mais-icon' >
+            <a href='/vacinas' className='Mais-icon' >
               <span className='Mais-item-title'>Vacinas</span>
             </a>
           </div>
           <div className='Mais-item'>
-            <a href='/Perfil' className='Mais-icon' >
+            <a href='/card-sus' className='Mais-icon' >
               <span className='Mais-item-title'>Cartão SUS</span>
             </a>
           </div>
           <div className='Mais-item'>
-            <a href='/Grupos' className='Mais-icon' >
+            <a href='/receitas' className='Mais-icon' >
               <span className='Mais-item-title'>Receitas</span>
             </a>
           </div>
           <div className='Mais-item'>
-            <a href='/Ajuda' className='Mais-icon' >
+            <a href='/avalie' className='Mais-icon' >
               <span className='Mais-item-title'>Avalie</span>
             </a>
           </div>
