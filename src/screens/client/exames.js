@@ -6,11 +6,11 @@ import React, { Component } from 'react';
 
 // Components
 import TopBar from '../../componets/topBarSearch'
-import FavoritoList from '../../componets/exameList';
+import ExameList from '../../componets/exameList';
 
 //mudança de páginas
 
-class favoritos extends Component {
+class Exames extends Component {
   render() {
     return (
 
@@ -20,11 +20,11 @@ class favoritos extends Component {
         </div>
         <div className='favoritos agendarConsulta'>
         <h1>Meus Exames</h1>
-          <FavoritoList></FavoritoList> 
+          <ExameList/> 
         </div>
       </div>
     );
   }
 }
 
-export default favoritos;
+export default Exames;
