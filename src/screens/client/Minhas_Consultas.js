@@ -7,7 +7,7 @@ import React, { Component } from 'react';
 
 // Components
 import TopBar from '../../componets/topBarSearch'
-import ProductsList from '../../componets/ProductsList_minhaConsultas';
+import ProductsList from '../../componets/List_minhaConsultas';
 
 
 //mudança de páginas
