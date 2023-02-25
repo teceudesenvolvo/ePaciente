@@ -48,8 +48,8 @@ class ProductsList extends Component {
     render() {
         const posts = this.state.posts.reverse()
         
-        if(posts.length > 1){
-            posts.length = 1
+        if(posts.length > 2){
+            posts.length = 2
         }
         
         const listPosts = posts.map((post) => 
