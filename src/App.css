@@ -647,7 +647,7 @@ video {
   align-items: center;
   width: 132px !important;
   height: 123px !important;
-  background-color: #cfcfcf;
+  background-color: #d9d9d9;
   border-radius: 12px !important;
   margin-right: 10px !important;
 
@@ -676,7 +676,7 @@ video {
   text-align: left;
   width: 93%;
   height: 38%;
-  background-color: #cfcfcf !important;
+  background-color: #d9d9d9 !important;
   font-size: 8px;
   border-radius: 0 0 10px 10px !important;
 }
