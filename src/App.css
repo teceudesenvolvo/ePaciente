@@ -1420,13 +1420,18 @@ video {
   display: flex;
   align-items: flex-start;
   background-color: #ba0021;
-
-
+  border-bottom: 1px solid #AD001F;
 }
 
 .Mais-icon {
+  width: 100%;
+  align-items: center;
+  text-align: center;
+  align-self: center;
+  color: #fff;
   text-decoration: none !important;
   margin: 10px;
+  font-weight: 800;
 }
 
 .Mais-icon:hover {

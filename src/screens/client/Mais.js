@@ -35,57 +35,33 @@ class Mais extends Component {
         </div>
         <div className='Mais-content'>
           <div className='Mais-item'>
-            <a href='/' className='Mais-icon' >
-              <FaHome />
-              <span className='Mais-item-title'>Início</span>
-            </a>
-          </div>
-          <div className='Mais-item'>
-            <a href='/pesquisar' className='Mais-icon' >
-              <FaSistrix />
-              <span className='Mais-item-title'>Buscar</span>
-            </a>
-          </div>
-          <div className='Mais-item'>
-            <a href='/Notificacoes' className='Mais-icon' >
-              <FaBell />
-              <span className='Mais-item-title'>Notificações</span>
-            </a>
-          </div>
-          <div className='Mais-item'>
             <a href='/favoritos' className='Mais-icon' >
-              <FaHeart />
-              <span className='Mais-item-title'>Favoritos</span>
+              <span className='Mais-item-title'>Consultas</span>
             </a>
           </div>
           <div className='Mais-item'>
             <a href='/ofertas' className='Mais-icon' >
-              <FaTag />
-              <span className='Mais-item-title'>Ofertas do dia</span>
+              <span className='Mais-item-title'>Exames</span>
             </a>
           </div>
           <div className='Mais-item'>
             <a href='/Compras' className='Mais-icon' >
-              <FaShoppingBag />
-              <span className='Mais-item-title'>Minhas Compras</span>
+              <span className='Mais-item-title'>Vacinas</span>
             </a>
           </div>
           <div className='Mais-item'>
             <a href='/Perfil' className='Mais-icon' >
-              <FaUser />
-              <span className='Mais-item-title'>Minha Conta</span>
+              <span className='Mais-item-title'>Cartão SUS</span>
             </a>
           </div>
           <div className='Mais-item'>
             <a href='/Grupos' className='Mais-icon' >
-              <FaUsers />
-              <span className='Mais-item-title'>Grupos de pagamentos</span>
+              <span className='Mais-item-title'>Receitas</span>
             </a>
           </div>
           <div className='Mais-item'>
             <a href='/Ajuda' className='Mais-icon' >
-              <FaQuestionCircle />
-              <span className='Mais-item-title'>Ajuda</span>
+              <span className='Mais-item-title'>Avalie</span>
             </a>
           </div>
         </div>
