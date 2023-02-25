@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom'
 
 //Imagens
-import logo from '../../assets/logoLaranga.png';
+import logo from '../../assets/e-paciente-color-15.png';
 import google from '../../assets/google.png';
 import face from '../../assets/face.png';
 // Icones
@@ -16,8 +16,7 @@ class loginClient extends Component {
         return (
             <div className='App-header' >
                 <div className='Container' >
-                    <img src={logo} alt="logo" className='logo' />
-                    <h1>Seja bem-vindo!</h1>
+                    <img src={logo} alt="logo" className='logo logoLogin' />
                     <form className='formLogin'>
                         <input type="text" placeholder="E-mail" className='inputLogin' />
                         <input type="password" placeholder="Senha" className='inputLogin' />
