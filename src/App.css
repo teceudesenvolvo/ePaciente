@@ -742,6 +742,17 @@ video {
   flex-direction: column;
 }
 
+.agendarConsulta > h1{
+  font-size: 10px;
+  color: #000;
+}
+
+.agendarConsulta > button{
+  margin-top: 5px;
+  width: 95%;
+  border-radius: 5px;
+}
+
 .minhasCompras {
     width: 90%;
     height: 50%;
@@ -750,7 +761,7 @@ video {
 
 .productItem-minhasCompras {
   list-style: none;
-  height: 100px;
+  height: 150px;
   width: 100%;
   align-items: center;
   justify-content: center;
@@ -775,7 +786,6 @@ video {
   align-items: flex-start;
   width: 100%;
   height: 65%;
-  padding-top: 5px;
   margin-left: 10px;
   
 }

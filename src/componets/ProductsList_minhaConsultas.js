@@ -17,7 +17,10 @@ class ProductsList_minhaConsultas extends Component {
                 especialidade: 'Clinica Médica',
                 data: '10/03/2023',
                 horario: '10:00',
+                medico: 'Nome Sobrenome',
+                protocolo: '000000123',
                 unidade: 'UBS - Localidade',
+                enderecoUnd: 'Rua: Qualquer 13 - Cidade - Estado',
                 status: 'aguardando'
             },
             {
@@ -25,7 +28,10 @@ class ProductsList_minhaConsultas extends Component {
                 especialidade: 'Dentista',
                 data: '20/03/2023',
                 horario: '10:00',
+                medico: 'Nome Sobrenome',
+                protocolo: '000000123',
                 unidade: 'UBS - Localidade',
+                enderecoUnd: 'Rua: Qualquer 13 - Cidade - Estado',
                 status: 'aguardando'
             },
             {
@@ -33,7 +39,10 @@ class ProductsList_minhaConsultas extends Component {
                 especialidade: 'Cardiologista',
                 data: '23/03/2023',
                 horario: '10:00',
+                medico: 'Nome Sobrenome',
+                protocolo: '000000123',
                 unidade: 'UBS - Localidade',
+                enderecoUnd: 'Rua: Qualquer 13 - Cidade - Estado',
                 status: 'aguardando'
             },
             {
@@ -41,7 +50,10 @@ class ProductsList_minhaConsultas extends Component {
                 especialidade: 'Pscologo',
                 data: '27/03/2023',
                 horario: '10:00',
+                medico: 'Nome Sobrenome',
+                protocolo: '000000123',
                 unidade: 'UBS - Localidade',
+                enderecoUnd: 'Rua: Qualquer 13 - Cidade - Estado',
                 status: 'aguardando'
             },
         ]
@@ -69,7 +81,10 @@ class ProductsList_minhaConsultas extends Component {
                         <p><b>{consulta.especialidade}</b></p>
                         <p className='status'>{consulta.data}</p>
                         <p>{consulta.horario}</p>
+                        <p>{consulta.medico}</p>
+                        <p>{consulta.protocolo}</p>
                         <p><b>{consulta.unidade}</b></p>
+                        <p>{consulta.enderecoUnd}</p>
                     </div>
                     <div className='status'></div>
                 </div>

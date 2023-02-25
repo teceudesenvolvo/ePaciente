@@ -23,7 +23,7 @@ class loginClient extends Component {
                         <input type="password" placeholder="Senha" className='inputLogin' />
                         <a href='#' className='linkLogin'>Esqueceu a senha?</a>
                         <button className='buttonLogin'>Entrar</button>
-                        </form>
+                    </form>
                     <p>Não tem uma conta? <a href='/register' className='linkLogin'>Crie uma</a></p>
                 </div>
             </div>
