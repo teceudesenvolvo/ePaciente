@@ -736,34 +736,28 @@ video {
   background-color: #FF7A00;
 }
 
-/*  Minhas Compras */
-.minhasCompras {
-  display: flex;
+/*  Minhas Consultas */
+.consultas{
+  display: inline-flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 90%;
+}
+
+.minhasCompras {
+    width: 90%;
+    height: 50%;
+    align-items: center;
 }
 
 .productItem-minhasCompras {
   list-style: none;
   height: 100px;
   width: 100%;
-  display: flex;
-  flex-direction: row;
   align-items: center;
   justify-content: center;
-  background-color: #e1e1e1;
+  background-color: #d9d9d9;
   border-radius: 12px;
-  margin: 0 10px 20px 0;
-
-}
-
-.imgProduct-minhasCompras {
-  width: 31%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 10px 0px 0px 10px;
+  margin: 10px 10px 0px -15px;
+  
 }
 
 
@@ -772,25 +766,7 @@ video {
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  width: 80%;
   height: 100%;
-  background-color: #545454;
-  border-radius: 0px 10px 10px 0px;
-}
-
-.tituloProduct-minhasCompras {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  width: 100%;
-  height: 30%;
-  border-bottom: white 1px solid;
-}
-
-.tituloProduct-minhasCompras>h5 {
-  font-size: small;
-  margin-left: 7px;
 }
 
 .descricaoProduct-minhasCompras {
@@ -800,24 +776,31 @@ video {
   width: 100%;
   height: 65%;
   padding-top: 5px;
+  margin-left: 10px;
+  
 }
-
-
-.status {
-  font-size: x-small;
-  color: green;
-  font-weight: bold;
-  padding-left: 7px;
-  margin: 0;
-}
-
 
 .descricaoProduct-minhasCompras>p {
-  font-size: x-small;
+  color: #5a5a5a;
+  font-size: 12px;
+  padding-left: 7px;
+  margin: 0;
+}
+
+.descricaoProduct-minhasCompras>p>b {
+  font-size: 13px;
+  font-weight: bold;
+  color: #000;
+}
+
+.status {
   font-weight: bold;
   padding-left: 7px;
   margin: 0;
 }
+
+
+
 
 /* Notification */
 
@@ -2003,7 +1986,7 @@ textarea {
 
 /* Footer */
 .footer{
-  margin-top: -100px;
+  margin-top: 0px;
   color: #000 !important;
   font-size: 12px;
   padding: 10px;
