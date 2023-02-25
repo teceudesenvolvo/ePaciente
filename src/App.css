@@ -242,6 +242,11 @@
   margin-left: 10px !important;
 }
 
+.vacinaItem{
+  height: 120px;
+  margin-bottom: 5px !important;
+}
+
 .productId {
   flex-direction: column;
   align-items: center;
