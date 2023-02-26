@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 
 
 // Icones
-import { 
+import {
   FaStethoscope,
   FaFileMedical,
   FaBars,
@@ -16,9 +16,9 @@ import {
 
 //mudança de páginas
 
-class menu extends Component{
+class menu extends Component {
 
-  constructor(props){
+  constructor(props) {
     super(props)
     this.state = {
       linkMenu: 'linkMenu',
@@ -26,23 +26,24 @@ class menu extends Component{
       linkMenu3: 'linkMenu',
       linkMenu4: 'linkMenu',
       linkMenu5: 'linkMenu',
+      menuClass: 'menu',
       window: window.location.pathname,
     }
   }
 
 
-  btnHome = () =>{
-       switch (this.state.window) {
+  btnHome = () => {
+    switch (this.state.window) {
       case `/consultas`:
-        return this.setState({linkMenu: 'linkMenu link-active'})
+        return this.setState({ linkMenu: 'linkMenu link-active' })
       case `/exames`:
-        return this.setState({linkMenu2: 'linkMenu link-active'})
+        return this.setState({ linkMenu2: 'linkMenu link-active' })
       case `/vacinas`:
-        return this.setState({linkMenu3: 'linkMenu link-active'})
+        return this.setState({ linkMenu3: 'linkMenu link-active' })
       case `/receitas`:
-        return this.setState({linkMenu4: 'linkMenu link-active'})
+        return this.setState({ linkMenu4: 'linkMenu link-active' })
       case `/Mais`:
-        return this.setState({linkMenu5: 'linkMenu link-active'})
+        return this.setState({ linkMenu5: 'linkMenu link-active' })
       default:
         return null
     }
@@ -54,20 +55,25 @@ class menu extends Component{
     }
 
     loadPage()
+
+    if(window.location.pathname = '/login'){
+      this.setState({menuClass: 'menuNone'}) 
+    }
+
   }
 
 
-  render(){  
-    return (      
-        <nav className='menu'>
-                        
-            <a href='/consultas'  className={this.state.linkMenu}><FaStethoscope /></a> 
-            <a href='/exames' className={this.state.linkMenu2}> < FaHandHoldingHeart/> </a> 
-            <a href='/vacinas' className={this.state.linkMenu3}> <FaSyringe /> </a>
-            <a href='/receitas' className={this.state.linkMenu4}> <FaFileMedical /> </a>
-            <a href='/Mais' className={this.state.linkMenu5}> <FaBars /> </a>
-               
-        </nav>
+  render() {
+    return (
+      <nav className={this.state.menuClass}>
+
+        <a href='/consultas' className={this.state.linkMenu}><FaStethoscope /></a>
+        <a href='/exames' className={this.state.linkMenu2}> < FaHandHoldingHeart /> </a>
+        <a href='/vacinas' className={this.state.linkMenu3}> <FaSyringe /> </a>
+        <a href='/receitas' className={this.state.linkMenu4}> <FaFileMedical /> </a>
+        <a href='/Mais' className={this.state.linkMenu5}> <FaBars /> </a>
+
+      </nav>
 
     );
   }

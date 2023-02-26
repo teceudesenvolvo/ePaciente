@@ -601,6 +601,10 @@ video {
   z-index: 6;
 }
 
+.menuNone{
+  display: none;
+}
+
 .linkMenu {
   display: flex;
   flex-direction: column;
