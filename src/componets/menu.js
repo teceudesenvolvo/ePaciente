@@ -47,6 +47,10 @@ class menu extends Component {
       default:
         return null
     }
+
+    if(window.location.pathname = '/login'){
+      this.setState({menuClass: 'menuNone'}) 
+    }
   }
 
   componentDidMount() {
@@ -56,9 +60,7 @@ class menu extends Component {
 
     loadPage()
 
-    if(window.location.pathname = '/login'){
-      this.setState({menuClass: 'menuNone'}) 
-    }
+    
 
   }
 
