@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom'
+
 
 //Imagens
 import logo from '../../assets/e-paciente-color-txt-15.png';
-import google from '../../assets/google.png';
-import face from '../../assets/face.png';
+
 // Icones
 
 // Components

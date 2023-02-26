@@ -17,27 +17,21 @@ class vacinaList extends Component {
                 tipo: 'COVID-19',
                 date: '20/02/2023',
                 hora: '10:00 às 17:00',
-                idades: '19 a 45 anos',
-                unidade: 'UBS',
-                enderecoUnd: 'Rua Qualquer 12 - Cidade -  Estado ',
+                idades: '19 a 45 anos'
             },
             {
                 id: '1',
                 tipo: 'Influenza A',
                 date: '20/02/2023',
                 hora: '10:00 às 17:00',
-                idades: '19 a 45 anos',
-                unidade: 'UBS',
-                enderecoUnd: 'Rua Qualquer 12 - Cidade -  Estado ',
+                idades: '19 a 45 anos'
             },
             {
                 id: '1',
                 tipo: 'Poliomelite',
                 date: '20/02/2023',
                 hora: '10:00 às 17:00',
-                idades: '19 a 45 anos',
-                unidade: 'UBS',
-                enderecoUnd: 'Rua Qualquer 12 - Cidade -  Estado ',
+                idades: '19 a 45 anos'
             },
         ]
     }
@@ -64,8 +58,6 @@ class vacinaList extends Component {
                     <p className='descricaoProduct' >{vacina.date}</p>
                     <p className='descricaoProduct' >{vacina.hora}</p>
                     <p className='descricaoProduct' >{vacina.idades}</p>
-                    <p className='valueProduct' >{vacina.unidade}</p>
-                    <p className='descricaoProduct' >{vacina.enderecoUnd}</p>
                 </div>
             </li>
         )

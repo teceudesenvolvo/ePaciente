@@ -22,9 +22,20 @@ class Minhas_Compras extends Component {
         </div>
         <div className='minhasCompras'>
           <form className='formLogin agendarConsulta'>
+            
             <h1>Agendar Consulta:</h1>
-            <input type="text" placeholder="Especialidade" className='inputLogin' />
-            <input type="text" placeholder="Unidade" className='inputLogin' />
+            <select name="Especialidade" placeholder='Especialidade' className='inputLogin'>
+              <option>Clinica Médica</option>
+              <option>Cardiologista</option>
+              <option>Dentista</option>
+              </select>
+
+
+            <select name="unidade" placeholder='Unidade' className='inputLogin'>
+              <option>UBS - Localidade Cadastrada</option>
+              <option>Hospital Municipal</option>
+              </select>
+
             <input type="text" placeholder="Data" className='inputLogin' />
             <input type="text" placeholder="Horário" className='inputLogin' />
 

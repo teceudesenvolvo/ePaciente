@@ -58,13 +58,8 @@ class receitaList extends Component {
                 <div className='areaTextDescProductF vacinaItem' >
                     <p className='valueProduct' >{receita.title}</p>
                     <p className='descricaoProduct' >{receita.date}</p>
-                    <p className='descricaoProduct' > Protocolo: {receita.protocolo}</p>
-
-                    <p className='valueProduct' >Prescrição</p>
-                    <ul>
-                        
-                    </ul>
-
+                    <p className='descricaoProduct' > Protocolo: {receita.protocolo}</p>  
+                    <button className='buttonLogin btnExame'>Ver</button>                  
                 </div>
             </li>
         )
