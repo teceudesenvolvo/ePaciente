@@ -46,6 +46,8 @@ class menu extends Component {
         return this.setState({ linkMenu5: 'linkMenu link-active' })
       case `/login`:
         return this.setState({ menuClass: 'menuNone' })
+      case `/register`:
+        return this.setState({ menuClass: 'menuNone' })
       default:
         return null
     }
