@@ -48,14 +48,14 @@ class receitaList extends Component {
             <li key={(receita.id)} className="favoritoItem vacinaItem"
                 onClick={
                     () => {
-                        window.location.href = "/produto"
+                        // window.location.href = "/produto"
                         // this.setState({id: aviso.id}, () => {
                         // (this.props.clickButton(this.state))
                         //   }
                     }
                 }
             >
-                <div className='areaTextDescProductF vacinaItem' >
+                <div className='areaTextDescProductF vacinaItem receitaItem' >
                     <p className='valueProduct' >{receita.title}</p>
                     <p className='descricaoProduct' >{receita.date}</p>
                     <p className='descricaoProduct' > Protocolo: {receita.protocolo}</p>  
