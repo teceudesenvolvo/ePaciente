@@ -44,23 +44,27 @@ class menu extends Component {
         return this.setState({ linkMenu4: 'linkMenu link-active' })
       case `/Mais`:
         return this.setState({ linkMenu5: 'linkMenu link-active' })
+      case `/login`:
+        return this.setState({ menuClass: 'menuNone' })
       default:
         return null
     }
 
-    if(window.location.pathname = '/login'){
-      this.setState({menuClass: 'menuNone'}) 
-    }
+
+
+
   }
 
   componentDidMount() {
     const loadPage = () => {
       this.btnHome()
+
+
     }
 
     loadPage()
 
-    
+
 
   }
 

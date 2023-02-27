@@ -31,7 +31,13 @@ class Home extends Component {
         <div className='conteinerHome'>
           <div>
             <input className='btnHomeAcess btnLoginHome' type="button" value="Primeiro Acesso" />
-            <input className='btnHomeAcess btnCadastroHome' type="button" value="Acessar Portal" />
+            <input className='btnHomeAcess btnCadastroHome' type="button" value="Acessar Portal" 
+            onClick={
+              () => {
+                window.location.pathname = '/login'
+              }
+            }
+            />
           </div>
 
           {/* Carrosel */}
