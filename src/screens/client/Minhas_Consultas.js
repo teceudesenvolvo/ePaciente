@@ -13,6 +13,7 @@ import ProductsList from '../../componets/List_minhaConsultas';
 //mudança de páginas
 
 class Minhas_Compras extends Component {
+
   render() {
     return (
 
@@ -22,24 +23,32 @@ class Minhas_Compras extends Component {
         </div>
         <div className='minhasCompras'>
           <form className='formLogin agendarConsulta'>
-            
+
             <h1>Agendar Consulta:</h1>
             <select name="Especialidade" placeholder='Especialidade' className='inputLogin'>
               <option>Clinica Médica</option>
               <option>Cardiologista</option>
               <option>Dentista</option>
-              </select>
+            </select>
 
 
             <select name="unidade" placeholder='Unidade' className='inputLogin'>
               <option>UBS - Localidade Cadastrada</option>
               <option>Hospital Municipal</option>
-              </select>
+            </select>
 
-            <input type="date" placeholder="Data" className='inputLogin' min={Date.now()}/>
-            <input type="time" placeholder="Horário" className='inputLogin' 
-            min="07:00" max="17:00" required 
-            />
+            <input type="date" placeholder="Data" className='inputLogin' />
+            <select className='inputLogin'>
+              <option>07:00</option>
+              <option>08:00</option>
+              <option>09:00</option>
+              <option>10:00</option>
+              <option>13:00</option>
+              <option>14:00</option>
+              <option>15:00</option>
+              <option>16:00</option>
+              <option>17:00</option>
+            </select>
 
             <button className='buttonLogin'>Agendar</button>
             <h1>Minhas Consultas:</h1>
