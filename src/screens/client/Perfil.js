@@ -84,9 +84,15 @@ class Perfil extends Component {
 
                             </div>
                         </li>
-
-
                     </ul>
+                    <input className='btnHomeAcess btnCadastroHome buttonLogin' type="button" value="Medicamentos"
+                        onClick={
+                            () => {
+                                window.location.pathname = '/login'
+                            }
+                        }
+                    />
+                    <p><a href='/' className='linkLogin'>Sair da conta</a></p>
                 </div>
             </div>
 
