@@ -36,8 +36,10 @@ class Minhas_Compras extends Component {
               <option>Hospital Municipal</option>
               </select>
 
-            <input type="text" placeholder="Data" className='inputLogin' />
-            <input type="text" placeholder="Horário" className='inputLogin' />
+            <input type="date" placeholder="Data" className='inputLogin' />
+            <input type="time" placeholder="Horário" className='inputLogin' 
+            min="07:00" max="17:00"
+            />
 
             <button className='buttonLogin'>Agendar</button>
             <h1>Minhas Consultas:</h1>
