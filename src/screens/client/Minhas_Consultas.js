@@ -36,7 +36,6 @@ class Minhas_Compras extends Component {
               <option>UBS - Localidade Cadastrada</option>
               <option>Hospital Municipal</option>
             </select>
-
             <input type="date" placeholder="Data" className='inputLogin' required min="01-01-2023" />
             <select className='inputLogin'>
               <option>07:00</option>
