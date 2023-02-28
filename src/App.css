@@ -742,6 +742,7 @@ video {
   align-items: center;
   background-color: #E1E1E1;
   justify-content: center;
+  text-align: start;
   width: 70%;
   height: 150px;
   border-radius: 12px;
@@ -763,6 +764,16 @@ video {
 .agendarConsulta > h1{
   font-size: 10px;
   color: #000;
+}
+
+.titleList{
+  width: 100%;
+  margin-left: -10px;
+  text-align: start;
+  font-size: 10px;
+  color: #000;
+  display: flex;
+  flex-direction: column;
 }
 
 .agendarConsulta > button{

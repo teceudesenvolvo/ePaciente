@@ -21,10 +21,13 @@ class Perfil extends Component {
                     <TopBar />
                 </div>
                 <div className='favoritos agendarConsulta'>
-                    <h1>Informações Pessoais</h1>
+
 
 
                     <ul className='vistosHome'>
+
+                        {/* Informações Pessoais */}
+                        <h1 className='titleList'>Informações Pessoais</h1>
                         <li className="favoritoItem vacinaItem">
                             <div className='areaTextDescProduct' >
                                 <p className='descricaoProduct' ><b>Nome Completo</b></p>
@@ -33,10 +36,56 @@ class Perfil extends Component {
                                 <p className='descricaoProduct' >Tipo Sanguineo: <b>O-</b></p>
                                 <p className='descricaoProduct' >CPF:</p>
                                 <p className='descricaoProduct' >RG:</p>
-                                <p className='descricaoProduct' >CNS<b>123 1234 1234 1234</b></p>
-                                <p className='descricaoProduct' >Endereço</p>
+                                <p className='descricaoProduct' >CNS: <b>123 1234 1234 1234</b></p>
+                                <p className='descricaoProduct' >Endereço: Rua Qualquer de nós, 1234 - Bairro</p>
+                                <p className='descricaoProduct' >Telefone: 85 99999-1213</p>
+                                <p className='descricaoProduct' >Email: teste@teste.com</p>
                             </div>
                         </li>
+
+
+                        {/* Alergias List */}
+                        <h1 className='titleList'>Alergias</h1>
+                        <li className="favoritoItem vacinaItem">
+                            <div className='areaTextDescProduct' >
+                                <ul className='vistosHome'>
+                                    <li><p className='descricaoProduct'>Alergia 1</p></li>
+                                    <li><p className='descricaoProduct'>Alergia 2</p></li>
+                                    <li><p className='descricaoProduct'>Alergia 3</p></li>
+                                </ul>
+
+                            </div>
+                        </li>
+
+
+                        {/* Medicações COntroladas */}
+                        <h1 className='titleList'>Medicações Controladas</h1>
+                        <li className="favoritoItem vacinaItem">
+                            <div className='areaTextDescProduct' >
+                                <ul className='vistosHome'>
+                                    <li><p className='descricaoProduct'>Medicação Controlada 1</p></li>
+                                    <li><p className='descricaoProduct'>Medicação Controlada 2</p></li>
+                                    <li><p className='descricaoProduct'>Medicação Controlada 3</p></li>
+                                </ul>
+
+                            </div>
+                        </li>
+
+
+                        {/* Tratamentos */}
+                        <h1 className='titleList'>Tratamentos</h1>
+                        <li className="favoritoItem vacinaItem">
+                            <div className='areaTextDescProduct' >
+                                <ul className='vistosHome'>
+                                    <li><p className='descricaoProduct'>Tratamento: Protocolo Num</p></li>
+                                    <li><p className='descricaoProduct'>Tratamento: Protocolo Num</p></li>
+                                    <li><p className='descricaoProduct'>Tratamento: Protocolo Num</p></li>
+                                </ul>
+
+                            </div>
+                        </li>
+
+
                     </ul>
                 </div>
             </div>
