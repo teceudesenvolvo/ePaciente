@@ -21,7 +21,13 @@ class loginClient extends Component {
                         <input type="text" placeholder="CPF" className='inputLogin' />
                         <input type="password" placeholder="Senha" className='inputLogin' />
                         <a href='#' className='linkLogin'>Esqueceu a senha?</a>
-                        <button className='buttonLogin'>Entrar</button>
+                        <input type="button" className='buttonLogin' value="Entrar"
+                        onClick={
+                            () => {
+                                window.location.pathname = '/perfil'
+                            }
+                        }
+                        />
                     </form>
                     <p>Não tem uma conta? <a href='/register' className='linkLogin'>Crie uma</a></p>
                 </div>
