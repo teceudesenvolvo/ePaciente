@@ -84,6 +84,25 @@ class Perfil extends Component {
 
                             </div>
                         </li>
+
+
+
+
+                        {/* Vacinas */}
+                        <h1 className='titleList'>Vacinas Aplicadas</h1>
+                        <li className="favoritoItem vacinaItem">
+                            <div className='areaTextDescProduct' >
+                                <ul className='vistosHome'>
+                                    <li><p className='descricaoProduct'>Vacina Covid ASTRAZENECA</p></li>
+                                    <li><p className='descricaoProduct'>Vacina Covid 19 - RNAM</p></li>
+                                    <li><p className='descricaoProduct'>Triplice Viral</p></li>
+                                </ul>
+
+                            </div>
+                        </li>
+
+
+
                     </ul>
                     <input className='btnHomeAcess btnCadastroHome buttonLogin' type="button" value="Medicamentos"
                         onClick={
