@@ -8,13 +8,14 @@ import '../App.css'
 
 
 // Components
-import SlideFeacures from '../componets/slideFeactures';
-import TopBar from '../componets/topBarSearch'
-import ProductsList from '../componets/productsListHome';
 
 //mudança de páginas
 
 class Home extends Component {
+  state={
+    name: 'Leonardo'
+  }
+  
   
   render() {
     return (
@@ -23,38 +24,9 @@ class Home extends Component {
 
         {/* Search */}
         <div className='header-home'>
-          <TopBar />
-        </div>
-
-
-        <div className='conteinerHome'>
-          <div>
-            <input className='btnHomeAcess btnLoginHome' type="button" value="Primeiro Acesso"
-            onClick={
-              () => {
-                window.location.pathname = '/register'
-              }
-            }
-            />
-            <input className='btnHomeAcess btnCadastroHome' type="button" value="Acessar Portal" 
-            onClick={
-              () => {
-                window.location.pathname = '/login'
-              }
-            }
-            />
-          </div>
-
-          {/* Carrosel */}
-          <p className='textoDestaques'>Destaques</p>
-
-          <div className='HomeDesktopCarrosel'>
-            <SlideFeacures />
-
-          </div>
-          {/* Destaque Lista */}
-          <div className=''>
-            <ProductsList />
+          <div className='headerName' >
+            <h2>Olá, {this.state.name}</h2>
+            <h3>Seja bem-vindo!</h3>
           </div>
         </div>
       </div>

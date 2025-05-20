@@ -81,7 +81,7 @@ function App() {
       <Menu />
       <MenuDesktop />
       <footer className='footer'>
-        <p> Copyright &copy; 2023 - eudesenvolvo</p>
+        <p> Desenvolvido por - Blu Tecnologias</p>
       </footer>
 
 
