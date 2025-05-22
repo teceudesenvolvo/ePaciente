@@ -6,7 +6,6 @@ import React, { Component } from 'react';
 // Icones
 
 // Components
-import TopBar from '../../componets/topBarSearch'
 import ProductsList from '../../componets/List_minhaConsultas';
 
 
@@ -18,9 +17,7 @@ class Minhas_Compras extends Component {
     return (
 
       <div className='App-header' >
-        <div className='header-home'>
-          <TopBar />
-        </div>
+       
         <div className='minhasCompras'>
           <form className='formLogin agendarConsulta'>
 

@@ -6,18 +6,6 @@ import React, { Component } from 'react';
 
 
 // Icones
-import {
-  FaHome,
-  FaHeart,
-  FaShoppingBag,
-  FaBell,
-  FaSistrix,
-  FaUser,
-  FaUsers,
-  FaTag,
-  FaQuestionCircle
-
-} from "react-icons/fa";
 
 // Components
 import TopBar from '../../componets/topBarSearch'

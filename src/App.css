@@ -54,23 +54,73 @@
 }
 
 .header-home {
-  width: 100%;
+  width: 90%;
   text-align: left;
   margin-top: 50px;
-  margin-left: 150px;
+  margin-left: 100px;
   color: #484848;
+  font-family: Montserrat;
 }
 
 .headerName> h2{
   color: #484848;
   font-size: 25px;
   margin-bottom: -10px;
+  font-weight: 800;
 }
 .headerName> h3{
   color: #484848;
   font-size: 16px;
+  font-weight: 550;
 }
 
+.logoPrefHeaderHome{
+  width: 91%;
+  height: 150px;
+  display: block;
+  justify-content: center;
+  flex-direction: column;
+  z-index: -1;
+  margin-top: -100px;
+  text-align: right;
+}
+
+.logoPref{
+  width: 10%;
+}
+
+.optionsHome{
+  display:inline-flex ;
+  flex-direction: row;
+  width: 100%;
+  justify-content: center;
+  margin: 0 auto;
+  margin-top: 100px;
+}
+
+.optionHomeA{
+  color: #5A5A5A;
+  width: 200px;
+  height: 200px;
+  margin: 15px;
+  align-content: center;
+  border-radius: 20px;
+  box-shadow: 1px 1px 20px rgba(0, 0, 0, 0.1);
+  text-decoration: none;
+  font-size: 15px;
+  transition: all 0.4s;
+}
+
+.optionHomeA:hover{
+  transform: scale(1.05);
+}
+
+.iconOptionsHome{
+  color: #42D4F2;
+  font-size: 50px;
+  font-weight: 200;
+  margin: 20px;
+}
 
 
 .inputPesquisar {
@@ -2062,13 +2112,13 @@ footer > p {
   bottom: 0;
   height: 100vh;
   left: 0;
-  background: #363636;
-  width: 40px;
+  background: white;
+  width: 50px;
   overflow: hidden;
   transition: width 0.2 linear;
   box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1);
   z-index: 7;
-
+  border-radius: 0px 10px 10px 0px;
 
 }
 
@@ -2099,19 +2149,11 @@ footer > p {
 .logoDesktop img {
   margin: 0 auto;
   width: 30px;
-
-
-
-
 }
 
 .logoDesktopM img {
   margin: 0 auto;
   width: 30px;
-
-
-
-
 }
 
 .h1-logo {
@@ -2126,23 +2168,25 @@ footer > p {
 
 .aDesktop {
   position: relative;
-  color: #b7b7b7;
+  color: #B1B1B1;
   font-size: 14px;
   display: flex;
-  padding: 5px;
-  width: 220px;
+  padding: 5px 0px 15px 15px;
+  width: 200px;
+  height: 40px;
   border-radius: 16px;
-  margin: 2px;
+  margin: 3px;
   text-decoration: none !important;
 }
 
 .aDesktop:hover {
-  color: #ffad60ab;
+  color: #1ACEEF;
 }
 
 
 .link-desktop-active {
-  color: #ff7b00 !important;
+  color: #fff !important;
+  background-color: #1ACEEF;
 }
 
 .fas {
@@ -2156,7 +2200,7 @@ footer > p {
   position: relative;
   top: 5px;
   padding: 15px;
-  margin-left: 20px;
+  margin-left: 0px;
 }
 
 

@@ -20,7 +20,7 @@ class loginClient extends Component {
                         <h1>Entre com sua conta:</h1>
                         <input type="text" placeholder="CPF" className='inputLogin' />
                         <input type="password" placeholder="Senha" className='inputLogin' />
-                        <a href='#' className='linkLogin'>Esqueceu a senha?</a>
+                        <a href='/' className='linkLogin'>Esqueceu a senha?</a>
                         <input type="button" className='buttonLogin' value="Entrar"
                         onClick={
                             () => {

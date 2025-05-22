@@ -2,18 +2,16 @@ import React, { Component } from 'react';
 
 
 //Imagens
-import Logo from '../assets/logoLaranga.png';
 
 // Icones
 import {
-    FaHome,
-    FaHeart,
-    FaShoppingBag,
-    FaBell,
-    FaUser,
-    FaQuestionCircle
-
-} from "react-icons/fa";
+    MdOutlineHome,
+    MdOutlineMedicalServices,
+    MdOutlineBloodtype,
+    MdOutlineVaccines,
+    MdOutlineFireTruck,
+    MdOutlineSummarize
+} from "react-icons/md";
 
 // Components
 
@@ -25,6 +23,7 @@ class menuDesktop extends Component {
         super(props)
         this.state = {
             linkMenu: 'aDesktop',
+            linkMenu1: 'aDesktop',
             linkMenu2: 'aDesktop',
             linkMenu3: 'aDesktop',
             linkMenu4: 'aDesktop',
@@ -38,13 +37,15 @@ class menuDesktop extends Component {
         switch (this.state.window) {
             case `/`:
                 return this.setState({ linkMenu: 'aDesktop link-desktop-active' })
-            case `/favoritos`:
+            case `/consultas`:
+                return this.setState({ linkMenu1: 'aDesktop link-desktop-active' })
+            case `/exames`:
                 return this.setState({ linkMenu2: 'aDesktop link-desktop-active' })
-            case `/Compras`:
+            case `/vacinas`:
                 return this.setState({ linkMenu3: 'aDesktop link-desktop-active' })
-            case `/Notificacoes`:
+            case `/transporte`:
                 return this.setState({ linkMenu4: 'aDesktop link-desktop-active' })
-            case `/Mais`:
+            case `/receitas`:
                 return this.setState({ linkMenu5: 'aDesktop link-desktop-active' })
             default:
                 return null
@@ -65,36 +66,36 @@ class menuDesktop extends Component {
             <nav className='menuDesktop'>
 
                 <a href='/' className="logoDesktopM" >
-                    <img src={Logo} alt="logomarca" ></img>
-                    {/* <h1 className='h1-logo'>| List</h1> */}
+
                 </a>
 
                 <a href="/" className={this.state.linkMenu}>
-                    <FaHome className='fas fa-home'></FaHome>
-                    <span className='nav-item'>Home</span>
+                    <MdOutlineHome className='fas fa-home'></MdOutlineHome >
+                    <span className='nav-item'>Início</span>
                 </a>
 
-                <a href="/favoritos" className={this.state.linkMenu2}>
-                    <FaHeart className='fas fa-favoritos'></FaHeart>
-                    <span className='nav-item'>favoritos</span>
+                <a href="/consultas" className={this.state.linkMenu1}>
+                    <MdOutlineMedicalServices className='fas fa-home'></MdOutlineMedicalServices>
+                    <span className='nav-item'>Consultas</span>
                 </a>
 
-                <a href="/Compras" className={this.state.linkMenu3}>
-                    <FaShoppingBag className='fas fa-Compras'></FaShoppingBag>
-                    <span className='nav-item'>Compras</span>
+                <a href="/exames" className={this.state.linkMenu2}>
+                    <MdOutlineBloodtype className='fas fa-favoritos'></MdOutlineBloodtype>
+                    <span className='nav-item'>Exames</span>
                 </a>
 
-                <a href="/Notificacoes" className={this.state.linkMenu4}>
-                    <FaBell className='fas fa-Notificacoes'></FaBell>
-                    <span className='nav-item'>Notificações</span>
+                <a href="/vacinas" className={this.state.linkMenu3}>
+                    <MdOutlineVaccines className='fas fa-Compras'></MdOutlineVaccines>
+                    <span className='nav-item'>Vacinas</span>
                 </a>
-                <a href="/login" className={this.state.linkMenu5}>
-                    <FaUser className='fas fa-Ajuda'></FaUser>
-                    <span className='nav-item'>Minha Conta</span>
+
+                <a href="/transporte" className={this.state.linkMenu4}>
+                    <MdOutlineFireTruck className='fas fa-Notificacoes'></MdOutlineFireTruck>
+                    <span className='nav-item'>Transporte</span>
                 </a>
-                <a href="/Ajuda" className={this.state.linkMenu5}>
-                    <FaQuestionCircle className='fas fa-Ajuda'></FaQuestionCircle>
-                    <span className='nav-item'>Ajuda</span>
+                <a href="/receitas" className={this.state.linkMenu5}>
+                    <MdOutlineSummarize className='fas fa-Ajuda'></MdOutlineSummarize>
+                    <span className='nav-item'>Receitas</span>
                 </a>
 
 

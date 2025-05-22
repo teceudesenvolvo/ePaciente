@@ -6,8 +6,6 @@ import logo from '../../assets/logoLaranga.png';
 // Libs
 import { cpf } from 'cpf-cnpj-validator';
 import axios from 'axios';
-import { initializeApp } from "firebase/app";
-import {firebaseConfig} from '../../firebase';
 
 
 // Components
@@ -15,7 +13,7 @@ import {firebaseConfig} from '../../firebase';
 //mudança de páginas
 
 // Cofigurações
-const app = initializeApp(firebaseConfig) 
+// const app = initializeApp(firebaseConfig) 
 
 class register extends Component {
   state={
@@ -114,9 +112,9 @@ class register extends Component {
               ()=>{
                 if (this.state.email === '') {
                   this.setState({ placeEmail: 'Digite sua email', classInput2: 'txtErro' })
-                } else if (this.state.email.includes('@') == false) {
+                } else if (this.state.email.includes('@') === false) {
                   this.setState({ placeEmail: 'Digite um email válido', classInput2: 'txtErro' })
-                } else if (this.state.email.includes('.') == false) {
+                } else if (this.state.email.includes('.') === false) {
                   this.setState({ placeEmail: 'Digite um email válido', classInput2: 'txtErro' })
                 } else if (this.state.email.length < 8) {
                   this.setState({ placeEmail: 'Digite um email válido', classInput2: 'txtErro' })

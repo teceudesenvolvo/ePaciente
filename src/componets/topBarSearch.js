@@ -40,7 +40,7 @@ class topBar extends Component {
         return (
             <>
                 <div className='header-home'>
-                    <p className='titleHeader'><img src={Logo} onClick={()=> {window.location.href = "/"}}/></p>
+                    <p className='titleHeader'><img alt='logomarca' src={Logo} onClick={()=> {window.location.href = "/"}}/></p>
                     <input type="text" placeholder={`Pesquisar`} className='inputPesquisar' />
                     <FaSistrix className='PesquisarLogo' />
                     <div className='categoriasHomeDesktop'>
