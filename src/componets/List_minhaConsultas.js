@@ -102,7 +102,7 @@ class ProductsList_minhaConsultas extends Component {
             <li key={(consulta.id)} className="productItem-minhasCompras"
                 onClick={
                     () => {
-                        window.location.href = "/Servico"
+                        window.location.href = "/consulta"
                         // this.setState({id: aviso.id}, () => {
                         // (this.props.clickButton(this.state))
                         //   }
