@@ -878,12 +878,16 @@ margin-right: 50px;
   width: 100%;
   align-items: center;
   justify-content: center;
-  background-color: #eeeeee;
+  background-color: #eeeeee85;
+  
   border-radius: 12px;
   margin: 10px 10px 0px -15px;
-  
+  cursor: pointer;
+  transition: all 0.2s;
 }
-
+.productItem-minhasCompras:hover{
+  background-color: #eeeeee;
+}
 
 .areaTextDescProduct-minhasCompras {
   display: flex;
