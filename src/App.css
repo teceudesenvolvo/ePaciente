@@ -60,6 +60,7 @@
   margin-left: 100px;
   color: #484848;
   font-family: Montserrat;
+ 
 }
 
 .headerName> h2{
@@ -108,11 +109,11 @@
   box-shadow: 1px 1px 20px rgba(0, 0, 0, 0.1);
   text-decoration: none;
   font-size: 15px;
-  transition: all 0.4s;
+   transition: 0.4s all;
 }
 
 .optionHomeA:hover{
-  transform: scale(1.05);
+  transform: scale(1.1);
 }
 
 .iconOptionsHome{
@@ -435,7 +436,6 @@ h1 {
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: 100%;
 }
 
 .Container > h1{
@@ -473,11 +473,13 @@ h1 {
   height: 40px;
   padding: 0px 10px;
   border: 0;
-  margin-bottom: 5px;
-  background-color: #d9d9d9;
+  margin-bottom: 10px;
+  background-color: #fff;
   color: #5a5a5a;
   transition: all 0.4s;
   text-align: left;
+  border-radius: 10px;
+  box-shadow: 1px 1px 10px rgba(0,0,0,0.1);
 }
 
 .labelEndereco {
@@ -807,15 +809,51 @@ video {
 
 /*  Minhas Consultas */
 .consultas{
-  display: inline-flex;
+  display: block;
   flex-direction: column;
+  overflow-y: scroll;
+  height: 550px;
+  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 20px;
+}
+
+.minhasCompras {
+    width: 90%;
+    display: inline-flex;
+    margin-top: 4%;
+    margin-bottom: 4%;
+}
+
+.agendar-consulta{
+width: 50%;
+margin-right: 50px;
+}
+.buttonAgendar{
+  height: 50px;
+  width: 90% !important;
+  background-color: #1ACEEF;
+  border: none;
+  color: white;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.4s all;
+}
+.buttonAgendar:hover{
+  transform: scale(1.01);
+}
+
+.consultasMarcadas{
+  width: 50%;
 }
 
 .agendarConsulta > h1{
-  font-size: 10px;
-  color: #000;
+  font-size: 15px;
+  color: #5A5A5A;
+  font-weight: 600;
+  margin-left: 30px;
+  margin-bottom: 20px;
 }
-
 .titleList{
   width: 100%;
   margin-left: -10px;
@@ -832,19 +870,15 @@ video {
   border-radius: 5px;
 }
 
-.minhasCompras {
-    width: 90%;
-    height: 50%;
-    align-items: center;
-}
+
 
 .productItem-minhasCompras {
   list-style: none;
-  height: 150px;
+  height: 150px !important;
   width: 100%;
   align-items: center;
   justify-content: center;
-  background-color: #d9d9d9;
+  background-color: #eeeeee;
   border-radius: 12px;
   margin: 10px 10px 0px -15px;
   
@@ -2295,9 +2329,6 @@ footer > p {
     left: 50% !important;
   }
 
-  .minhasCompras{
-    width: 50%;
-  } 
   .favoritos{
     width: 80%;
   }

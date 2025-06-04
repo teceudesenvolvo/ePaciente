@@ -42,11 +42,11 @@ class Home extends Component {
           </div>
         </div>
         <div className='optionsHome'>
-          <a className='optionHomeA' href='/'><MdOutlineMedicalServices className='iconOptionsHome' /> <br />  Consultas</a>
-          <a className='optionHomeA' href='/'><MdOutlineBloodtype className='iconOptionsHome' /> <br />  Exames</a>
-          <a className='optionHomeA' href='/'><MdOutlineVaccines className='iconOptionsHome' /> <br />  Vacinas</a>
-          <a className='optionHomeA' href='/'><MdOutlineFireTruck   className='iconOptionsHome' /> <br />  Transporte</a>
-          <a className='optionHomeA' href='/'><MdOutlineSummarize  className='iconOptionsHome' /> <br />  Receitas</a>
+          <a className='optionHomeA' href='/consultas'><MdOutlineMedicalServices className='iconOptionsHome' /> <br />  Consultas</a>
+          <a className='optionHomeA' href='/exames'><MdOutlineBloodtype className='iconOptionsHome' /> <br />  Exames</a>
+          <a className='optionHomeA' href='/vacinas'><MdOutlineVaccines className='iconOptionsHome' /> <br />  Vacinas</a>
+          <a className='optionHomeA' href='/transporte'><MdOutlineFireTruck   className='iconOptionsHome' /> <br />  Transporte</a>
+          <a className='optionHomeA' href='/receitas'><MdOutlineSummarize  className='iconOptionsHome' /> <br />  Receitas</a>
         </div>
       </div>
     );
