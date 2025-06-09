@@ -18,7 +18,7 @@ class categorias extends Component {
             <div className='App-header' >
             
             <div className='favoritos agendarConsulta'>
-            <h1>Calendário de Vacinas</h1>
+            <h1 className="titleVacinas" >Calendário de Vacinas</h1>
               <VacinasList/> 
             </div>
           </div>

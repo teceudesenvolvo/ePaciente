@@ -9,7 +9,7 @@ import Exames from './screens/client/exames';
 import Receitas from '../src/screens/client/receitas'
 import Minhas_Consultas from './screens/client/Minhas_Consultas';
 import vacinas from './screens/client/vacinas';
-import Mais from './screens/client/Mais';
+import Mais from './screens/client/Transporte';
 import Notificacoes from './screens/client/Notificacoes';
 import Perfil from './screens/client/Perfil';
 
@@ -39,19 +39,19 @@ function App() {
   return (
     <div className="App">
       <Switch>
-        <Route exact path="/" component={Home} />
         <Route path="/login" component={login} />
         <Route path="/register" component={register} />
 
-
-        <Route path="/Consultas" component={Minhas_Consultas} />
-        <Route path="/Exames" component={Exames} />
+{/* Menu Principal */}
+        <Route exact path="/" component={Home} />
+        <Route path="/consultas" component={Minhas_Consultas} />
+        <Route path="/exames" component={Exames} />
         <Route path="/vacinas" component={vacinas} />
-        <Route path="/Perfil" component={Perfil} />
+        <Route path="/transporte" component={Mais} />
         <Route path="/receitas" component={Receitas} />
+        <Route path="/perfil" component={Perfil} />
         
         <Route path="/Notificacoes" component={Notificacoes} />
-        <Route path="/Mais" component={Mais} />
         <Route path="/loginDashboard" component={loginDashboard} />
         <Route path="/registerDashboard" component={registerDashboard} />
         <Route path="/registerEndereco" component={registerEndereco} />

@@ -4,7 +4,6 @@ import React, { Component } from 'react';
 
 // Icones
 
-
 // Components
 
 //mudança de páginas
@@ -12,6 +11,21 @@ import React, { Component } from 'react';
 class exameList extends Component {
     state = {
         exames: [
+            {
+                id: '1',
+                tipo: 'Exame de sangue',
+                date: '20/02/2023',
+            },
+            {
+                id: '1',
+                tipo: 'Exame de sangue',
+                date: '20/02/2023',
+            },
+            {
+                id: '1',
+                tipo: 'Exame de sangue',
+                date: '20/02/2023',
+            },
             {
                 id: '1',
                 tipo: 'Exame de sangue',
@@ -46,7 +60,7 @@ class exameList extends Component {
                     <p className='valueProduct' >{exame.tipo}</p>
                     <p className='descricaoProduct' >{exame.date}</p>
 
-                    <button className='buttonLogin btnExame'>PDF</button>
+                    <button className='btnExame'>PDF</button>
                 </div>
             </li>
         )

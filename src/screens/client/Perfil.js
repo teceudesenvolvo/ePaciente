@@ -7,7 +7,6 @@ import React, { Component } from 'react';
 // Icones
 
 // Components
-import TopBar from '../../componets/topBarSearch'
 
 
 //mudança de páginas
@@ -17,13 +16,8 @@ class Perfil extends Component {
         return (
 
             <div className='App-header' >
-                <div className='header-home'>
-                    <TopBar />
-                </div>
+                
                 <div className='favoritos agendarConsulta'>
-
-
-
                     <ul className='vistosHome'>
 
                         {/* Informações Pessoais */}
