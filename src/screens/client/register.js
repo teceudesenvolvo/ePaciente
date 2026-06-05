@@ -1,211 +1,112 @@
-import React, { Component } from 'react';
-
+import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 //Imagens
 import logo from '../../assets/logoLaranga.png';
-
 // Libs
 import { cpf } from 'cpf-cnpj-validator';
 import axios from 'axios';
 
+const Register = () => {
+  const history = useHistory();
+  const [formData, setFormData] = useState({
+    name: '',
+    cpf: '',
+    email: '',
+    password: '',
+    passwordConfirmed: '',
+    tel: '',
+    cep: '',
+    address: 'Endereço',
+    numberBilling: '',
+  });
 
-// Components
+  const [errors, setErrors] = useState({});
 
-//mudança de páginas
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+    // Clear individual error when user starts typing again
+    if (errors[name]) setErrors(prev => ({ ...prev, [name]: null }));
+  };
 
-// Cofigurações
-// const app = initializeApp(firebaseConfig) 
+  const fetchAddress = () => {
+    if (formData.cep.length < 8) return;
 
-class register extends Component {
-  state={
-      placeName:'Nome*',
-      placeCPF:'CPF*',
-      placeEmail:'Email*',
-      placePassword:'Senha*',
-      placePasswordConfirmed:'Confirmação de Senha*',
-      placeTel:'Telefone*',
-      placeCEP:'CEP*',
-      placeNumberBilling:'Número da casa*',
-      name: '',
-      cpf: '',
-      email: '',
-      password: '',
-      passwordConfirmed: '',
-      tel: '',
-      cep: '',
-      adress:'Endereço',
-      numberBilling: '',
-      classInput: 'inputLogin',  
-      classInput1: 'inputLogin', 
-      classInput2: 'inputLogin', 
-      classInput3: 'inputLogin', 
-      classInput4: 'inputLogin', 
-      classInput5: 'inputLogin', 
-      classInput6: 'inputLogin', 
-      classInput7: 'inputLogin', 
-  }
-
-  changeCep = () => {
-    this.setState({
-      adress: 'Carregando...',
-      bairro: 'Carregando...',
-      cidade: 'Carregando...',
-      estado: 'Carregando...',
-    })
-    axios.get(`https://viacep.com.br/ws/${this.state.cep}/json`)
+    setFormData(prev => ({ ...prev, address: 'Carregando...' }));
+    axios.get(`https://viacep.com.br/ws/${formData.cep}/json`)
       .then((res) => {
-        this.setState({
-          adress: `${res.data.logradouro}, ${res.data.bairro}, ${res.data.localidade} - ${res.data.uf}`,
-          classInput6: 'inputLogin'
-        })
+        if (res.data.erro) throw new Error('CEP não encontrado');
+        setFormData(prev => ({
+          ...prev,
+          address: `${res.data.logradouro}, ${res.data.bairro}, ${res.data.localidade} - ${res.data.uf}`,
+        }));
       })
-      .catch((erro) => {
-        this.setState({ placeCEP: 'Cep Invalido', classInput6: 'txtErro' })
-        console.log(erro)
-      })
-  }
+      .catch(() => {
+        setErrors(prev => ({ ...prev, cep: 'CEP Inválido' }));
+        setFormData(prev => ({ ...prev, address: 'Endereço não encontrado' }));
+      });
+  };
 
+  const handleRegister = () => {
+    const newErrors = {};
+    if (!formData.name) newErrors.name = 'Nome é obrigatório';
+    if (!cpf.isValid(formData.cpf)) newErrors.cpf = 'CPF inválido';
+    if (!formData.email.includes('@')) newErrors.email = 'Email inválido';
+    if (formData.password.length < 6) newErrors.password = 'Senha curta';
+    if (formData.password !== formData.passwordConfirmed) newErrors.passwordConfirmed = 'Senhas não conferem';
+    if (!formData.numberBilling) newErrors.numberBilling = 'Obrigatório';
 
-  render() {
-    return (
-      <div className='App-header' >
-        <div className='Container' >
-          <img src={logo} alt="logo" className='logo' />
-          <h1>Seja bem-vindo!</h1>
-          <form className='formLogin'>
-            <input 
-            value={this.state.name} onChange={(event) => this.setState({ name: event.target.value })}
-            type="text" placeholder={this.state.placeName} className={this.state.classInput} />
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
+      return;
+    }
 
-            <input 
-            value={this.state.cpf} 
-            onFocus={
-              () => {
-                if (this.state.name === '') {
-                  this.setState({ placeName: 'Digite seu nome', classInput: 'txtErro' })
-                }else{
-                  this.setState({classInput: 'inputLogin' })
-                }
-              }
-            }
-            onChange={(event) => this.setState({ cpf: event.target.value })} 
-            type="text" placeholder={this.state.placeCPF} className={this.state.classInput1} />            
-            <input 
-            value={this.state.email} 
-            onFocus={
-              () => {
-                   // Validação de CPF
-                   if (this.state.cpf === '') {
-                    this.setState({ placeCPF: 'Digite seu CPF', classInput1: 'txtErro' })
-                  } else if (cpf.isValid(this.state.cpf) === false) {
-                    this.setState({ placeCPF: 'Digite um CPF válido', classInput1: 'txtErro' })
-                  }else{
-                    this.setState({classInput1: 'inputLogin' })
-                  }
-              }
-            }
-            onChange={(event) => this.setState({ email: event.target.value })}
-            type="text" placeholder={this.state.placeEmail} className={this.state.classInput2} />
-            
-            <input 
-            value={this.state.password} onChange={(event) => this.setState({ password: event.target.value })}
-            onFocus={
-              ()=>{
-                if (this.state.email === '') {
-                  this.setState({ placeEmail: 'Digite sua email', classInput2: 'txtErro' })
-                } else if (this.state.email.includes('@') === false) {
-                  this.setState({ placeEmail: 'Digite um email válido', classInput2: 'txtErro' })
-                } else if (this.state.email.includes('.') === false) {
-                  this.setState({ placeEmail: 'Digite um email válido', classInput2: 'txtErro' })
-                } else if (this.state.email.length < 8) {
-                  this.setState({ placeEmail: 'Digite um email válido', classInput2: 'txtErro' })
-                }else{
-                  this.setState({classInput2: 'inputLogin' })
-                }
-              }
-            }
-            type="password" placeholder={this.state.placePassword} className={this.state.classInput3} />
-            
-            <input 
-            value={this.state.passwordConfirmed} onChange={(event) => this.setState({ passwordConfirmed: event.target.value })}
-            onFocus={
-              ()=>{
-                if (this.state.password === '') {
-                  this.setState({ placePassword: 'Digite seu senha', classInput3: 'txtErro' })
-                } else if (this.state.password.length < 6) {
-                  this.setState({ placePassword: 'Digite uma senha segura, maior que 6 caracteres com números e letras', classInput3: 'txtErro' })
-                } else{
-                  this.setState({classInput3: 'inputLogin' })
-                }
-              }
-            }
-            type="password" placeholder={this.state.placePasswordConfirmed} className={this.state.classInput4} />
-            
-            <input 
-            value={this.state.tel} onChange={(event) => this.setState({ tel: event.target.value })}
-            onFocus={
-              ()=>{
-                if(this.state.passwordConfirmed === ""){
-                  this.setState({ placePasswordConfirmed: 'Confirmação de senha está diferente', classInput4: 'txtErro' })
-                }else if(this.state.passwordConfirmed !== this.state.password){
-                  this.setState({ placePasswordConfirmed: 'Confirmação de senha está diferente', classInput4: 'txtErro' })
-                }
-                else{
-                  this.setState({classInput4: 'inputLogin' })
-                }
-              }
-            }
-            type="text" placeholder={this.state.placeTel} className={this.state.classInput5} />
-            
-            <label className="labelEndereco" >{this.state.adress}</label>
-            <input 
-            value={this.state.cep} onChange={(event) => this.setState({ cep: event.target.value })}
-            onFocus={
-              ()=>{
-                if(this.state.tel === ""){
-                  this.setState({ placeTel: 'Digite seu telefone', classInput5: 'txtErro' })
-                }else{
-                  this.setState({classInput5: 'inputLogin' })
-                }
-              }
-            }
-            type="text" placeholder={this.state.placeCEP} className={this.state.classInput6} />
-            
-            <input 
-            value={this.state.numberBilling} onChange={(event) => this.setState({ numberBilling: event.target.value })}
-            onFocus={()=>{
-              this.changeCep()
-            }}
-            type="text" placeholder={this.state.placeNumberBilling} className={this.state.classInput7} />
+    // Navigation logic
+    history.push('/perfil');
+  };
 
-            <div className="checkbox-politicas">
-              <input type="checkbox" placeholder="Complemento" className='inputLogin' />
-              <p> Concordo com os termos de uso e as politicas de privacidade. </p>
-            </div>
+  return (
+    <div className='App-header'>
+      <div className='Container'>
+        <img src={logo} alt="logo" className='logo' />
+        <h1>Seja bem-vindo!</h1>
+        <form className='formLogin' onSubmit={(e) => e.preventDefault()}>
+          <input name="name" value={formData.name} onChange={handleInputChange} 
+            placeholder={errors.name || "Nome*"} className={errors.name ? 'inputLogin txtErro' : 'inputLogin'} />
+          
+          <input name="cpf" value={formData.cpf} onChange={handleInputChange} 
+            placeholder={errors.cpf || "CPF*"} className={errors.cpf ? 'inputLogin txtErro' : 'inputLogin'} />
 
-            
+          <input name="email" value={formData.email} onChange={handleInputChange} 
+            placeholder={errors.email || "Email*"} className={errors.email ? 'inputLogin txtErro' : 'inputLogin'} />
 
-          </form> 
+          <input name="password" type="password" value={formData.password} onChange={handleInputChange} 
+            placeholder={errors.password || "Senha*"} className={errors.password ? 'inputLogin txtErro' : 'inputLogin'} />
 
-            <button
-              onClick={(
-                () => {
-                    if(this.state.numberBilling === ""){
-                      this.setState({ placeNumberBilling: 'O número da casa', classInput6: 'txtErro' })
-                    }
+          <input name="passwordConfirmed" type="password" value={formData.passwordConfirmed} onChange={handleInputChange} 
+            placeholder={errors.passwordConfirmed || "Confirmação de Senha*"} className={errors.passwordConfirmed ? 'inputLogin txtErro' : 'inputLogin'} />
 
-                    else {
-                      this.createUser()
-                    }
-                }
-            )}
-            className='buttonLogin'>Cadastrar</button>
-            <p>já tem uma conta? <a href='/login' className='linkLogin'>Fazer login</a></p>
+          <input name="tel" value={formData.tel} onChange={handleInputChange} 
+            placeholder={errors.tel || "Telefone*"} className={errors.tel ? 'inputLogin txtErro' : 'inputLogin'} />
 
-        </div>
+          <label className="labelEndereco">{formData.address}</label>
+          
+          <input name="cep" value={formData.cep} onChange={handleInputChange} onBlur={fetchAddress}
+            placeholder={errors.cep || "CEP*"} className={errors.cep ? 'inputLogin txtErro' : 'inputLogin'} />
 
+          <input name="numberBilling" value={formData.numberBilling} onChange={handleInputChange} 
+            placeholder={errors.numberBilling || "Número da casa*"} className={errors.numberBilling ? 'inputLogin txtErro' : 'inputLogin'} />
+
+          <div className="checkbox-politicas">
+            <input type="checkbox" className='inputLogin' />
+            <p>Concordo com os termos de uso e as politicas de privacidade.</p>
+          </div>
+        </form>
+        <button onClick={handleRegister} className='buttonLogin'>Cadastrar</button>
+        <p>já tem uma conta? <a href='/login' className='linkLogin'>Fazer login</a></p>
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
-export default register;
+export default Register;
