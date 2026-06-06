@@ -19,9 +19,9 @@ const Agendamento = () => {
   const handlePrev = () => setStep(s => Math.max(s - 1, 1));
 
   return (
-    <div className="ep-page">
+    <div className="ep-page" style={{ background: '#f5f5f7' }}>
       <div className="ep-page-header">
-        <button className="ep-back-btn" onClick={() => step > 1 ? handlePrev() : history.push('/')}>
+        <button className="ep-back-btn" onClick={() => step > 1 ? handlePrev() : history.push('/inicio')}>
           <FaArrowLeft />
         </button>
         <h1 className="ep-page-title">Agendar Consulta</h1>
@@ -30,16 +30,16 @@ const Agendamento = () => {
       <div className="ep-content">
         {step < 4 && (
           <div className="ep-stepper">
-            <div className={`ep-stepper__step ${step > 1 ? 'ep-stepper__step--done' : 'ep-stepper__step--active'}`}>
-              <div className="ep-stepper__dot">{step > 1 ? <FaCheckCircle /> : 1}</div>
+            <div className={`ep-stepper__step ${step >= 1 ? 'ep-stepper__step--active' : ''}`}>
+              <div className="ep-stepper__dot" style={{ background: step >= 1 ? 'var(--color-primary)' : 'var(--color-n200)' }}>{step > 1 ? <FaCheckCircle /> : 1}</div>
               <div className="ep-stepper__label">Especialidade</div>
             </div>
-            <div className={`ep-stepper__step ${step > 2 ? 'ep-stepper__step--done' : step === 2 ? 'ep-stepper__step--active' : ''}`}>
-              <div className="ep-stepper__dot">{step > 2 ? <FaCheckCircle /> : 2}</div>
+            <div className={`ep-stepper__step ${step >= 2 ? 'ep-stepper__step--active' : ''}`}>
+              <div className="ep-stepper__dot" style={{ background: step >= 2 ? 'var(--color-primary)' : 'var(--color-n200)' }}>{step > 2 ? <FaCheckCircle /> : 2}</div>
               <div className="ep-stepper__label">Local</div>
             </div>
-            <div className={`ep-stepper__step ${step === 3 ? 'ep-stepper__step--active' : ''}`}>
-              <div className="ep-stepper__dot">3</div>
+            <div className={`ep-stepper__step ${step >= 3 ? 'ep-stepper__step--active' : ''}`}>
+              <div className="ep-stepper__dot" style={{ background: step >= 3 ? 'var(--color-primary)' : 'var(--color-n200)' }}>3</div>
               <div className="ep-stepper__label">Data & Hora</div>
             </div>
           </div>
@@ -47,36 +47,40 @@ const Agendamento = () => {
 
         {/* Passo 1 */}
         {step === 1 && (
-          <div className="ep-animate-fade-in">
-            <h3 className="ep-section-title ep-mb-4">O que você precisa hoje?</h3>
-            <div className="ep-grid-2">
-              <button 
-                className={`ep-card ${formData.especialidade === 'Clinica Geral' ? 'ep-card--primary' : 'ep-card--flat'} ep-flex-col ep-items-center ep-gap-2`}
+          <div className="ep-animate-fade-up">
+            <h3 className="ep-section-title ep-mb-6" style={{ fontSize: '1.8rem', fontWeight: '600' }}>O que você precisa hoje?</h3>
+            <div className="ep-grid-2 ep-gap-4">
+              <button
+                className={`ep-card ep-flex-col ep-items-center ep-gap-2 ${formData.especialidade === 'Clinica Geral' ? 'ep-card--active' : 'ep-card--flat'}`}
+                style={{ borderRadius: '18px', padding: '24px' }}
                 onClick={() => setFormData({...formData, especialidade: 'Clinica Geral'})}
               >
-                <FaUserMd style={{ fontSize: 24 }} />
+                <FaUserMd style={{ fontSize: 28, color: 'var(--color-n900)' }} />
                 <span className="ep-text-sm ep-fw-semibold">Clínica Geral</span>
               </button>
-              <button 
-                className={`ep-card ${formData.especialidade === 'Telemedicina' ? 'ep-card--primary' : 'ep-card--flat'} ep-flex-col ep-items-center ep-gap-2`}
+              <button
+                className={`ep-card ep-flex-col ep-items-center ep-gap-2 ${formData.especialidade === 'Telemedicina' ? 'ep-card--active' : 'ep-card--flat'}`}
+                style={{ borderRadius: '18px', padding: '24px' }}
                 onClick={() => setFormData({...formData, especialidade: 'Telemedicina'})}
               >
-                <FaStethoscope style={{ fontSize: 24 }} />
+                <FaStethoscope style={{ fontSize: 28, color: 'var(--color-n900)' }} />
                 <span className="ep-text-sm ep-fw-semibold">Telemedicina</span>
                 <span className="ep-badge ep-badge--success" style={{ position: 'absolute', top: -10 }}>Online</span>
               </button>
-              <button 
-                className={`ep-card ${formData.especialidade === 'Odontologia' ? 'ep-card--primary' : 'ep-card--flat'} ep-flex-col ep-items-center ep-gap-2`}
+              <button
+                className={`ep-card ep-flex-col ep-items-center ep-gap-2 ${formData.especialidade === 'Odontologia' ? 'ep-card--active' : 'ep-card--flat'}`}
+                style={{ borderRadius: '18px', padding: '24px' }}
                 onClick={() => setFormData({...formData, especialidade: 'Odontologia'})}
               >
-                <FaTooth style={{ fontSize: 24 }} />
+                <FaTooth style={{ fontSize: 28, color: 'var(--color-n900)' }} />
                 <span className="ep-text-sm ep-fw-semibold">Odontologia</span>
               </button>
-              <button 
-                className={`ep-card ${formData.especialidade === 'Cardiologia' ? 'ep-card--primary' : 'ep-card--flat'} ep-flex-col ep-items-center ep-gap-2`}
+              <button
+                className={`ep-card ep-flex-col ep-items-center ep-gap-2 ${formData.especialidade === 'Cardiologia' ? 'ep-card--active' : 'ep-card--flat'}`}
+                style={{ borderRadius: '18px', padding: '24px' }}
                 onClick={() => setFormData({...formData, especialidade: 'Cardiologia'})}
               >
-                <FaHeartbeat style={{ fontSize: 24 }} />
+                <FaHeartbeat style={{ fontSize: 28, color: 'var(--color-n900)' }} />
                 <span className="ep-text-sm ep-fw-semibold">Cardiologia</span>
               </button>
             </div>
@@ -86,10 +90,10 @@ const Agendamento = () => {
         {/* Passo 2 */}
         {step === 2 && (
           <div className="ep-animate-fade-in">
-            <h3 className="ep-section-title ep-mb-4">Selecione a Unidade</h3>
+            <h3 className="ep-section-title ep-mb-6" style={{ fontSize: '1.8rem', fontWeight: '600' }}>Selecione a Unidade</h3>
             <div className="ep-flex-col ep-gap-3">
-              <div 
-                className={`ep-card ${formData.local === 'UBS Centro' ? 'ep-card--primary' : 'ep-card--flat'}`}
+              <div
+                className={`ep-card ${formData.local === 'UBS Centro' ? 'ep-card--active' : 'ep-card--flat'}`}
                 onClick={() => setFormData({...formData, local: 'UBS Centro'})}
                 style={{ cursor: 'pointer' }}
               >
@@ -103,7 +107,7 @@ const Agendamento = () => {
               </div>
 
               <div 
-                className={`ep-card ${formData.local === 'UBS Bairro Novo' ? 'ep-card--primary' : 'ep-card--flat'}`}
+                className={`ep-card ${formData.local === 'UBS Bairro Novo' ? 'ep-card--active' : 'ep-card--flat'}`}
                 onClick={() => setFormData({...formData, local: 'UBS Bairro Novo'})}
                 style={{ cursor: 'pointer' }}
               >
@@ -122,7 +126,7 @@ const Agendamento = () => {
         {/* Passo 3 */}
         {step === 3 && (
           <div className="ep-animate-fade-in">
-            <h3 className="ep-section-title ep-mb-4">Quando?</h3>
+            <h3 className="ep-section-title ep-mb-6" style={{ fontSize: '1.8rem', fontWeight: '600' }}>Quando?</h3>
             <div className="ep-input-group">
               <label className="ep-label">Data</label>
               <select 
@@ -170,7 +174,7 @@ const Agendamento = () => {
               <div className="ep-fw-semibold">{formData.local}</div>
             </div>
 
-            <button className="ep-btn ep-btn--secondary ep-btn--full ep-mt-6" onClick={() => history.push('/')}>
+            <button className="ep-btn ep-btn--secondary ep-btn--full ep-mt-6" onClick={() => history.push('/inicio')}>
               Voltar para o Início
             </button>
           </div>

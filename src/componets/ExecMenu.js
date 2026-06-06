@@ -7,7 +7,16 @@ const ExecMenu = () => {
   const history = useHistory();
   const currentPath = location.pathname;
 
-  if (!currentPath.includes('/executivo/')) return null;
+  const [isMobile, setIsMobile] = React.useState(window.innerWidth < 768);
+
+  React.useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  // Hide if not mobile or not an Executivo route
+  if (!isMobile || !currentPath.includes('/executivo/')) return null;
 
   const navItems = [
     { path: '/executivo/dashboard', icon: <FaCity />, label: 'Prefeitura' },
@@ -18,7 +27,7 @@ const ExecMenu = () => {
   return (
     <nav style={{
       position: 'fixed',
-      bottom: 0,
+      bottom: 0, // Position at the bottom
       width: '100%',
       height: 'var(--nav-height-mobile)',
       backgroundColor: 'var(--color-n900)',

@@ -1,35 +1,33 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './ChatBot.css';
-import { FaPaperPlane, FaTimes, FaRobot, FaStethoscope, FaCalendarCheck, FaVial, FaSyringe, FaBus, FaFileMedical } from 'react-icons/fa';
+import { FaTimes, FaRobot, FaStethoscope, FaCalendarCheck, FaVial, FaSyringe, FaBus, FaFileMedical } from 'react-icons/fa';
+
+const initialMessage = {
+  id: 1,
+  sender: 'bot',
+  text: 'Olá! Sou seu Assistente Virtual de Saúde. Como posso te ajudar hoje?',
+  options: [
+    { id: 'agendar_consulta', label: 'Agendar Consulta', icon: <FaCalendarCheck /> },
+    { id: 'telemedicina', label: 'Telemedicina', icon: <FaStethoscope /> },
+    { id: 'exames', label: 'Agendar Exame', icon: <FaVial /> },
+    { id: 'vacinas', label: 'Vacinas', icon: <FaSyringe /> },
+    { id: 'transporte', label: 'Transporte', icon: <FaBus /> },
+    { id: 'receitas', label: 'Receitas Digitais', icon: <FaFileMedical /> },
+  ]
+};
 
 const ChatBot = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([]);
   const [isTyping, setIsTyping] = useState(false);
   const [currentFlow, setCurrentFlow] = useState(null);
-  const [currentStep, setCurrentStep] = useState(0);
-  const [userData, setUserData] = useState({});
   const messagesEndRef = useRef(null);
-
-  const initialMessage = {
-    id: 1,
-    sender: 'bot',
-    text: 'Olá! Sou seu Assistente Virtual de Saúde. Como posso te ajudar hoje?',
-    options: [
-      { id: 'agendar_consulta', label: 'Agendar Consulta', icon: <FaCalendarCheck /> },
-      { id: 'telemedicina', label: 'Telemedicina', icon: <FaStethoscope /> },
-      { id: 'exames', label: 'Agendar Exame', icon: <FaVial /> },
-      { id: 'vacinas', label: 'Vacinas', icon: <FaSyringe /> },
-      { id: 'transporte', label: 'Transporte', icon: <FaBus /> },
-      { id: 'receitas', label: 'Receitas Digitais', icon: <FaFileMedical /> },
-    ]
-  };
 
   useEffect(() => {
     if (isOpen && messages.length === 0) {
       setMessages([initialMessage]);
     }
-  }, [isOpen]);
+  }, [isOpen, messages.length]);
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -51,7 +49,6 @@ const ChatBot = () => {
     switch (optionId) {
       case 'agendar_consulta':
         setCurrentFlow('agendar_consulta');
-        setCurrentStep(1);
         setMessages(prev => [...prev, {
           id: Date.now(),
           sender: 'bot',
@@ -68,7 +65,6 @@ const ChatBot = () => {
       case 'espec_pediatra':
       case 'espec_ginecologista':
         if (currentFlow === 'agendar_consulta') {
-          setCurrentStep(2);
           setMessages(prev => [...prev, {
             id: Date.now(),
             sender: 'bot',
@@ -91,7 +87,6 @@ const ChatBot = () => {
               options: [{ id: 'inicio', label: 'Voltar ao Menu Principal' }]
             }]);
             setCurrentFlow(null);
-            setCurrentStep(0);
          }
          break;
 
@@ -168,7 +163,6 @@ const ChatBot = () => {
       case 'inicio':
         setMessages(prev => [...prev, initialMessage]);
         setCurrentFlow(null);
-        setCurrentStep(0);
         break;
 
       default:

@@ -7,10 +7,20 @@ const Menu = () => {
   const history = useHistory();
   const currentPath = location.pathname;
 
-  // Don't show menu on auth screens or non-citizen panels
+  const [isMobile, setIsMobile] = React.useState(window.innerWidth < 768);
+
+  React.useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  // Don't show mobile menu on desktop, auth screens or non-citizen panels
   if (
+    !isMobile ||
+    currentPath === '/' ||
     currentPath.includes('/login') || 
-    currentPath.includes('/register') ||
+    currentPath.includes('/register') || // Register pages
     currentPath.includes('/ubs/') ||
     currentPath.includes('/gestao/') ||
     currentPath.includes('/executivo/')
@@ -19,7 +29,7 @@ const Menu = () => {
   }
 
   const navItems = [
-    { path: '/', icon: <FaHome />, label: 'Início' },
+    { path: '/inicio', icon: <FaHome />, label: 'Início' },
     { path: '/consultas', icon: <FaCalendarCheck />, label: 'Consultas' },
     { path: '/carteira', icon: <FaIdCard />, label: 'Carteira' },
     { path: '/transporte', icon: <FaBus />, label: 'Transporte' },

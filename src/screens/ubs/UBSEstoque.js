@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { FaBoxOpen, FaSearch, FaExclamationTriangle } from 'react-icons/fa';
+import { FaSearch, FaExclamationTriangle } from 'react-icons/fa';
 
 const UBSEstoque = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -43,7 +43,7 @@ const UBSEstoque = () => {
 
         <div className="ep-flex-col ep-gap-3">
           {inventario.map(i => (
-            <div key={i.id} className="ep-card ep-card--flat">
+            <div key={i.id} className="ep-card ep-card--flat" style={{ borderRadius: 'var(--r-md)' }}>
               <div className="ep-flex ep-justify-between">
                 <div>
                   <div className="ep-fw-bold ep-flex ep-items-center ep-gap-2">

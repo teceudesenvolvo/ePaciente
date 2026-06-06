@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaUserMd, FaPlay } from 'react-icons/fa';
+import { FaPlay } from 'react-icons/fa';
 
 const UBSAgenda = () => {
   const [view, setView] = React.useState('dia');
@@ -32,7 +32,7 @@ const UBSAgenda = () => {
             
             <div className="ep-flex ep-gap-4">
               <div className="ep-text-sm ep-fw-bold ep-text-muted" style={{ width: 45, paddingTop: 8 }}>07:00</div>
-              <div className="ep-card" style={{ flex: 1, background: 'var(--color-success-light)', borderLeft: '4px solid var(--color-success)', padding: 'var(--sp-3)' }}>
+              <div className="ep-card" style={{ flex: 1, background: 'var(--color-success-light)', borderLeft: '4px solid var(--color-success)', padding: 'var(--sp-3)', borderRadius: 'var(--r-md)' }}>
                 <div className="ep-flex ep-justify-between">
                   <span className="ep-fw-semibold">João Costa</span>
                   <span className="ep-text-xs">Consulta</span>
@@ -45,7 +45,7 @@ const UBSAgenda = () => {
 
             <div className="ep-flex ep-gap-4">
               <div className="ep-text-sm ep-fw-bold" style={{ width: 45, paddingTop: 8, color: 'var(--color-primary-dark)' }}>07:30</div>
-              <div className="ep-card" style={{ flex: 1, background: 'var(--color-warning-light)', borderLeft: '4px solid var(--color-warning)', padding: 'var(--sp-3)' }}>
+              <div className="ep-card" style={{ flex: 1, background: 'var(--color-warning-light)', borderLeft: '4px solid var(--color-warning)', padding: 'var(--sp-3)', borderRadius: 'var(--r-md)' }}>
                 <div className="ep-flex ep-justify-between">
                   <span className="ep-fw-semibold">Maria Souza</span>
                   <span className="ep-text-xs">Retorno</span>
@@ -59,7 +59,7 @@ const UBSAgenda = () => {
 
             <div className="ep-flex ep-gap-4">
               <div className="ep-text-sm ep-fw-bold ep-text-muted" style={{ width: 45, paddingTop: 8 }}>08:00</div>
-              <div className="ep-card ep-card--flat" style={{ flex: 1, borderLeft: '4px solid var(--color-n300)', padding: 'var(--sp-3)' }}>
+              <div className="ep-card ep-card--flat" style={{ flex: 1, borderLeft: '4px solid var(--color-n300)', padding: 'var(--sp-3)', borderRadius: 'var(--r-md)' }}>
                 <div className="ep-flex ep-justify-between">
                   <span className="ep-fw-semibold">Pedro Lima</span>
                   <span className="ep-text-xs">Consulta</span>

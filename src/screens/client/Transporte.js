@@ -28,7 +28,7 @@ const Transporte = () => {
         <p className="ep-text-muted ep-mt-2 ep-text-center">
           Sua solicitação de transporte está em análise pela Secretaria de Saúde. Você será notificado sobre a aprovação.
         </p>
-        <button className="ep-btn ep-btn--primary ep-btn--full ep-mt-6" onClick={() => history.push('/')}>
+        <button className="ep-btn ep-btn--primary ep-btn--full ep-mt-6" onClick={() => history.push('/inicio')}>
           Voltar para o Início
         </button>
       </div>
@@ -38,7 +38,7 @@ const Transporte = () => {
   return (
     <div className="ep-page">
       <div className="ep-page-header">
-        <button className="ep-back-btn" onClick={() => history.push('/')}>
+        <button className="ep-back-btn" onClick={() => history.push('/inicio')}>
           <FaArrowLeft />
         </button>
         <h1 className="ep-page-title">Solicitar Transporte</h1>
@@ -73,7 +73,7 @@ const Transporte = () => {
           <div className="ep-input-group">
             <label className="ep-label">Local de Origem</label>
             <div style={{ position: 'relative' }}>
-              <div style={{ position: 'absolute', top: 16, left: 16, color: 'var(--color-primary-dark)' }}><FaLocationArrow /></div>
+              <div style={{ position: 'absolute', top: 16, left: 16, color: 'var(--color-primary)' }}><FaLocationArrow /></div>
               <input 
                 type="text" 
                 className="ep-input" 

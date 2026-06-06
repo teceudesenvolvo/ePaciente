@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaBullhorn, FaPlus, FaPaperPlane } from 'react-icons/fa';
+import { FaPlus, FaPaperPlane } from 'react-icons/fa';
 
 const GestaoCampanhas = () => {
   return (
@@ -14,7 +14,7 @@ const GestaoCampanhas = () => {
         </button>
 
         <div className="ep-section-header">
-          <h3 className="ep-section-title">Campanhas Ativas</h3>
+          <h3 className="ep-section-title">Campanhas Ativas (1)</h3>
         </div>
 
         <div className="ep-flex-col ep-gap-4 ep-mb-6">

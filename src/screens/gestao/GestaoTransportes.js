@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaBus, FaMapMarkedAlt, FaCheck, FaTimes } from 'react-icons/fa';
+import { FaMapMarkedAlt, FaCheck, FaTimes } from 'react-icons/fa';
 
 const GestaoTransportes = () => {
   const solicitacoes = [
@@ -17,7 +17,7 @@ const GestaoTransportes = () => {
         <div className="ep-card ep-card--primary ep-mb-6">
           <div className="ep-flex ep-items-center ep-gap-3">
             <FaMapMarkedAlt style={{ fontSize: 24 }} />
-            <div>
+            <div style={{ flex: 1 }}>
               <h3 className="ep-font-lg ep-fw-bold">Frota Municipal</h3>
               <p className="ep-text-sm" style={{ opacity: 0.9 }}>12 veículos operacionais · 2 em manutenção</p>
             </div>
