@@ -1,92 +1,107 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { useLocation, useHistory } from 'react-router-dom';
+import { FaHome, FaCalendarCheck, FaIdCard, FaBus, FaUserCircle } from 'react-icons/fa';
 
-//Imagens
+const Menu = () => {
+  const location = useLocation();
+  const history = useHistory();
+  const currentPath = location.pathname;
 
+  const [isMobile, setIsMobile] = React.useState(window.innerWidth < 768);
 
-// Icones
-import {
-  FaStethoscope,
-  FaFileMedical,
-  FaBars,
-  FaSyringe,
-  FaHandHoldingHeart
-} from "react-icons/fa";
+  React.useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
-// Components
-
-//mudança de páginas
-
-class menu extends Component {
-
-  constructor(props) {
-    super(props)
-    this.state = {
-      linkMenu: 'linkMenu',
-      linkMenu2: 'linkMenu',
-      linkMenu3: 'linkMenu',
-      linkMenu4: 'linkMenu',
-      linkMenu5: 'linkMenu',
-      menuClass: 'menu',
-      window: window.location.pathname,
-    }
+  // Don't show mobile menu on desktop, auth screens or non-citizen panels
+  if (
+    !isMobile ||
+    currentPath === '/' ||
+    currentPath.includes('/login') || 
+    currentPath.includes('/register') || // Register pages
+    currentPath.includes('/ubs/') ||
+    currentPath.includes('/gestao/') ||
+    currentPath.includes('/executivo/')
+  ) {
+    return null;
   }
 
+  const navItems = [
+    { path: '/inicio', icon: <FaHome />, label: 'Início' },
+    { path: '/consultas', icon: <FaCalendarCheck />, label: 'Consultas' },
+    { path: '/carteira', icon: <FaIdCard />, label: 'Carteira' },
+    { path: '/transporte', icon: <FaBus />, label: 'Transporte' },
+    { path: '/perfil', icon: <FaUserCircle />, label: 'Perfil' },
+  ];
 
-  btnHome = () => {
-    switch (this.state.window) {
-      case `/consultas`:
-        return this.setState({ linkMenu: 'linkMenu link-active' })
-      case `/exames`:
-        return this.setState({ linkMenu2: 'linkMenu link-active' })
-      case `/vacinas`:
-        return this.setState({ linkMenu3: 'linkMenu link-active' })
-      case `/receitas`:
-        return this.setState({ linkMenu4: 'linkMenu link-active' })
-      case `/Mais`:
-        return this.setState({ linkMenu5: 'linkMenu link-active' })
-      case `/login`:
-        return this.setState({ menuClass: 'menuNone' })
-      case `/register`:
-        return this.setState({ menuClass: 'menuNone' })
-      case `/`:
-        return this.setState({ menuClass: 'menuNone' })
-      default:
-        return null
-    }
+  return (
+    <nav style={{
+      position: 'fixed',
+      bottom: 0,
+      width: '100%',
+      height: 'var(--nav-height-mobile)',
+      backgroundColor: 'var(--color-white)',
+      boxShadow: '0 -4px 12px rgba(0,0,0,0.05)',
+      display: 'flex',
+      justifyContent: 'space-around',
+      alignItems: 'center',
+      zIndex: 900,
+      paddingBottom: 'var(--safe-bottom)',
+    }}>
+      {navItems.map((item) => {
+        const isActive = currentPath === item.path || (item.path !== '/' && currentPath.startsWith(item.path));
+        return (
+          <button
+            key={item.path}
+            onClick={() => history.push(item.path)}
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              justifyContent: 'center',
+              background: 'none',
+              border: 'none',
+              height: '100%',
+              flex: 1,
+              gap: '4px',
+              color: isActive ? 'var(--color-primary-dark)' : 'var(--color-n400)',
+              position: 'relative',
+              cursor: 'pointer',
+              WebkitTapHighlightColor: 'transparent',
+            }}
+          >
+            {isActive && (
+              <div style={{
+                position: 'absolute',
+                top: 0,
+                width: '40%',
+                height: '3px',
+                background: 'var(--gradient-primary)',
+                borderBottomLeftRadius: '4px',
+                borderBottomRightRadius: '4px',
+              }} />
+            )}
+            <div style={{ 
+              fontSize: '22px', 
+              transition: 'transform 0.2s',
+              transform: isActive ? 'scale(1.1) translateY(-2px)' : 'scale(1)'
+            }}>
+              {item.icon}
+            </div>
+            <span style={{ 
+              fontSize: '10px', 
+              fontWeight: isActive ? '600' : '500',
+              transition: 'color 0.2s'
+            }}>
+              {item.label}
+            </span>
+          </button>
+        );
+      })}
+    </nav>
+  );
+};
 
-
-
-
-  }
-
-  componentDidMount() {
-    const loadPage = () => {
-      this.btnHome()
-
-
-    }
-
-    loadPage()
-
-
-
-  }
-
-
-  render() {
-    return (
-      <nav className={this.state.menuClass}>
-
-        <a href='/consultas' className={this.state.linkMenu}><FaStethoscope /></a>
-        <a href='/exames' className={this.state.linkMenu2}> < FaHandHoldingHeart /> </a>
-        <a href='/vacinas' className={this.state.linkMenu3}> <FaSyringe /> </a>
-        <a href='/receitas' className={this.state.linkMenu4}> <FaFileMedical /> </a>
-        <a href='/Mais' className={this.state.linkMenu5}> <FaBars /> </a>
-
-      </nav>
-
-    );
-  }
-}
-
-export default menu;
+export default Menu;
