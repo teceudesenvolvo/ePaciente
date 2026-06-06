@@ -145,7 +145,7 @@ const AppContent = () => {
         </footer>
       )}
       
-      {currentPath !== '/' && (
+      {currentPath === '/' && (
         <footer className='footer' style={{ 
         background: '#f5f5f7', 
         borderTop: '1px solid #d2d2d7', 

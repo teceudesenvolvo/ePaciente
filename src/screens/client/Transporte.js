@@ -38,7 +38,7 @@ const Transporte = () => {
   return (
     <div className="ep-page">
       <div className="ep-page-header">
-        <button className="ep-back-btn" onClick={() => history.push('/inicio')}>
+        <button className="ep-back-btn ep-hide-desktop" onClick={() => history.push('/inicio')}>
           <FaArrowLeft />
         </button>
         <h1 className="ep-page-title">Solicitar Transporte</h1>

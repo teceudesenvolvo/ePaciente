@@ -2864,9 +2864,12 @@ body {
   position: sticky; top: 0; z-index: 10;
 }
 
-@media (min-width: 768px) {
-  .ep-page-header { display: none; }
-} /* Hide header on desktop */
+@media (min-width: 1000px) {
+  .ep-page-header {
+    margin-left: 90px;
+    z-index: 5; /* Fica abaixo do sidebar que tem z-index 7 */
+  }
+}
 
 .ep-back-btn {
   width: 36px; height: 36px;
@@ -3018,17 +3021,22 @@ body {
 /* ── Modal ── */
 .ep-modal-overlay {
   position: fixed; inset: 0;
-  background: rgba(15, 17, 23, 0.6);
-  display: flex; align-items: flex-end; justify-content: center; /* Centered at bottom */
-  z-index: 100;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex; align-items: center; justify-content: center; /* Centralizado vertical e horizontal */
+  z-index: 1000;
   animation: ep-fade-in 0.2s ease;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  padding: var(--sp-4);
 }
 .ep-modal {
   background: var(--color-white);
-  border-radius: var(--r-2xl) var(--r-2xl) 0 0;
-  padding: var(--sp-6);
-  width: 100%; max-width: var(--max-width-mobile); /* Constrain width on larger screens */
-  animation: ep-fade-up 0.3s ease;
+  border-radius: 32px;
+  padding: var(--sp-8);
+  width: 100%; max-width: 440px; 
+  animation: ep-scale-in 0.3s ease;
+  position: relative;
+  box-shadow: 0 24px 48px rgba(0,0,0,0.15);
   max-height: 90vh; overflow-y: auto;
 }
 .ep-modal__handle {

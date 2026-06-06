@@ -58,20 +58,20 @@ const LandingPage = () => {
         }}></div>
 
         {/* Conteúdo do Hero */}
-        <div className="ep-content ep-animate-fade-up" style={{ position: 'relative', zIndex: 2, textAlign: 'center', color: 'white', maxWidth: '800px' }}>
+        <div className="ep-content ep-animate-fade-up" style={{ position: 'relative', zIndex: 2, textAlign: 'center', color: 'white', maxWidth: '100%' }}>
           <span className="ep-badge ep-badge--primary ep-mb-4" style={{ background: 'rgba(76, 217, 100, 0.2)', color: '#4cd964', border: '1px solid rgba(76, 217, 100, 0.3)' }}>
             Inovação em Saúde Pública
           </span>
-          <h1 className="ep-font-xl ep-fw-bold" style={{ fontSize: '3.8rem', lineHeight: '1.05', letterSpacing: '-0.03em', marginBottom: '24px', color: 'white' }}>
+          <h1 className="ep-font-xl ep-fw-bold" style={{ fontSize: '3.0rem', lineHeight: '1.05', letterSpacing: '-0.03em', marginBottom: '24px', color: 'white' }}>
             O cuidado que você merece, <br/> <span style={{ color: '#4cd964' }}>na palma da sua mão.</span>
           </h1>
-          <p className="ep-text-lg" style={{ fontSize: '1.25rem', maxWidth: '600px', margin: '0 auto 48px', opacity: 0.85, fontWeight: '400', lineHeight: '1.5' }}>
+          <p className="ep-text-lg" style={{ fontSize: '1.05rem', maxWidth: '600px', margin: '0 auto 48px', opacity: 0.85, fontWeight: '400', lineHeight: '1.5' }}>
             Acesse serviços de saúde, agende consultas e consulte seus exames de forma rápida, segura e transparente em São Luís do Curu.
           </p>
-          <div className="ep-flex ep-gap-4 ep-justify-center">
+          <div className="ep-flex ep-gap-1 ep-justify-center">
             <button 
               className="ep-btn" 
-              style={{ background: '#4cd964', color: '#002651', fontWeight: '700', borderRadius: '12px', padding: '16px 48px', fontSize: '18px', border: 'none', boxShadow: '0 10px 25px rgba(76, 217, 100, 0.3)' }} 
+              style={{ background: '#4cd964', color: '#002651', fontWeight: '700', borderRadius: '12px', padding: '16px 48px', fontSize: '18px', border: 'none', boxShadow: '0 10px 25px rgba(76, 217, 100, 0.3)', margin: '0 auto' }} 
               onClick={() => history.push('/login')}
             >
               Começar agora
@@ -80,10 +80,10 @@ const LandingPage = () => {
         </div>
       </div>
 
-      <div className="ep-content" style={{ paddingBottom: 'var(--sp-20)' }}>
+      <div className="ep-content" style={{ paddingBottom: 'var(--sp-20)', marginBottom: '100px' }}>
         {/* Features Section */}
-        <div className="ep-section-header ep-mt-16 ep-mb-12" style={{ flexDirection: 'column', textAlign: 'center' }}>
-          <h2 className="ep-section-title" style={{ fontSize: '2.5rem', fontWeight: '800', color: '#002651', border: 'none', marginBottom: '12px' }}>Serviços ao Cidadão</h2>
+        <div className="ep-section-header ep-mt-16 ep-mb-12" style={{ flexDirection: 'column', textAlign: 'center', marginBottom: '70px', marginTop: '100px' }}>
+          <h2 className="ep-section-title" style={{ fontSize: '1.5rem', fontWeight: '800', color: '#002651', border: 'none', marginBottom: '12px' }}>Serviços ao Cidadão</h2>
           <div style={{ width: '60px', height: '4px', background: '#4cd964', borderRadius: '2px', margin: '0 auto' }}></div>
         </div>
 
