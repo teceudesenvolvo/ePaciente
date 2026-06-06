@@ -1,10 +1,17 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { FaArrowLeft, FaMapMarkerAlt, FaLocationArrow, FaCalendarAlt, FaCheckCircle } from 'react-icons/fa';
+import { 
+  FaMapMarkerAlt, FaLocationArrow, FaCalendarAlt, FaCheckCircle, 
+  FaPlus, FaBus, FaTimes 
+} from 'react-icons/fa';
+import HeaderTop from '../../HeaderTop';
 
 const Transporte = () => {
   const history = useHistory();
+  const [isScheduling, setIsScheduling] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [selectedViagem, setSelectedViagem] = useState(null);
+  
   const [formData, setFormData] = useState({
     justificativa: '',
     origem: '',
@@ -13,10 +20,94 @@ const Transporte = () => {
     hora: ''
   });
 
+  const listaMinhasViagens = [
+    { id: 1, origem: "Rua Principal, 100", destino: "Hospital Municipal", data: "12/06/2026", hora: "08:00", status: "Confirmado", justificativa: "Tratamento de Fisioterapia" },
+    { id: 2, origem: "Av. das Flores, 450", destino: "Clínica Especializada", data: "15/06/2026", hora: "14:30", status: "Em Análise", justificativa: "Consulta com Especialista" },
+  ];
+
   const handleSubmit = (e) => {
     e.preventDefault();
     setIsSubmitted(true);
   };
+
+  if (!isScheduling) {
+    return (
+      <div className="ep-page" style={{ background: '#f5f5f7' }}>
+        <HeaderTop customTitle="Meus Transportes">
+          <button 
+            className="ep-btn ep-btn--primary ep-flex ep-items-center ep-gap-2" 
+            onClick={() => { setIsScheduling(true); setIsSubmitted(false); }}
+            style={{ padding: '10px 24px', borderRadius: '12px' }}
+          >
+            <FaPlus size={14} /> Solicitar Transporte
+          </button>
+        </HeaderTop>
+
+        <div className="ep-content ep-animate-fade-up">
+          <div 
+            style={{ 
+              display: 'grid', 
+              gridTemplateColumns: 'repeat(auto-fill, minmax(340px, 1fr))', 
+              gap: 'var(--sp-4)' 
+            }}
+          >
+            {listaMinhasViagens.map((item) => (
+              <div 
+                key={item.id} 
+                className="ep-card ep-card--flat" 
+                style={{ cursor: 'pointer', padding: 'var(--sp-5)' }}
+                onClick={() => setSelectedViagem(item)}
+              >
+                <div className="ep-flex ep-justify-between ep-items-start ep-mb-4">
+                  <div className="ep-flex ep-gap-3 ep-items-center">
+                    <div className="ep-icon-wrapper" style={{ background: 'var(--color-primary-light)', color: 'var(--color-primary-dark)', width: '48px', height: '48px' }}>
+                      <FaBus />
+                    </div>
+                    <div style={{ textAlign: 'left' }}>
+                      <h3 className="ep-font-md ep-fw-bold">{item.destino}</h3>
+                      <p className="ep-text-sm ep-text-muted">{item.data} às {item.hora}</p>
+                    </div>
+                  </div>
+                  <span className={`ep-badge ${item.status === 'Confirmado' ? 'ep-badge--success' : 'ep-badge--warning'}`}>
+                    {item.status}
+                  </span>
+                </div>
+                <div className="ep-flex ep-items-center ep-gap-2 ep-text-sm ep-text-muted">
+                  <FaLocationArrow size={12} className="ep-text-primary" /> {item.origem}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Popup de Detalhes */}
+        {selectedViagem && (
+          <div className="ep-modal-overlay" onClick={() => setSelectedViagem(null)}>
+            <div className="ep-modal" onClick={e => e.stopPropagation()}>
+              <button className="ep-close-btn" style={{ position: 'absolute', top: '20px', right: '20px' }} onClick={() => setSelectedViagem(null)}><FaTimes /></button>
+              <h2 className="ep-modal-title ep-mb-6">Detalhes do Transporte</h2>
+              
+              <div className="ep-flex-col ep-gap-6 ep-mb-8">
+                <div className="ep-flex ep-items-center ep-gap-4">
+                  <div className="ep-icon-wrapper ep-icon-wrapper--lg" style={{ background: 'var(--color-primary-light)', color: 'var(--color-primary-dark)' }}><FaBus /></div>
+                  <div>
+                    <h3 className="ep-font-lg ep-fw-bold">{selectedViagem.destino}</h3>
+                    <span className={`ep-badge ${selectedViagem.status === 'Confirmado' ? 'ep-badge--success' : 'ep-badge--warning'}`}>{selectedViagem.status}</span>
+                  </div>
+                </div>
+                
+                <div className="ep-alert ep-alert--info">
+                  <div className="ep-fw-semibold ep-mb-1">Justificativa:</div>
+                  <div className="ep-text-sm">{selectedViagem.justificativa}</div>
+                </div>
+              </div>
+              <button className="ep-btn ep-btn--primary ep-btn--full" onClick={() => setSelectedViagem(null)}>Fechar</button>
+            </div>
+          </div>
+        )}
+      </div>
+    );
+  }
 
   if (isSubmitted) {
     return (
@@ -31,18 +122,19 @@ const Transporte = () => {
         <button className="ep-btn ep-btn--primary ep-btn--full ep-mt-6" onClick={() => history.push('/inicio')}>
           Voltar para o Início
         </button>
+        <button className="ep-btn ep-btn--secondary ep-btn--full ep-mt-6" onClick={() => setIsScheduling(false)}>
+          Voltar para Meus Transportes
+        </button>
       </div>
     );
   }
 
   return (
-    <div className="ep-page">
-      <div className="ep-page-header">
-        <button className="ep-back-btn ep-hide-desktop" onClick={() => history.push('/inicio')}>
-          <FaArrowLeft />
-        </button>
-        <h1 className="ep-page-title">Solicitar Transporte</h1>
-      </div>
+    <div className="ep-page" style={{ background: '#f5f5f7' }}>
+      <HeaderTop 
+        customTitle="Solicitar Transporte" 
+        customClick={() => setIsScheduling(false)} 
+      />
       
       <div className="ep-content ep-animate-fade-up">
         <div className="ep-alert ep-alert--info ep-mb-6">
@@ -73,16 +165,20 @@ const Transporte = () => {
           <div className="ep-input-group">
             <label className="ep-label">Local de Origem</label>
             <div style={{ position: 'relative' }}>
-              <div style={{ position: 'absolute', top: 16, left: 16, color: 'var(--color-primary)' }}><FaLocationArrow /></div>
-              <input 
-                type="text" 
-                className="ep-input" 
+              <div style={{ position: 'absolute', top: 16, left: 16, color: 'var(--color-primary)', pointerEvents: 'none', zIndex: 1 }}><FaLocationArrow /></div>
+              <select 
+                className="ep-select" 
                 style={{ paddingLeft: 44 }}
-                placeholder="Meu endereço atual"
                 required
                 value={formData.origem}
                 onChange={e => setFormData({...formData, origem: e.target.value})}
-              />
+              >
+                <option value="">Selecione o local de partida...</option>
+                <option value="Minha Residência">Minha Residência</option>
+                <option value="Secretaria de Saúde">Secretaria de Saúde</option>
+                <option value="UBS Centro">UBS Centro</option>
+                <option value="UBS Bairro Novo">UBS Bairro Novo</option>
+              </select>
             </div>
           </div>
 

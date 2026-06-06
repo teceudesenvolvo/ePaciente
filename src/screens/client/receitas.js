@@ -102,7 +102,7 @@ const Receitas = () => {
       <HeaderTop />
 
       <div className="ep-content ep-animate-fade-up">
-        <div className="ep-alert ep-alert--info ep-mb-8">
+        <div className="ep-alert ep-alert--info ep-mb-8" style={{ marginBottom: '32px' }}>
           <span className="ep-alert__icon"><FaInfoCircle /></span>
           <div className="ep-alert__text">Suas receitas digitais possuem a mesma validade da receita em papel. Apresente o PDF na farmácia da UBS.</div>
         </div>

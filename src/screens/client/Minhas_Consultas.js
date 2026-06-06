@@ -88,22 +88,7 @@ const MinhasConsultas = () => {
             gridTemplateColumns: 'repeat(auto-fill, minmax(340px, 1fr))' 
           }}
         >
-          {/* Card de Atalho para Novo Agendamento (Visível na Grid) */}
-          <div 
-            className="ep-card ep-card--flat ep-flex-col ep-items-center ep-justify-center ep-gap-3" 
-            style={{ 
-              cursor: 'pointer', 
-              border: '2px dashed var(--color-n300)', 
-              background: 'var(--color-n50)',
-              minHeight: '160px'
-            }}
-            onClick={() => { setIsScheduling(true); setStep(1); }}
-          >
-            <div className="ep-icon-wrapper" style={{ background: 'var(--color-primary-light)', color: 'var(--color-primary-dark)', width: '48px', height: '48px' }}>
-              <FaPlus />
-            </div>
-            <span className="ep-fw-bold ep-text-primary">Nova Consulta</span>
-          </div>
+         
 
           {listaMinhasConsultas.map((item) => (
             <div 
