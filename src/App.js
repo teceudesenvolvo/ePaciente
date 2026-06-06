@@ -7,7 +7,7 @@ import { Switch, Route, useLocation } from 'react-router-dom';
 import { FaPhone, FaEnvelope } from 'react-icons/fa';
 
 // Citizen Screens
-import Home from '../src/screens/home';
+import Home from './screens/client/home';
 import LandingPage from './screens/LandingPage';
 import Exames from './screens/client/exames';
 import Receitas from '../src/screens/client/receitas';
@@ -20,8 +20,6 @@ import Perfil from './screens/client/Perfil';
 // SingIn / SignUp
 import login from './screens/client/login';
 import register from './screens/client/register';
-import loginDashboard from './screens/loginDashboard';
-import registerDashboard from './screens/registerDashboard';
 
 // Navigate Components
 import Menu from './componets/menu';
@@ -72,8 +70,6 @@ const AppContent = () => {
         {/* Auth */}
         <Route path="/login" component={login} />
         <Route path="/register" component={register} />
-        <Route path="/loginDashboard" component={loginDashboard} />
-        <Route path="/registerDashboard" component={registerDashboard} />
 
         {/* Cidadão */}
         <Route exact path="/" component={LandingPage} />
