@@ -10,7 +10,7 @@ import { FaPhone, FaEnvelope } from 'react-icons/fa';
 import Home from './screens/client/home';
 import LandingPage from './screens/LandingPage';
 import Exames from './screens/client/exames';
-import Receitas from '../src/screens/client/receitas';
+import Receitas from './screens/client/receitas';
 import Minhas_Consultas from './screens/client/Minhas_Consultas';
 import vacinas from './screens/client/vacinas';
 import Transporte from './screens/client/Transporte';
