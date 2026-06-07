@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { 
   FaMapMarkerAlt, FaLocationArrow, FaCalendarAlt, FaCheckCircle, 
-  FaPlus, FaBus, FaTimes 
+  FaPlus, FaBus, FaTimes, FaUser 
 } from 'react-icons/fa';
 import HeaderTop from '../../HeaderTop';
 
@@ -13,6 +13,7 @@ const Transporte = () => {
   const [selectedViagem, setSelectedViagem] = useState(null);
   
   const [formData, setFormData] = useState({
+    paciente: 'LEONARDO RIBEIRO',
     justificativa: '',
     origem: '',
     destino: '',
@@ -23,6 +24,10 @@ const Transporte = () => {
   const listaMinhasViagens = [
     { id: 1, origem: "Rua Principal, 100", destino: "Hospital Municipal", data: "12/06/2026", hora: "08:00", status: "Confirmado", justificativa: "Tratamento de Fisioterapia" },
     { id: 2, origem: "Av. das Flores, 450", destino: "Clínica Especializada", data: "15/06/2026", hora: "14:30", status: "Em Análise", justificativa: "Consulta com Especialista" },
+  ];
+
+  const dependentes = [
+    { nome: 'PEDRO RIBEIRO' }
   ];
 
   const handleSubmit = (e) => {
@@ -146,6 +151,25 @@ const Transporte = () => {
         </div>
 
         <form onSubmit={handleSubmit} className="ep-card ep-card--flat">
+          <div className="ep-input-group">
+            <label className="ep-label">Paciente</label>
+            <div style={{ position: 'relative' }}>
+              <div style={{ position: 'absolute', top: 16, left: 16, color: 'var(--color-primary)', pointerEvents: 'none', zIndex: 1 }}><FaUser /></div>
+              <select 
+                className="ep-select" 
+                style={{ paddingLeft: 44 }}
+                required
+                value={formData.paciente}
+                onChange={e => setFormData({...formData, paciente: e.target.value})}
+              >
+                <option value="LEONARDO RIBEIRO">LEONARDO RIBEIRO (Titular)</option>
+                {dependentes.map((dep, idx) => (
+                  <option key={idx} value={dep.nome}>{dep.nome}</option>
+                ))}
+              </select>
+            </div>
+          </div>
+
           <div className="ep-input-group">
             <label className="ep-label">Justificativa Médica</label>
             <textarea 

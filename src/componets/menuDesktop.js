@@ -5,6 +5,7 @@ import {
     MdOutlineMedicalServices,
     MdOutlineBloodtype,
     MdOutlineVaccines,
+    MdOutlineMedication,
     MdOutlineFireTruck,
     MdOutlineSummarize,
     MdOutlineNotifications,
@@ -53,6 +54,7 @@ const MenuDesktop = () => {
                 { path: '/exames', icon: <MdOutlineBloodtype />, label: 'Exames' },
                 { path: '/vacinas', icon: <MdOutlineVaccines />, label: 'Vacinas' },
                 { path: '/receitas', icon: <MdOutlineSummarize />, label: 'Receitas' },
+                { path: '/medicamentos', icon: <MdOutlineMedication />, label: 'Medicamentos' },
             ]
         },
         {

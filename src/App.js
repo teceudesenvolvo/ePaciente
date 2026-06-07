@@ -12,10 +12,12 @@ import LandingPage from './screens/LandingPage';
 import Exames from './screens/client/exames';
 import Receitas from './screens/client/receitas';
 import Minhas_Consultas from './screens/client/Minhas_Consultas';
+import Telemedicina from './screens/client/Telemedicina';
 import vacinas from './screens/client/vacinas';
 import Transporte from './screens/client/Transporte';
 import Notificacoes from './screens/client/Notificacoes';
 import Perfil from './screens/client/Perfil';
+import Medicamentos from './screens/client/Medicamentos';
 
 // SingIn / SignUp
 import login from './screens/client/login';
@@ -76,11 +78,13 @@ const AppContent = () => {
         <Route exact path="/" component={LandingPage} />
         <Route path="/inicio" component={Home} />
         <Route path="/consultas" component={Minhas_Consultas} />
+        <Route path="/telemedicina" component={Telemedicina} />
         <Route path="/exames" component={Exames} />
         <Route path="/vacinas" component={vacinas} />
         <Route path="/transporte" component={Transporte} />
         <Route path="/receitas" component={Receitas} />
         <Route path="/perfil" component={Perfil} />
+        <Route path="/medicamentos" component={Medicamentos} />
         <Route path="/Notificacoes" component={Notificacoes} />
 
         {/* UBS */}

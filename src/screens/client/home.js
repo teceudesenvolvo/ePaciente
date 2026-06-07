@@ -1,6 +1,6 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
-import { FaCalendarCheck, FaStethoscope, FaVial, FaSyringe, FaBus, FaFileMedical } from 'react-icons/fa';
+import { FaCalendarCheck, FaStethoscope, FaVial, FaSyringe, FaBus, FaFileMedical, FaCapsules } from 'react-icons/fa';
 import HeaderTop from '../../HeaderTop';
 
 const Home = () => {
@@ -42,24 +42,24 @@ const Home = () => {
             <div className="ep-quick-action__icon" style={{ background: 'var(--color-primary-light)', color: 'var(--color-primary-dark)' }}>
               <FaCalendarCheck />
             </div>
-            <span className="ep-quick-action__label">Agendar<br/>Consulta</span>
+            <span className="ep-quick-action__label">Minhas<br/>Consultas</span>
           </button>
           
-          <button className="ep-quick-action" onClick={() => history.push('/consultas')}>
+          <button className="ep-quick-action" onClick={() => history.push('/telemedicina')}>
             <div className="ep-quick-action__icon" style={{ background: 'var(--color-info-light)', color: 'var(--color-info)' }}>
               <FaStethoscope />
             </div>
-            <span className="ep-quick-action__label">Telemedicina</span>
+            <span className="ep-quick-action__label">Consultas <br/> Online</span>
           </button>
           
           <button className="ep-quick-action" onClick={() => history.push('/exames')}>
             <div className="ep-quick-action__icon" style={{ background: 'var(--color-warning-light)', color: 'var(--color-warning)' }}>
               <FaVial />
             </div>
-            <span className="ep-quick-action__label">Agendar<br/>Exame</span>
+            <span className="ep-quick-action__label">Meus<br/>Exames</span>
           </button>
           
-          <button className="ep-quick-action" onClick={() => history.push('/carteira')}>
+          <button className="ep-quick-action" onClick={() => history.push('/vacinas')}>
             <div className="ep-quick-action__icon" style={{ background: 'var(--color-success-light)', color: 'var(--color-success)' }}>
               <FaSyringe />
             </div>
@@ -73,11 +73,18 @@ const Home = () => {
             <span className="ep-quick-action__label">Transporte</span>
           </button>
           
-          <button className="ep-quick-action" onClick={() => history.push('/carteira')}>
+          <button className="ep-quick-action" onClick={() => history.push('/receitas')}>
             <div className="ep-quick-action__icon" style={{ background: 'var(--color-n200)', color: 'var(--color-n700)' }}>
               <FaFileMedical />
             </div>
             <span className="ep-quick-action__label">Receitas<br/>Digitais</span>
+          </button>
+
+          <button className="ep-quick-action" onClick={() => history.push('/medicamentos')}>
+            <div className="ep-quick-action__icon" style={{ background: 'var(--color-primary-light)', color: 'var(--color-primary-dark)' }}>
+              <FaCapsules />
+            </div>
+            <span className="ep-quick-action__label">Remédios<br/>Disponíveis</span>
           </button>
         </div>
       </div>

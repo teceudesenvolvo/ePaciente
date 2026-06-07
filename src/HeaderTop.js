@@ -20,6 +20,8 @@ const HeaderTop = ({ customTitle, customClick, showBack = true, children }) => {
     '/transporte': { title: 'Solicitar Transporte' },
     '/perfil': { title: 'Meu Perfil' },
     '/receitas': { title: 'Minhas Receitas' },
+    '/medicamentos': { title: 'Medicamentos' },
+    '/telemedicina': { title: 'Telemedicina' },
   };
 
   // Layout especial para a Home (Olá, Usuário + Data + Ícones)

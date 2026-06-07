@@ -112,6 +112,16 @@ const Vacinas = () => {
           <div className="ep-alert__text">Consulte seu histórico de doses e as campanhas municipais ativas. Procure a UBS para vacinação.</div>
         </div>
 
+        <div className="ep-alert ep-alert--warning ep-mb-8">
+          <span className="ep-alert__icon" style={{ color: 'var(--color-warning)' }}><FaInfoCircle /></span>
+          <div>
+            <div className="ep-alert__title" style={{ fontWeight: '700' }}>Informativo de Saúde: Próxima Vacinação</div>
+            <div className="ep-alert__text">
+              Com base na sua faixa etária e no intervalo da sua última dose, você deve comparecer à UBS para tomar a <strong>Influenza (Anual)</strong>, visto que sua última aplicação foi em 2024. Identificamos também que a <strong>Antitetânica (Dose 3)</strong> encontra-se pendente no seu histórico.
+            </div>
+          </div>
+        </div>
+
         <div className="ep-flex ep-flex-col ep-gap-10">
           {/* Seção: Histórico Pessoal */}
           <div>

@@ -31,7 +31,7 @@ const Menu = () => {
   const navItems = [
     { path: '/inicio', icon: <FaHome />, label: 'Início' },
     { path: '/consultas', icon: <FaCalendarCheck />, label: 'Consultas' },
-    { path: '/carteira', icon: <FaIdCard />, label: 'Carteira' },
+    { path: '/exames', icon: <FaIdCard />, label: 'Exames' },
     { path: '/transporte', icon: <FaBus />, label: 'Transporte' },
     { path: '/perfil', icon: <FaUserCircle />, label: 'Perfil' },
   ];

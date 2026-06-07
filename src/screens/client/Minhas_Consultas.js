@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { 
-  FaCheckCircle, FaUserMd, 
+  FaCheckCircle, FaUserMd, FaUser, 
   FaStethoscope, FaTooth, FaHeartbeat, FaMapMarkerAlt, FaPlus, FaCalendarAlt, FaTimes
 } from 'react-icons/fa';
 import { DayPicker } from 'react-day-picker';
@@ -14,6 +14,7 @@ const MinhasConsultas = () => {
   const [selectedConsulta, setSelectedConsulta] = useState(null);
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({ // Inicialize data como undefined para o DayPicker
+    paciente: 'LEONARDO RIBEIRO',
     especialidade: '',
     local: '',
     data: undefined,
@@ -22,6 +23,10 @@ const MinhasConsultas = () => {
   const [holidays, setHolidays] = useState([]);
   const [loadingHolidays, setLoadingHolidays] = useState(true);
   const [errorHolidays, setErrorHolidays] = useState(null);
+
+  const dependentes = [
+    { nome: 'PEDRO RIBEIRO' }
+  ];
 
   useEffect(() => {
     const fetchHolidays = async () => {
@@ -229,6 +234,25 @@ const MinhasConsultas = () => {
         {/* Passo 1 */}
         {step === 1 && (
           <div className="ep-animate-fade-up">
+            <div className="ep-input-group ep-mb-8">
+              <label className="ep-label">Quem irá realizar a consulta?</label>
+              <div style={{ position: 'relative' }}>
+                <div style={{ position: 'absolute', top: 16, left: 16, color: 'var(--color-primary)', pointerEvents: 'none', zIndex: 1 }}><FaUser /></div>
+                <select 
+                  className="ep-select" 
+                  style={{ paddingLeft: 44 }}
+                  required
+                  value={formData.paciente}
+                  onChange={e => setFormData({...formData, paciente: e.target.value})}
+                >
+                  <option value="LEONARDO RIBEIRO">LEONARDO RIBEIRO (Titular)</option>
+                  {dependentes.map((dep, idx) => (
+                    <option key={idx} value={dep.nome}>{dep.nome}</option>
+                  ))}
+                </select>
+              </div>
+            </div>
+
             <h3 className="ep-section-title ep-mb-6" style={{ fontSize: '1.8rem', fontWeight: '600' }}>O que você precisa hoje?</h3>
             <div className="ep-grid-2 ep-gap-4">
               <button

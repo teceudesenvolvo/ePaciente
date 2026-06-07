@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { 
-  FaVial, FaFileMedicalAlt, FaCheckCircle, 
+  FaVial, FaFileMedicalAlt, FaCheckCircle, FaUser, 
   FaPlus, FaCalendarAlt, FaMapMarkerAlt, FaTimes 
 } from 'react-icons/fa';
 import { DayPicker } from 'react-day-picker';
@@ -12,6 +12,7 @@ const Exames = () => {
   const [selectedExame, setSelectedExame] = useState(null);
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({
+    paciente: 'LEONARDO RIBEIRO',
     tipo: '',
     local: '',
     data: undefined,
@@ -20,6 +21,10 @@ const Exames = () => {
   const [holidays, setHolidays] = useState([]);
   const [loadingHolidays, setLoadingHolidays] = useState(true);
   const [errorHolidays, setErrorHolidays] = useState(null);
+
+  const dependentes = [
+    { nome: 'José Bento' }
+  ];
 
   useEffect(() => {
     const fetchHolidays = async () => {
@@ -209,6 +214,25 @@ const Exames = () => {
         {/* Passo 1: Seleção de Tipo de Exame */}
         {step === 1 && (
           <div className="ep-animate-fade-up">
+            <div className="ep-input-group ep-mb-8">
+              <label className="ep-label">Quem irá realizar o exame?</label>
+              <div style={{ position: 'relative' }}>
+                <div style={{ position: 'absolute', top: 16, left: 16, color: 'var(--color-primary)', pointerEvents: 'none', zIndex: 1 }}><FaUser /></div>
+                <select 
+                  className="ep-select" 
+                  style={{ paddingLeft: 44 }}
+                  required
+                  value={formData.paciente}
+                  onChange={e => setFormData({...formData, paciente: e.target.value})}
+                >
+                  <option value="LEONARDO RIBEIRO">LEONARDO RIBEIRO (Titular)</option>
+                  {dependentes.map((dep, idx) => (
+                    <option key={idx} value={dep.nome}>{dep.nome}</option>
+                  ))}
+                </select>
+              </div>
+            </div>
+
             <h3 className="ep-section-title ep-mb-6" style={{ fontSize: '1.8rem', fontWeight: '600' }}>Qual exame deseja agendar?</h3>
             <div className="ep-grid-2 ep-gap-4">
               {[

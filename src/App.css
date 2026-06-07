@@ -2815,10 +2815,16 @@ body {
 .ep-alert--warning { background: var(--color-warning-light); color: #92400E; border-left: 3px solid var(--color-warning); }
 .ep-alert--error   { background: var(--color-error-light);   color: #991B1B; border-left: 3px solid var(--color-error); }
 .ep-alert--success { background: var(--color-success-light); color: #065F46; border-left: 3px solid var(--color-success); }
-.ep-alert--info    { background: var(--color-info-light);    color: #1E40AF; border-left: 3px solid var(--color-info); }
+.ep-alert--info    { background: var(--color-info-light);    color: #1E40AF; border-left: 3px solid var(--color-info); margin: 20px; }
 .ep-alert__icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
 .ep-alert__title { font-weight: var(--fw-semibold); margin-bottom: 2px; }
 .ep-alert__text  { opacity: 0.85; line-height: 1.5; }
+
+
+.ep-mt-10{
+  margin-top: 20px;
+}
+
 
 /* ── List Item ── */
 .ep-list-item {
@@ -2832,6 +2838,10 @@ body {
   cursor: pointer;
 }
 .ep-list-item:hover { box-shadow: var(--shadow-sm); }
+
+.ep-list--spaced{
+  font-size: var(--font-sm);
+}
 
 .ep-list-icon {
   width: 44px; height: 44px;
@@ -2871,6 +2881,10 @@ body {
   }
 }
 
+
+.ep-col-12, .ep-col-md-4{
+  margin: 20px;
+}
 .ep-back-btn {
   width: 36px; height: 36px;
   border-radius: var(--r-sm);
@@ -3010,7 +3024,7 @@ body {
 .ep-mb-6 { margin-bottom: var(--sp-6); }
 .ep-text-sm  { font-size: var(--font-sm); }
 .ep-text-xs  { font-size: var(--font-xs); }
-.ep-text-muted { color: var(--color-n600); }
+.ep-text-muted { color: var(--color-n600); text-align: left; }
 .ep-fw-bold { font-weight: var(--fw-bold); }
 .ep-fw-semibold { font-weight: var(--fw-semibold); }
 .ep-w-full { width: 100%; }
