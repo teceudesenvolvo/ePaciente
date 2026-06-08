@@ -88,6 +88,10 @@ import DentistasEncaminhamentos from './screens/funcionarios/DentistasEncaminham
 import ACSResidencias from './screens/funcionarios/ACSResidencias';
 import ACSVisitas from './screens/funcionarios/ACSVisitas';
 import ACSAlertas from './screens/funcionarios/ACSAlertas';
+import FrotasGestao from './screens/funcionarios/FrotasGestao';
+import FrotasCombustiveis from './screens/funcionarios/FrotasCombustiveis';
+import FrotasManutencao from './screens/funcionarios/FrotasManutencao';
+import FrotasRastreio from './screens/funcionarios/FrotasRastreio';
 
 const AppContent = () => {
   const location = useLocation();
@@ -181,6 +185,10 @@ const AppContent = () => {
         <Route path="/funcionarios/acs/residencias" component={ACSResidencias} />
         <Route path="/funcionarios/acs/visitas" component={ACSVisitas} />
         <Route path="/funcionarios/acs/alertas" component={ACSAlertas} />
+        <Route path="/funcionarios/frotas/combustiveis" component={FrotasCombustiveis} />
+        <Route path="/funcionarios/frotas/manutencao" component={FrotasManutencao} />
+        <Route path="/funcionarios/frotas/rastreio" component={FrotasRastreio} />
+        <Route path="/funcionarios/frotas" component={FrotasGestao} />
       </Switch>
 
       <Menu />

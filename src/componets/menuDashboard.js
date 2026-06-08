@@ -18,6 +18,7 @@ import {
     MdOutlineAccessTime,
     MdOutlineMyLocation,
     MdOutlineRateReview,
+    MdOutlineCampaign,
     MdOutlineNotificationsActive,
     MdOutlineAssignment,
     MdOutlineAnalytics,
@@ -80,6 +81,7 @@ const MenuDashboard = () => {
                 { path: '/gestao/ponto-geolocalizacao', icon: <MdOutlineMyLocation />, label: 'Ponto Geo' },
                 { path: '/gestao/transportes', icon: <MdOutlineDirectionsBus />, label: 'Transporte' },
                 { path: '/gestao/ouvidoria', icon: <MdOutlineRateReview />, label: 'Ouvidoria' },
+                { path: '/gestao/campanhas', icon: <MdOutlineCampaign />, label: 'Campanhas' },
                 { path: '/gestao/perfil', icon: <MdOutlineAccountCircle />, label: 'Perfil' },
             ]
         },
@@ -103,7 +105,7 @@ const MenuDashboard = () => {
     const config = roleConfigs[role];
 
     return (
-        <nav className='menuDesktop ep-animate-fade-in' style={{ background: '#1d1d1f', borderRight: '1px solid rgba(255,255,255,0.1)' }}>
+        <nav className='menuDesktop ep-animate-fade-in' style={{ background: 'var(--gradient-primary)', borderRight: '1px solid rgba(255,255,255,0.16)' }}>
             {/* Logo */}
             <div className="ep-sidebar-logo" onClick={() => history.push('/')} style={{ cursor: 'pointer', marginBottom: '40px', display: 'flex' }}>
                 <img 
@@ -114,7 +116,7 @@ const MenuDashboard = () => {
             </div>
 
             {/* Identificador do Painel */}
-            <div className="ep-sidebar-profile" style={{ background: 'rgba(255,255,255,0.05)', borderRadius: '12px', padding: '12px 0', marginBottom: '32px', display: 'flex', gap: '12px' }}>
+            <div className="ep-sidebar-profile" style={{ background: 'rgba(255,255,255,0.14)', borderRadius: '12px', padding: '12px 0', marginBottom: '32px', display: 'flex', gap: '12px' }}>
                 <div className="ep-avatar ep-avatar--md" style={{ background: config.color, color: 'white', fontWeight: 'bold' }}>
                     {config.label.charAt(0)}
                 </div>

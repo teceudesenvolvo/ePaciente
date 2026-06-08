@@ -6,14 +6,18 @@ import {
   MdOutlineAssignment,
   MdOutlineBloodtype,
   MdOutlineCalendarMonth,
+  MdOutlineDirectionsCar,
+  MdOutlineEvStation,
   MdOutlineGroups,
   MdOutlineHomeWork,
   MdOutlineLocalPharmacy,
   MdOutlineMedicalServices,
   MdOutlineNotificationsActive,
   MdOutlinePersonSearch,
+  MdOutlinePinDrop,
   MdOutlineSick,
   MdOutlineSummarize,
+  MdOutlineBuild,
   MdOutlineWarehouse,
 } from 'react-icons/md';
 
@@ -68,6 +72,15 @@ const menuSections = [
       { path: '/funcionarios/acs/alertas', icon: <MdOutlineNotificationsActive />, label: 'Alertas' },
     ],
   },
+  {
+    title: 'Frotas',
+    items: [
+      { path: '/funcionarios/frotas', icon: <MdOutlineDirectionsCar />, label: 'Transportes' },
+      { path: '/funcionarios/frotas/combustiveis', icon: <MdOutlineEvStation />, label: 'Combustíveis' },
+      { path: '/funcionarios/frotas/manutencao', icon: <MdOutlineBuild />, label: 'Manutenção' },
+      { path: '/funcionarios/frotas/rastreio', icon: <MdOutlinePinDrop />, label: 'Rastreio' },
+    ],
+  },
 ];
 
 const MenuFunc = () => {
@@ -85,7 +98,7 @@ const MenuFunc = () => {
   if (!isDesktop || !currentPath.includes('/funcionarios/')) return null;
 
   return (
-    <nav className="menuDesktop ep-animate-fade-in" style={{ background: '#1d1d1f', borderRight: '1px solid rgba(255,255,255,0.1)' }}>
+    <nav className="menuDesktop ep-animate-fade-in" style={{ background: 'var(--gradient-primary)', borderRight: '1px solid rgba(255,255,255,0.16)' }}>
       <div className="ep-sidebar-logo" onClick={() => history.push('/')} style={{ cursor: 'pointer', marginBottom: '40px', display: 'flex' }}>
         <img
           src="https://intgest-executivo.s3.amazonaws.com/media/intgest_executivo/public/entidade/logotipo/sao_luis_do_curu1.png.600x600_q85_box-0%2C0%2C108%2C108_crop_detail.png"
@@ -94,7 +107,7 @@ const MenuFunc = () => {
         />
       </div>
 
-      <div className="ep-sidebar-profile" style={{ background: 'rgba(255,255,255,0.05)', borderRadius: '12px', padding: '12px 0', marginBottom: '32px', display: 'flex', gap: '12px' }}>
+      <div className="ep-sidebar-profile" style={{ background: 'rgba(255,255,255,0.14)', borderRadius: '12px', padding: '12px 0', marginBottom: '32px', display: 'flex', gap: '12px' }}>
         <div className="ep-avatar ep-avatar--md" style={{ background: 'var(--color-primary)', color: 'white', fontWeight: 'bold' }}>
           F
         </div>

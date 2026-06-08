@@ -1,8 +1,8 @@
-import React from 'react';
-import { FaBriefcaseMedical, FaCalendarCheck, FaFileSignature, FaIdBadge, FaPlus, FaSearch, FaUserTie } from 'react-icons/fa';
+import React, { useState } from 'react';
+import { FaBriefcaseMedical, FaCalendarCheck, FaFileSignature, FaIdBadge, FaPlus, FaSearch, FaTimes, FaUserTie } from 'react-icons/fa';
 import HeaderTop from '../../HeaderTop';
 
-const colaboradores = [
+const colaboradoresBase = [
   { nome: 'Ana Paula Mendes', cargo: 'Enfermeira', unidade: 'UBS Centro', vinculo: 'Efetivo', status: 'Ativo' },
   { nome: 'Rafael Oliveira', cargo: 'Motorista', unidade: 'Transporte Sanitário', vinculo: 'Contrato', status: 'Ativo' },
   { nome: 'Cláudia Martins', cargo: 'Recepcionista', unidade: 'Hospital Municipal', vinculo: 'Temporário', status: 'Férias' },
@@ -15,6 +15,26 @@ const indicadores = [
 ];
 
 const GestaoRecursosHumanos = () => {
+  const [colaboradores, setColaboradores] = useState(colaboradoresBase);
+  const [busca, setBusca] = useState('');
+  const [showModal, setShowModal] = useState(false);
+  const [novoColaborador, setNovoColaborador] = useState({ nome: '', cargo: '', unidade: 'UBS Centro', vinculo: 'Contrato', status: 'Ativo' });
+  const colaboradoresFiltrados = colaboradores.filter((colaborador) => `${colaborador.nome} ${colaborador.cargo} ${colaborador.unidade}`.toLowerCase().includes(busca.toLowerCase()));
+
+  const handleCreate = (event) => {
+    event.preventDefault();
+    setColaboradores([
+      {
+        ...novoColaborador,
+        nome: novoColaborador.nome.trim() || 'Novo colaborador',
+        cargo: novoColaborador.cargo.trim() || 'Agente administrativo',
+      },
+      ...colaboradores,
+    ]);
+    setNovoColaborador({ nome: '', cargo: '', unidade: 'UBS Centro', vinculo: 'Contrato', status: 'Ativo' });
+    setShowModal(false);
+  };
+
   return (
     <div className="ep-page">
       <HeaderTop />
@@ -24,10 +44,10 @@ const GestaoRecursosHumanos = () => {
           <div className="ep-input-group" style={{ flex: 1, marginBottom: 0 }}>
             <div className="ep-flex ep-items-center ep-gap-2 ep-input">
               <FaSearch className="ep-text-muted" />
-              <input type="text" placeholder="Buscar colaborador, cargo ou unidade" style={{ border: 0, outline: 0, width: '100%', background: 'transparent' }} />
+              <input type="text" value={busca} onChange={(event) => setBusca(event.target.value)} placeholder="Buscar colaborador, cargo ou unidade" style={{ border: 0, outline: 0, width: '100%', background: 'transparent' }} />
             </div>
           </div>
-          <button className="ep-btn ep-btn--primary" aria-label="Novo colaborador">
+          <button className="ep-btn ep-btn--primary" aria-label="Novo colaborador" onClick={() => setShowModal(true)}>
             <FaPlus />
           </button>
         </div>
@@ -70,7 +90,7 @@ const GestaoRecursosHumanos = () => {
         </div>
 
         <div className="ep-flex-col ep-gap-3">
-          {colaboradores.map((colaborador) => (
+          {colaboradoresFiltrados.map((colaborador) => (
             <div key={colaborador.nome} className="ep-card ep-card--flat ep-flex ep-justify-between ep-items-center">
               <div className="ep-flex ep-items-center ep-gap-3">
                 <div className="ep-avatar ep-avatar--md" style={{ background: 'var(--color-success)', color: 'white' }}>
@@ -89,6 +109,42 @@ const GestaoRecursosHumanos = () => {
           ))}
         </div>
       </div>
+
+      {showModal && (
+        <div className="ep-modal-overlay" onClick={() => setShowModal(false)}>
+          <form className="ep-modal" style={{ maxWidth: 460 }} onClick={(event) => event.stopPropagation()} onSubmit={handleCreate}>
+            <button type="button" className="ep-close-btn" style={{ position: 'absolute', top: 16, right: 16 }} onClick={() => setShowModal(false)}><FaTimes /></button>
+            <h3 className="ep-font-lg ep-fw-bold ep-mb-4">Novo colaborador</h3>
+            <div className="ep-input-group">
+              <label className="ep-label">Nome</label>
+              <input className="ep-input" value={novoColaborador.nome} onChange={(event) => setNovoColaborador({ ...novoColaborador, nome: event.target.value })} placeholder="Nome completo" />
+            </div>
+            <div className="ep-input-group">
+              <label className="ep-label">Cargo</label>
+              <input className="ep-input" value={novoColaborador.cargo} onChange={(event) => setNovoColaborador({ ...novoColaborador, cargo: event.target.value })} placeholder="Ex: Técnico de enfermagem" />
+            </div>
+            <div className="ep-grid-2 ep-gap-3">
+              <div className="ep-input-group">
+                <label className="ep-label">Unidade</label>
+                <select className="ep-select" value={novoColaborador.unidade} onChange={(event) => setNovoColaborador({ ...novoColaborador, unidade: event.target.value })}>
+                  <option>UBS Centro</option>
+                  <option>Hospital Municipal</option>
+                  <option>Transporte Sanitário</option>
+                </select>
+              </div>
+              <div className="ep-input-group">
+                <label className="ep-label">Vínculo</label>
+                <select className="ep-select" value={novoColaborador.vinculo} onChange={(event) => setNovoColaborador({ ...novoColaborador, vinculo: event.target.value })}>
+                  <option>Contrato</option>
+                  <option>Efetivo</option>
+                  <option>Temporário</option>
+                </select>
+              </div>
+            </div>
+            <button className="ep-btn ep-btn--primary ep-btn--full" type="submit">Adicionar colaborador</button>
+          </form>
+        </div>
+      )}
     </div>
   );
 };

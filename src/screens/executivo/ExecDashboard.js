@@ -102,7 +102,7 @@ const ExecDashboard = () => {
   const dataTiposAtendimento = {
     labels: ['Clínica Geral', 'Pediatria', 'Odontologia', 'Ginecologia', 'Outros'],
     datasets: [
-      { label: 'Atual', data: [1200, 850, 600, 450, 300].map(v => Math.round(v * m)), backgroundColor: 'var(--color-primary)', borderRadius: 4 },
+      { label: 'Atual', data: [1200, 850, 600, 450, 300].map(v => Math.round(v * m)), backgroundColor: '#007AFF', borderRadius: 4 },
       compararMesAnterior ? { label: 'Mês Anterior', data: [1100, 780, 550, 400, 280].map(v => Math.round(v * m)), backgroundColor: '#d2d2d7', borderRadius: 4 } : null
     ].filter(Boolean)
   };

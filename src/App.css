@@ -34,8 +34,8 @@
   --color-white: #FFFFFF;
 
   /* ── Accent Gradient ── */
-  --gradient-primary: linear-gradient(160deg, hsl(223.85, 46.99%, 32.55%) 0%, hsl(224, 74%, 31%) 60%, hsl(224, 66%, 28%) 100%);
-  --gradient-hero:    linear-gradient(160deg, hsl(223.85, 46.99%, 32.55%) 0%, hsl(224, 74%, 31%) 60%, hsl(224, 66%, 28%) 100%);
+  --gradient-primary: linear-gradient(160deg, #0E3A78 0%, #005BBF 55%, #007AFF 100%);
+  --gradient-hero:    linear-gradient(160deg, #0E3A78 0%, #005BBF 55%, #007AFF 100%);
   --gradient-card:    linear-gradient(135deg, #1ACEEF22 0%, #0BA8C600 100%);
   --gradient-success: linear-gradient(135deg, #00C48C 0%, #00A87A 100%);
   --gradient-warm:    linear-gradient(135deg, #FF9500 0%, #FF6B35 100%);
@@ -2500,7 +2500,7 @@ body {
 }
 
 .ep-card--dark { /* Used for dark themed cards */
-  background: var(--color-n800);
+  background: var(--gradient-primary);
   border-radius: var(--r-lg);
   padding: var(--sp-5);
   color: white;
@@ -3064,6 +3064,19 @@ body {
   background: var(--color-n200);
   border-radius: var(--r-full);
   margin: 0 auto var(--sp-5);
+}
+.ep-close-btn {
+  width: 34px; height: 34px;
+  border: none;
+  border-radius: var(--r-sm);
+  background: var(--color-primary-light);
+  color: var(--color-primary-dark);
+  display: inline-flex; align-items: center; justify-content: center;
+  cursor: pointer;
+}
+.ep-close-btn:hover {
+  background: var(--color-primary);
+  color: var(--color-white);
 }
 
 /* ── Empty State ── */

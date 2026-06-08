@@ -9,6 +9,14 @@ const registros = [
 ];
 
 const GestaoPontoEletronico = () => {
+  const [relatorioGerado, setRelatorioGerado] = React.useState('');
+
+  const handleGerarEspelho = () => {
+    const total = registros.length;
+    const inconsistencias = registros.filter((registro) => registro.status === 'Inconsistente').length;
+    setRelatorioGerado(`Espelho gerado: ${total} registros conferidos, ${inconsistencias} inconsistência pendente.`);
+  };
+
   return (
     <div className="ep-page">
       <HeaderTop />
@@ -47,11 +55,12 @@ const GestaoPontoEletronico = () => {
               </div>
               <p className="ep-text-sm" style={{ opacity: 0.92 }}>Registro biométrico e conferência diária de entradas, saídas e intervalos.</p>
             </div>
-            <button className="ep-btn ep-btn--secondary ep-flex ep-items-center ep-gap-2">
+            <button className="ep-btn ep-btn--secondary ep-flex ep-items-center ep-gap-2" onClick={handleGerarEspelho}>
               <FaDownload /> Espelho
             </button>
           </div>
         </div>
+        {relatorioGerado && <div className="ep-alert ep-alert--info ep-mb-6" style={{ margin: 0 }}>{relatorioGerado}</div>}
 
         <div className="ep-section-header">
           <h3 className="ep-section-title">Registros de hoje</h3>

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { FaVideo, FaUserCheck, FaClock } from 'react-icons/fa';
+import HeaderTop from '../../HeaderTop';
 
 const GestaoTelemedicina = () => {
   const [activeTab, setActiveTab] = useState('online');
@@ -12,9 +13,7 @@ const GestaoTelemedicina = () => {
 
   return (
     <div className="ep-page">
-      <div className="ep-page-header">
-        <h1 className="ep-page-title">Regulação de Telemedicina</h1>
-      </div>
+      <HeaderTop />
       
       <div className="ep-content">
         <div className="ep-grid-3 ep-mb-6">

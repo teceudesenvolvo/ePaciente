@@ -4,6 +4,12 @@ import HeaderTop from '../../HeaderTop';
 import '../../utils/chartSetup';
 import { Bar, Doughnut, Line } from 'react-chartjs-2';
 
+const CHART_COLORS = {
+  primary: '#007AFF',
+  success: '#00C48C',
+  warning: '#FF9500',
+};
+
 const protocolos = [
   { id: 'OUV-2048', assunto: 'Demora no agendamento', unidade: 'UBS Centro', prazo: 'Hoje', status: 'Aberto' },
   { id: 'OUV-2041', assunto: 'Elogio ao atendimento', unidade: 'Hospital Municipal', prazo: '12/06', status: 'Em análise' },
@@ -27,7 +33,7 @@ const GestaoOuvidoria = () => {
             <FaComments className="ep-text-muted" />
             <div style={{ height: 58, marginTop: 8 }}>
               <Line
-                data={{ labels: ['S', 'T', 'Q', 'Q', 'S'], datasets: [{ data: [21, 28, 25, 31, 36], borderColor: 'var(--color-primary)', backgroundColor: 'rgba(0, 122, 255, 0.12)', fill: true, tension: 0.35 }] }}
+                data={{ labels: ['S', 'T', 'Q', 'Q', 'S'], datasets: [{ data: [21, 28, 25, 31, 36], borderColor: CHART_COLORS.primary, backgroundColor: 'rgba(0, 122, 255, 0.12)', fill: true, tension: 0.35 }] }}
                 options={miniOptions}
               />
             </div>
@@ -37,7 +43,7 @@ const GestaoOuvidoria = () => {
             <FaClock className="ep-text-warning" />
             <div style={{ height: 58, marginTop: 8 }}>
               <Bar
-                data={{ labels: ['Hoje', '24h', '48h'], datasets: [{ data: [3, 2, 2], backgroundColor: 'var(--color-warning)', borderRadius: 6 }] }}
+                data={{ labels: ['Hoje', '24h', '48h'], datasets: [{ data: [3, 2, 2], backgroundColor: CHART_COLORS.warning, borderRadius: 6 }] }}
                 options={miniOptions}
               />
             </div>
@@ -47,7 +53,7 @@ const GestaoOuvidoria = () => {
             <FaCheckCircle className="ep-text-success" />
             <div style={{ height: 66, marginTop: 8 }}>
               <Doughnut
-                data={{ labels: ['No prazo', 'Fora'], datasets: [{ data: [92, 8], backgroundColor: ['var(--color-success)', 'rgba(52, 199, 89, 0.14)'], borderWidth: 0 }] }}
+                data={{ labels: ['No prazo', 'Fora'], datasets: [{ data: [92, 8], backgroundColor: [CHART_COLORS.success, 'rgba(52, 199, 89, 0.14)'], borderWidth: 0 }] }}
                 options={{ cutout: '72%', plugins: { legend: { display: false }, tooltip: { enabled: false } } }}
               />
             </div>
