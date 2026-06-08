@@ -48,6 +48,10 @@ import GestaoCampanhas from './screens/gestao/GestaoCampanhas';
 import GestaoUsuarios from './screens/gestao/GestaoUsuarios';
 import GestaoUnidades from './screens/gestao/GestaoUnidades';
 import GestaoFuncoes from './screens/gestao/GestaoFuncoes';
+import GestaoRecursosHumanos from './screens/gestao/GestaoRecursosHumanos';
+import GestaoContabilidade from './screens/gestao/GestaoContabilidade';
+import GestaoPontoEletronico from './screens/gestao/GestaoPontoEletronico';
+import GestaoPontoGeolocalizacao from './screens/gestao/GestaoPontoGeolocalizacao';
 import GestaoOuvidoria from './screens/gestao/GestaoOuvidoria';
 import GestaoPerfil from './screens/gestao/GestaoPerfil';
 import GestaoNotificacoes from './screens/gestao/GestaoNotificacoes';
@@ -134,6 +138,10 @@ const AppContent = () => {
         <Route path="/gestao/usuarios" component={GestaoUsuarios} />
         <Route path="/gestao/unidades" component={GestaoUnidades} />
         <Route path="/gestao/funcoes" component={GestaoFuncoes} />
+        <Route path="/gestao/rh" component={GestaoRecursosHumanos} />
+        <Route path="/gestao/contabilidade" component={GestaoContabilidade} />
+        <Route path="/gestao/ponto-eletronico" component={GestaoPontoEletronico} />
+        <Route path="/gestao/ponto-geolocalizacao" component={GestaoPontoGeolocalizacao} />
         <Route path="/gestao/telemedicina" component={GestaoTelemedicina} />
         <Route path="/gestao/transportes" component={GestaoTransportes} />
         <Route path="/gestao/ouvidoria" component={GestaoOuvidoria} />

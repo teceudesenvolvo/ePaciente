@@ -3019,11 +3019,15 @@ body {
 .ep-gap-2 { gap: var(--sp-2); }
 .ep-gap-3 { gap: var(--sp-3); }
 .ep-gap-4 { gap: var(--sp-4); }
+.ep-p-0 { padding: 0; }
+.ep-mb-0 { margin-bottom: 0; }
+.ep-mt-1 { margin-top: var(--sp-1); }
 .ep-mt-2 { margin-top: var(--sp-2); }
 .ep-mt-4 { margin-top: var(--sp-4); }
 .ep-mt-6 { margin-top: var(--sp-6); }
 .ep-mb-4 { margin-bottom: var(--sp-4); } /* Consistent margin utilities */
 .ep-mb-6 { margin-bottom: var(--sp-6); }
+.ep-overflow-hidden { overflow: hidden; }
 .ep-text-sm  { font-size: var(--font-sm); }
 .ep-text-xs  { font-size: var(--font-xs); }
 .ep-text-muted { color: var(--color-n600); text-align: left; }
