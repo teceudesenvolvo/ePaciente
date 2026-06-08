@@ -20,6 +20,7 @@ import {
     MdOutlineBloodtype,
     MdOutlineSummarize,
     MdOutlinePersonSearch,
+    MdOutlineAccountCircle,
     MdLogout
 } from "react-icons/md";
 
@@ -71,11 +72,12 @@ const MenuDashboard = () => {
                 { path: '/gestao/funcoes', icon: <MdOutlineManageAccounts />, label: 'Funções' },
                 { path: '/gestao/transportes', icon: <MdOutlineDirectionsBus />, label: 'Transporte' },
                 { path: '/gestao/ouvidoria', icon: <MdOutlineRateReview />, label: 'Ouvidoria' },
+                { path: '/gestao/perfil', icon: <MdOutlineAccountCircle />, label: 'Perfil' },
             ]
         },
         executivo: {
             label: 'Executivo',
-            title: 'Painel Prefeito',
+            title: 'Saúde Municipal',
             color: 'var(--color-warning)',
             items: [
                 { path: '/executivo/dashboard', icon: <MdOutlineDashboard />, label: 'Dashboard' },
@@ -85,6 +87,7 @@ const MenuDashboard = () => {
                 { path: '/executivo/alertas', icon: <MdOutlineNotificationsActive />, label: 'Alertas Med.' },
                 { path: '/executivo/planos', icon: <MdOutlineAssignment />, label: 'Planos de Ação' },
                 { path: '/executivo/analises', icon: <MdOutlineAnalytics />, label: 'Análises' },
+                { path: '/executivo/perfil', icon: <MdOutlineAccountCircle />, label: 'Perfil Prefeito' },
             ]
         }
     };
@@ -113,7 +116,7 @@ const MenuDashboard = () => {
                 </div>
             </div>
 
-            <div className="ep-flex-col ep-gap-2 ep-w-full ep-flex-1">
+            <div className="ep-flex-col ep-gap-2 ep-w-full ep-flex-1" style={{ overflowY: 'auto', overflowX: 'hidden', paddingBottom: '12px' }}>
                 <span className="ep-sidebar-group-title ep-px-3" style={{ 
                     fontSize: '11px', 
                     fontWeight: '600', 

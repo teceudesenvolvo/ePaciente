@@ -28,6 +28,7 @@ import register from './screens/client/register';
 import Menu from './componets/menu';
 import MenuDashboard from './componets/menuDashboard';
 import MenuDesktop from './componets/menuDesktop';
+import MenuFunc from './componets/menuFunc';
 import ChatBot from './componets/ChatBot';
 import UBSMenu from './componets/UBSMenu';
 import GestaoMenu from './componets/GestaoMenu';
@@ -44,11 +45,45 @@ import GestaoDashboard from './screens/gestao/GestaoDashboard';
 import GestaoTelemedicina from './screens/gestao/GestaoTelemedicina';
 import GestaoTransportes from './screens/gestao/GestaoTransportes';
 import GestaoCampanhas from './screens/gestao/GestaoCampanhas';
+import GestaoUsuarios from './screens/gestao/GestaoUsuarios';
+import GestaoUnidades from './screens/gestao/GestaoUnidades';
+import GestaoFuncoes from './screens/gestao/GestaoFuncoes';
+import GestaoOuvidoria from './screens/gestao/GestaoOuvidoria';
+import GestaoPerfil from './screens/gestao/GestaoPerfil';
+import GestaoNotificacoes from './screens/gestao/GestaoNotificacoes';
 
 // Executivo Screens
 import ExecDashboard from './screens/executivo/ExecDashboard';
 import ExecMapa from './screens/executivo/ExecMapa';
 import ExecTransparencia from './screens/executivo/ExecTransparencia';
+import ExecOuvidoria from './screens/executivo/ExecOuvidoria';
+import ExecAlertas from './screens/executivo/ExecAlertas';
+import ExecPlanos from './screens/executivo/ExecPlanos';
+import ExecAnalises from './screens/executivo/ExecAnalises';
+import ExecPerfil from './screens/executivo/ExecPerfil';
+import ExecNotificacoes from './screens/executivo/ExecNotificacoes';
+
+// Funcionários Screens
+import MedicosConsultas from './screens/funcionarios/MedicosConsultas';
+import MedicosReceitas from './screens/funcionarios/MedicosReceitas';
+import MedicosExames from './screens/funcionarios/MedicosExames';
+import MedicosEncaminhamentos from './screens/funcionarios/MedicosEncaminhamentos';
+import FarmaciaEstoque from './screens/funcionarios/FarmaciaEstoque';
+import FarmaciaMedicamentos from './screens/funcionarios/FarmaciaMedicamentos';
+import FarmaciaSolicitacoes from './screens/funcionarios/FarmaciaSolicitacoes';
+import RecepcaoAgendamentos from './screens/funcionarios/RecepcaoAgendamentos';
+import RecepcaoExames from './screens/funcionarios/RecepcaoExames';
+import RecepcaoFila from './screens/funcionarios/RecepcaoFila';
+import EnfermeirosTriagem from './screens/funcionarios/EnfermeirosTriagem';
+import EnfermeirosProcedimentos from './screens/funcionarios/EnfermeirosProcedimentos';
+import EnfermeirosAcompanhamentos from './screens/funcionarios/EnfermeirosAcompanhamentos';
+import DentistasConsultas from './screens/funcionarios/DentistasConsultas';
+import DentistasReceitas from './screens/funcionarios/DentistasReceitas';
+import DentistasExames from './screens/funcionarios/DentistasExames';
+import DentistasEncaminhamentos from './screens/funcionarios/DentistasEncaminhamentos';
+import ACSResidencias from './screens/funcionarios/ACSResidencias';
+import ACSVisitas from './screens/funcionarios/ACSVisitas';
+import ACSAlertas from './screens/funcionarios/ACSAlertas';
 
 const AppContent = () => {
   const location = useLocation();
@@ -65,7 +100,7 @@ const AppContent = () => {
 
   // Determine if the desktop sidebar should be visible
   // This logic mirrors the one in MenuDesktop.js
-  const showDesktopSidebar = isDesktop && !['/', '/login', '/register', '/loginDashboard', '/registerDashboard', '/ubs', '/gestao', '/executivo'].some(prefix => currentPath.startsWith(prefix));
+  const showDesktopSidebar = isDesktop && !['/', '/login', '/register', '/loginDashboard', '/registerDashboard', '/ubs', '/gestao', '/executivo', '/funcionarios'].some(prefix => currentPath.startsWith(prefix));
 
 
   return (
@@ -96,14 +131,48 @@ const AppContent = () => {
 
         {/* Gestão */}
         <Route path="/gestao/dashboard" component={GestaoDashboard} />
+        <Route path="/gestao/usuarios" component={GestaoUsuarios} />
+        <Route path="/gestao/unidades" component={GestaoUnidades} />
+        <Route path="/gestao/funcoes" component={GestaoFuncoes} />
         <Route path="/gestao/telemedicina" component={GestaoTelemedicina} />
         <Route path="/gestao/transportes" component={GestaoTransportes} />
+        <Route path="/gestao/ouvidoria" component={GestaoOuvidoria} />
         <Route path="/gestao/campanhas" component={GestaoCampanhas} />
+        <Route path="/gestao/perfil" component={GestaoPerfil} />
+        <Route path="/gestao/notificacoes" component={GestaoNotificacoes} />
 
         {/* Executivo */}
         <Route path="/executivo/dashboard" component={ExecDashboard} />
+        <Route path="/executivo/ouvidoria" component={ExecOuvidoria} />
         <Route path="/executivo/mapa" component={ExecMapa} />
         <Route path="/executivo/transparencia" component={ExecTransparencia} />
+        <Route path="/executivo/alertas" component={ExecAlertas} />
+        <Route path="/executivo/planos" component={ExecPlanos} />
+        <Route path="/executivo/analises" component={ExecAnalises} />
+        <Route path="/executivo/perfil" component={ExecPerfil} />
+        <Route path="/executivo/notificacoes" component={ExecNotificacoes} />
+
+        {/* Funcionários */}
+        <Route path="/funcionarios/medicos/consultas" component={MedicosConsultas} />
+        <Route path="/funcionarios/medicos/receitas" component={MedicosReceitas} />
+        <Route path="/funcionarios/medicos/exames" component={MedicosExames} />
+        <Route path="/funcionarios/medicos/encaminhamentos" component={MedicosEncaminhamentos} />
+        <Route path="/funcionarios/farmacia/estoque" component={FarmaciaEstoque} />
+        <Route path="/funcionarios/farmacia/medicamentos" component={FarmaciaMedicamentos} />
+        <Route path="/funcionarios/farmacia/solicitacoes" component={FarmaciaSolicitacoes} />
+        <Route path="/funcionarios/recepcao/agendamentos" component={RecepcaoAgendamentos} />
+        <Route path="/funcionarios/recepcao/exames" component={RecepcaoExames} />
+        <Route path="/funcionarios/recepcao/fila" component={RecepcaoFila} />
+        <Route path="/funcionarios/enfermeiros/triagem" component={EnfermeirosTriagem} />
+        <Route path="/funcionarios/enfermeiros/procedimentos" component={EnfermeirosProcedimentos} />
+        <Route path="/funcionarios/enfermeiros/acompanhamentos" component={EnfermeirosAcompanhamentos} />
+        <Route path="/funcionarios/dentistas/consultas" component={DentistasConsultas} />
+        <Route path="/funcionarios/dentistas/receitas" component={DentistasReceitas} />
+        <Route path="/funcionarios/dentistas/exames" component={DentistasExames} />
+        <Route path="/funcionarios/dentistas/encaminhamentos" component={DentistasEncaminhamentos} />
+        <Route path="/funcionarios/acs/residencias" component={ACSResidencias} />
+        <Route path="/funcionarios/acs/visitas" component={ACSVisitas} />
+        <Route path="/funcionarios/acs/alertas" component={ACSAlertas} />
       </Switch>
 
       <Menu />
@@ -111,6 +180,7 @@ const AppContent = () => {
       <GestaoMenu />
       <ExecMenu />
       <MenuDashboard />
+      <MenuFunc />
       <MenuDesktop />
       
       {!hideChatBot && <ChatBot />}

@@ -243,7 +243,7 @@ const Exames = () => {
               ].map(item => (
                 <button
                   key={item.id}
-                  className={`ep-card ep-flex-col ep-items-center ep-gap-2 ${formData.tipo === item.label ? 'ep-card--active' : 'ep-card--flat'}`}
+                  className={`ep-card ep-flex-col ep-items-start ep-gap-2 ${formData.tipo === item.label ? 'ep-card--active' : 'ep-card--flat'}`}
                   style={{ borderRadius: '18px', padding: '24px' }}
                   onClick={() => setFormData({...formData, tipo: item.label})}
                 >

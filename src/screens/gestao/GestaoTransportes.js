@@ -1,5 +1,7 @@
 import React from 'react';
 import { FaMapMarkedAlt, FaCheck, FaTimes } from 'react-icons/fa';
+import '../../utils/chartSetup';
+import { Doughnut } from 'react-chartjs-2';
 
 const GestaoTransportes = () => {
   const solicitacoes = [
@@ -19,7 +21,13 @@ const GestaoTransportes = () => {
             <FaMapMarkedAlt style={{ fontSize: 24 }} />
             <div style={{ flex: 1 }}>
               <h3 className="ep-font-lg ep-fw-bold">Frota Municipal</h3>
-              <p className="ep-text-sm" style={{ opacity: 0.9 }}>12 veículos operacionais · 2 em manutenção</p>
+              <p className="ep-text-sm" style={{ opacity: 0.9 }}>Operação e manutenção da frota</p>
+            </div>
+            <div style={{ width: 74, height: 74 }}>
+              <Doughnut
+                data={{ labels: ['Operacionais', 'Manutenção'], datasets: [{ data: [12, 2], backgroundColor: ['rgba(255,255,255,0.9)', 'rgba(255,255,255,0.28)'], borderWidth: 0 }] }}
+                options={{ cutout: '70%', plugins: { legend: { display: false }, tooltip: { enabled: false } } }}
+              />
             </div>
           </div>
         </div>

@@ -1,7 +1,15 @@
 import React from 'react';
 import { FaPlus, FaPaperPlane } from 'react-icons/fa';
+import '../../utils/chartSetup';
+import { Bar, Doughnut } from 'react-chartjs-2';
 
 const GestaoCampanhas = () => {
+  const chartOptions = {
+    maintainAspectRatio: false,
+    plugins: { legend: { display: false }, tooltip: { enabled: false } },
+    scales: { x: { display: false }, y: { display: false } },
+  };
+
   return (
     <div className="ep-page">
       <div className="ep-page-header">
@@ -26,8 +34,22 @@ const GestaoCampanhas = () => {
               </div>
               <span className="ep-badge ep-badge--primary">Ativa</span>
             </div>
-            <div className="ep-mt-3 ep-text-xs">
-              <span className="ep-fw-semibold">Métricas:</span> 4.5k notificações enviadas · 32% taxa de abertura
+            <div className="ep-grid-2 ep-gap-4 ep-mt-4">
+              <div style={{ height: 58 }}>
+                <Bar
+                  data={{ labels: ['Enviadas', 'Entregues', 'Abertas'], datasets: [{ data: [4500, 4210, 1440], backgroundColor: ['#5856d6', '#5ac8fa', 'var(--color-success)'], borderRadius: 6 }] }}
+                  options={chartOptions}
+                />
+              </div>
+              <div className="ep-flex ep-items-center ep-gap-3">
+                <div style={{ width: 58, height: 58 }}>
+                  <Doughnut
+                    data={{ labels: ['Abertura', 'Não aberta'], datasets: [{ data: [32, 68], backgroundColor: ['var(--color-success)', 'rgba(52, 199, 89, 0.14)'], borderWidth: 0 }] }}
+                    options={{ cutout: '72%', plugins: { legend: { display: false }, tooltip: { enabled: false } } }}
+                  />
+                </div>
+                <span className="ep-text-xs ep-text-muted">Taxa de abertura · 32%</span>
+              </div>
             </div>
           </div>
 

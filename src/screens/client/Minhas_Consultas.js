@@ -256,7 +256,7 @@ const MinhasConsultas = () => {
             <h3 className="ep-section-title ep-mb-6" style={{ fontSize: '1.8rem', fontWeight: '600' }}>O que você precisa hoje?</h3>
             <div className="ep-grid-2 ep-gap-4">
               <button
-                className={`ep-card ep-flex-col ep-items-center ep-gap-2 ${formData.especialidade === 'Clinica Geral' ? 'ep-card--active' : 'ep-card--flat'}`}
+                className={`ep-card ep-flex-col ep-items-start ep-gap-2 ${formData.especialidade === 'Clinica Geral' ? 'ep-card--active' : 'ep-card--flat'}`}
                 style={{ borderRadius: '18px', padding: '24px' }}
                 onClick={() => setFormData({...formData, especialidade: 'Clinica Geral'})}
               >
@@ -264,7 +264,7 @@ const MinhasConsultas = () => {
                 <span className="ep-text-sm ep-fw-semibold">Clínica Geral</span>
               </button>
               <button
-                className={`ep-card ep-flex-col ep-items-center ep-gap-2 ${formData.especialidade === 'Telemedicina' ? 'ep-card--active' : 'ep-card--flat'}`}
+                className={`ep-card ep-flex-col ep-items-start ep-gap-2 ${formData.especialidade === 'Telemedicina' ? 'ep-card--active' : 'ep-card--flat'}`}
                 style={{ borderRadius: '18px', padding: '24px' }}
                 onClick={() => setFormData({...formData, especialidade: 'Telemedicina'})}
               >
@@ -273,7 +273,7 @@ const MinhasConsultas = () => {
                 <span className="ep-badge ep-badge--success" style={{ position: 'absolute', top: -10 }}>Online</span>
               </button>
               <button
-                className={`ep-card ep-flex-col ep-items-center ep-gap-2 ${formData.especialidade === 'Odontologia' ? 'ep-card--active' : 'ep-card--flat'}`}
+                className={`ep-card ep-flex-col ep-items-start ep-gap-2 ${formData.especialidade === 'Odontologia' ? 'ep-card--active' : 'ep-card--flat'}`}
                 style={{ borderRadius: '18px', padding: '24px' }}
                 onClick={() => setFormData({...formData, especialidade: 'Odontologia'})}
               >
@@ -281,7 +281,7 @@ const MinhasConsultas = () => {
                 <span className="ep-text-sm ep-fw-semibold">Odontologia</span>
               </button>
               <button
-                className={`ep-card ep-flex-col ep-items-center ep-gap-2 ${formData.especialidade === 'Cardiologia' ? 'ep-card--active' : 'ep-card--flat'}`}
+                className={`ep-card ep-flex-col ep-items-start ep-gap-2 ${formData.especialidade === 'Cardiologia' ? 'ep-card--active' : 'ep-card--flat'}`}
                 style={{ borderRadius: '18px', padding: '24px' }}
                 onClick={() => setFormData({...formData, especialidade: 'Cardiologia'})}
               >

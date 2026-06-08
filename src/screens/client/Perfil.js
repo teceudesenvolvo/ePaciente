@@ -111,7 +111,7 @@ const Perfil = () => {
           
           {/* Lado Esquerdo: Card de Identificação (Inspirado no Painel Admin) */}
           <div className="ep-col-12 ep-col-md-4">
-            <div className="ep-card ep-card--flat ep-flex-col ep-items-center ep-text-center" style={{ padding: '40px 24px', textAlign: 'left' }}>
+            <div className="ep-card ep-card--flat ep-flex-col ep-items-start" style={{ padding: '40px 24px', textAlign: 'left' }}>
               <div style={{ position: 'relative', marginBottom: '24px', textAlign: 'left' }}>
                 <div className="ep-avatar ep-avatar--xl" style={{ width: '120px', height: '120px', fontSize: '48px', background: 'var(--color-primary)', color: 'white', textAlign: 'left' }}>
                   {user.nome.charAt(0)}

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useLocation, useHistory } from 'react-router-dom';
-import { FaChartLine, FaStethoscope, FaBus, FaBullhorn } from 'react-icons/fa';
+import { FaBus, FaChartLine, FaClinicMedical, FaCommentDots, FaUserCircle, FaUsers } from 'react-icons/fa';
 
 const GestaoMenu = () => {
   const location = useLocation();
@@ -20,9 +20,11 @@ const GestaoMenu = () => {
 
   const navItems = [
     { path: '/gestao/dashboard', icon: <FaChartLine />, label: 'Dashboard' },
-    { path: '/gestao/telemedicina', icon: <FaStethoscope />, label: 'Telemedicina' },
-    { path: '/gestao/transportes', icon: <FaBus />, label: 'Transportes' },
-    { path: '/gestao/campanhas', icon: <FaBullhorn />, label: 'Campanhas' },
+    { path: '/gestao/usuarios', icon: <FaUsers />, label: 'Usuários' },
+    { path: '/gestao/unidades', icon: <FaClinicMedical />, label: 'Unidades' },
+    { path: '/gestao/transportes', icon: <FaBus />, label: 'Transporte' },
+    { path: '/gestao/ouvidoria', icon: <FaCommentDots />, label: 'Ouvidoria' },
+    { path: '/gestao/perfil', icon: <FaUserCircle />, label: 'Perfil' },
   ];
 
   return (
@@ -33,10 +35,11 @@ const GestaoMenu = () => {
       height: 'var(--nav-height-mobile)',
       backgroundColor: 'var(--color-primary-dark)',
       display: 'flex',
-      justifyContent: 'space-around',
+      justifyContent: 'flex-start',
       alignItems: 'center',
       zIndex: 900,
       paddingBottom: 'var(--safe-bottom)',
+      overflowX: 'auto',
     }}>
       {navItems.map((item) => {
         const isActive = currentPath === item.path;
@@ -46,7 +49,7 @@ const GestaoMenu = () => {
             onClick={() => history.push(item.path)}
             style={{
               display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
-              background: 'none', border: 'none', height: '100%', flex: 1, gap: '4px',
+              background: 'none', border: 'none', height: '100%', flex: '0 0 72px', gap: '4px',
               color: isActive ? 'var(--color-white)' : 'rgba(255,255,255,0.6)',
               cursor: 'pointer', WebkitTapHighlightColor: 'transparent', position: 'relative'
             }}

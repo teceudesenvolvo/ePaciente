@@ -88,25 +88,25 @@ const LandingPage = () => {
         </div>
 
         <div className="ep-grid-2 ep-gap-6">
-          <div className="ep-card ep-card--landing ep-flex-col ep-items-center ep-text-center ep-gap-4 ep-animate-fade-up">
+          <div className="ep-card ep-card--landing ep-flex-col ep-items-start ep-gap-4 ep-animate-fade-up">
             <div className="ep-icon-wrapper" style={{ color: '#004a8d' }}><FaUserMd /></div>
             <h3 className="ep-fw-bold" style={{ fontSize: '1.4rem', color: '#002651' }}>Consultas</h3>
             <p className="ep-text-sm" style={{ color: 'var(--color-n600)', lineHeight: '1.6' }}>Agendamento inteligente para clínico geral e especialistas nas UBS do município.</p>
           </div>
 
-          <div className="ep-card ep-card--landing ep-flex-col ep-items-center ep-text-center ep-gap-4 ep-animate-fade-up" style={{ animationDelay: '0.1s' }}>
+          <div className="ep-card ep-card--landing ep-flex-col ep-items-start ep-gap-4 ep-animate-fade-up" style={{ animationDelay: '0.1s' }}>
             <div className="ep-icon-wrapper" style={{ color: '#004a8d' }}><FaVial /></div>
             <h3 className="ep-fw-bold" style={{ fontSize: '1.4rem', color: '#002651' }}>Exames</h3>
             <p className="ep-text-sm" style={{ color: 'var(--color-n600)', lineHeight: '1.6' }}>Solicite agendamentos e receba resultados laboratoriais diretamente no seu celular.</p>
           </div>
 
-          <div className="ep-card ep-card--landing ep-flex-col ep-items-center ep-text-center ep-gap-4 ep-animate-fade-up" style={{ animationDelay: '0.2s' }}>
+          <div className="ep-card ep-card--landing ep-flex-col ep-items-start ep-gap-4 ep-animate-fade-up" style={{ animationDelay: '0.2s' }}>
             <div className="ep-icon-wrapper" style={{ color: '#28a745' }}><FaSyringe /></div>
             <h3 className="ep-fw-bold" style={{ fontSize: '1.4rem', color: '#002651' }}>Vacinas</h3>
             <p className="ep-text-sm" style={{ color: 'var(--color-n600)', lineHeight: '1.6' }}>Acompanhe seu histórico vacinal e as campanhas vigentes na cidade.</p>
           </div>
 
-          <div className="ep-card ep-card--landing ep-flex-col ep-items-center ep-text-center ep-gap-4 ep-animate-fade-up" style={{ animationDelay: '0.3s' }}>
+          <div className="ep-card ep-card--landing ep-flex-col ep-items-start ep-gap-4 ep-animate-fade-up" style={{ animationDelay: '0.3s' }}>
             <div className="ep-icon-wrapper" style={{ color: '#ffc107' }}><FaBus /></div>
             <h3 className="ep-fw-bold" style={{ fontSize: '1.4rem', color: '#002651' }}>Transporte</h3>
             <p className="ep-text-sm" style={{ color: 'var(--color-n600)', lineHeight: '1.6' }}>Solicite transporte para tratamentos especializados fora do município.</p>

@@ -2473,6 +2473,7 @@ body {
   border-radius: var(--r-lg);
   box-shadow: var(--shadow-sm);
   padding: var(--sp-5);
+  text-align: left;
   transition: box-shadow var(--t-base);
 }
 .ep-card:hover { box-shadow: var(--shadow-md); }
@@ -3013,6 +3014,7 @@ body {
 .ep-flex { display: flex; }
 .ep-flex-col { display: flex; flex-direction: column; }
 .ep-items-center { align-items: center; }
+.ep-items-start { align-items: flex-start; }
 .ep-justify-between { justify-content: space-between; }
 .ep-gap-2 { gap: var(--sp-2); }
 .ep-gap-3 { gap: var(--sp-3); }

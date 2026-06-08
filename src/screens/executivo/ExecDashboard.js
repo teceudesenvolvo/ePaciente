@@ -154,7 +154,7 @@ const ExecDashboard = () => {
             <div className="ep-input-group ep-mb-0">
             <label className="ep-label">Unidade de Saúde</label>
             <select className="ep-select" value={selectedUBS} onChange={e => setSelectedUBS(e.target.value)} style={{ height: '42px', borderRadius: '10px' }}>
-               <option value="Todas as Unidades">Todas as Unidades (Município)</option>
+               <option value="Todas as Unidades">Todas as Unidades de Saúde</option>
                <option value="UBS Centro">UBS Centro</option>
                <option value="UBS Bairro Novo">UBS Bairro Novo</option>
                <option value="Hospital Municipal">Hospital Municipal</option>

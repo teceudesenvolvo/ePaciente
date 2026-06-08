@@ -23,12 +23,44 @@ const HeaderTop = ({ customTitle, customClick, showBack = true, children }) => {
     '/medicamentos': { title: 'Medicamentos' },
     '/telemedicina': { title: 'Telemedicina' },
     '/gestao/dashboard': { title: 'Painel do Secretário' },
+    '/gestao/usuarios': { title: 'Gestão de Usuários' },
+    '/gestao/unidades': { title: 'Gestão de Unidades' },
+    '/gestao/funcoes': { title: 'Funções e Permissões' },
     '/gestao/telemedicina': { title: 'Monitoramento Online' },
     '/gestao/transportes': { title: 'Logística de Transportes' },
+    '/gestao/ouvidoria': { title: 'Ouvidoria' },
     '/gestao/campanhas': { title: 'Gestão de Campanhas' },
-    '/executivo/dashboard': { title: 'Painel do Prefeito' },
+    '/gestao/perfil': { title: 'Perfil do Secretário' },
+    '/gestao/notificacoes': { title: 'Notificações da Gestão' },
+    '/executivo/dashboard': { title: 'Painel Executivo da Saúde' },
+    '/executivo/ouvidoria': { title: 'Ouvidoria Executiva' },
     '/executivo/mapa': { title: 'Mapa Geográfico de Saúde' },
     '/executivo/transparencia': { title: 'Portal da Transparência' },
+    '/executivo/alertas': { title: 'Alertas Médicos' },
+    '/executivo/planos': { title: 'Planos de Ação' },
+    '/executivo/analises': { title: 'Análises Executivas' },
+    '/executivo/perfil': { title: 'Perfil Prefeito' },
+    '/executivo/notificacoes': { title: 'Notificações Executivas' },
+    '/funcionarios/medicos/consultas': { title: 'Médicos · Consultas' },
+    '/funcionarios/medicos/receitas': { title: 'Médicos · Receitas' },
+    '/funcionarios/medicos/exames': { title: 'Médicos · Exames' },
+    '/funcionarios/medicos/encaminhamentos': { title: 'Médicos · Encaminhamentos' },
+    '/funcionarios/farmacia/estoque': { title: 'Farmácia · Estoque' },
+    '/funcionarios/farmacia/medicamentos': { title: 'Farmácia · Medicamentos' },
+    '/funcionarios/farmacia/solicitacoes': { title: 'Farmácia · Solicitações' },
+    '/funcionarios/recepcao/agendamentos': { title: 'Recepção · Agendamentos' },
+    '/funcionarios/recepcao/exames': { title: 'Recepção · Exames' },
+    '/funcionarios/recepcao/fila': { title: 'Recepção · Fila' },
+    '/funcionarios/enfermeiros/triagem': { title: 'Enfermeiros · Triagem' },
+    '/funcionarios/enfermeiros/procedimentos': { title: 'Enfermeiros · Procedimentos' },
+    '/funcionarios/enfermeiros/acompanhamentos': { title: 'Enfermeiros · Acompanhamentos' },
+    '/funcionarios/dentistas/consultas': { title: 'Dentistas · Consultas' },
+    '/funcionarios/dentistas/receitas': { title: 'Dentistas · Receitas' },
+    '/funcionarios/dentistas/exames': { title: 'Dentistas · Exames' },
+    '/funcionarios/dentistas/encaminhamentos': { title: 'Dentistas · Encaminhamentos' },
+    '/funcionarios/acs/residencias': { title: 'ACS · Residências' },
+    '/funcionarios/acs/visitas': { title: 'ACS · Visitas' },
+    '/funcionarios/acs/alertas': { title: 'ACS · Alertas' },
     '/ubs/dashboard': { title: 'Painel da Unidade' },
     '/ubs/agenda': { title: 'Agenda da Unidade' },
     '/ubs/recepcao': { title: 'Recepção' },
@@ -59,8 +91,16 @@ const HeaderTop = ({ customTitle, customClick, showBack = true, children }) => {
           </p>
         </div>
         <div className="ep-flex ep-items-center ep-gap-3">
-          <button className="ep-back-btn" onClick={() => history.push('/notificacoes')}><FaBell /></button>
-          <button className="ep-back-btn" onClick={() => history.push('/perfil')}><FaUserCircle /></button>
+          <button className="ep-back-btn" onClick={() => {
+            if (path.includes('/gestao/')) history.push('/gestao/notificacoes');
+            else if (path.includes('/executivo/')) history.push('/executivo/notificacoes');
+            else history.push('/notificacoes');
+          }}><FaBell /></button>
+          <button className="ep-back-btn" onClick={() => {
+            if (path.includes('/gestao/')) history.push('/gestao/perfil');
+            else if (path.includes('/executivo/')) history.push('/executivo/perfil');
+            else history.push('/perfil');
+          }}><FaUserCircle /></button>
         </div>
       </div>
     );

@@ -32,7 +32,8 @@ const MenuDesktop = () => {
         currentPath.includes('/register') || // Register pages
         currentPath.includes('/ubs/') ||
         currentPath.includes('/gestao/') ||
-        currentPath.includes('/executivo/')
+        currentPath.includes('/executivo/') ||
+        currentPath.includes('/funcionarios/')
     ) {
         return null;
     }
