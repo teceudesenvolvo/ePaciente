@@ -26,6 +26,7 @@ import register from './screens/client/register';
 
 // Navigate Components
 import Menu from './componets/menu';
+import MenuDashboard from './componets/menuDashboard';
 import MenuDesktop from './componets/menuDesktop';
 import ChatBot from './componets/ChatBot';
 import UBSMenu from './componets/UBSMenu';
@@ -109,6 +110,7 @@ const AppContent = () => {
       <UBSMenu />
       <GestaoMenu />
       <ExecMenu />
+      <MenuDashboard />
       <MenuDesktop />
       
       {!hideChatBot && <ChatBot />}

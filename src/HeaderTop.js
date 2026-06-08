@@ -22,10 +22,21 @@ const HeaderTop = ({ customTitle, customClick, showBack = true, children }) => {
     '/receitas': { title: 'Minhas Receitas' },
     '/medicamentos': { title: 'Medicamentos' },
     '/telemedicina': { title: 'Telemedicina' },
+    '/gestao/dashboard': { title: 'Painel do Secretário' },
+    '/gestao/telemedicina': { title: 'Monitoramento Online' },
+    '/gestao/transportes': { title: 'Logística de Transportes' },
+    '/gestao/campanhas': { title: 'Gestão de Campanhas' },
+    '/executivo/dashboard': { title: 'Painel do Prefeito' },
+    '/executivo/mapa': { title: 'Mapa Geográfico de Saúde' },
+    '/executivo/transparencia': { title: 'Portal da Transparência' },
+    '/ubs/dashboard': { title: 'Painel da Unidade' },
+    '/ubs/agenda': { title: 'Agenda da Unidade' },
+    '/ubs/recepcao': { title: 'Recepção' },
+    '/ubs/estoque': { title: 'Gestão de Estoque' },
   };
 
   // Layout especial para a Home (Olá, Usuário + Data + Ícones)
-  if (path === '/inicio' || path === '/home') {
+  if (path === '/inicio' || path === '/home' || path.endsWith('/dashboard')) {
     const userName = 'Leonardo';
     const currentDate = new Date().toLocaleDateString('pt-BR', { 
       weekday: 'long', day: 'numeric', month: 'long' 
@@ -34,9 +45,15 @@ const HeaderTop = ({ customTitle, customClick, showBack = true, children }) => {
     return (
       <div className="ep-page-header ep-justify-between ep-items-center">
         <div className="ep-flex-col ep-justify-center">
-          <h2 className="ep-section-title" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            Olá, {userName} <span role="img" aria-label="wave">👋</span>
-          </h2>
+          {path.endsWith('/dashboard') ? (
+            <h2 className="ep-section-title">
+              {config[path]?.title}
+            </h2>
+          ) : (
+            <h2 className="ep-section-title" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              Olá, {userName} <span role="img" aria-label="wave">👋</span>
+            </h2>
+          )}
           <p className="ep-text-sm ep-text-muted" style={{ textTransform: 'capitalize' }}>
             {currentDate}
           </p>

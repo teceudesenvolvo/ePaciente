@@ -1,15 +1,11 @@
 import React from 'react';
 import { FaUserInjured, FaStethoscope, FaSyringe, FaArrowUp, FaArrowDown } from 'react-icons/fa';
+import HeaderTop from '../../HeaderTop';
 
 const GestaoDashboard = () => {
   return (
     <div className="ep-page" style={{ background: 'var(--color-n50)' }}>
-      <div className="ep-page-header" style={{ background: 'var(--color-primary-dark)', color: 'white' }}>
-        <div>
-          <h1 className="ep-page-title" style={{ color: 'white' }}>Visão Geral (Município)</h1>
-          <p className="ep-text-sm" style={{ opacity: 0.8 }}>Mês atual: Junho 2026</p>
-        </div>
-      </div>
+      <HeaderTop />
       
       <div className="ep-content ep-animate-fade-up">
         {/* Painel Resumo */}
