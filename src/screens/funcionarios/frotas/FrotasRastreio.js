@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { FaAmbulance, FaMapMarkerAlt, FaRoute, FaSatelliteDish } from 'react-icons/fa';
-import HeaderTop from '../../HeaderTop';
+import { FaMapMarkerAlt, FaRoute, FaSatelliteDish } from 'react-icons/fa';
+import HeaderTop from '../../../HeaderTop';
+import FleetMap from '../../../componets/FleetMap';
 
 const CHART_COLORS = {
   primary: '#007AFF',
@@ -9,9 +10,9 @@ const CHART_COLORS = {
 };
 
 const veiculos = [
-  { id: 'AMB-01', tipo: 'Ambulância', motorista: 'Rafael Oliveira', status: 'Em rota', rota: 'Hemodiálise Fortaleza', velocidade: '62 km/h', combustivel: 68, x: 28, y: 38, cor: CHART_COLORS.success },
-  { id: 'VAN-04', tipo: 'Van sanitária', motorista: 'Cláudia Martins', status: 'Disponível', rota: 'Pátio da Secretaria', velocidade: '0 km/h', combustivel: 82, x: 58, y: 52, cor: CHART_COLORS.primary },
-  { id: 'CAR-12', tipo: 'Carro administrativo', motorista: 'João Batista', status: 'Manutenção', rota: 'Oficina credenciada', velocidade: '0 km/h', combustivel: 24, x: 76, y: 28, cor: CHART_COLORS.warning },
+  { id: 'AMB-01', tipo: 'Ambulância', motorista: 'Rafael Oliveira', status: 'Em rota', rota: 'Hemodiálise Fortaleza', velocidade: '62 km/h', combustivel: 68, lat: -3.673, lng: -39.258, cor: CHART_COLORS.success },
+  { id: 'VAN-04', tipo: 'Van sanitária', motorista: 'Cláudia Martins', status: 'Disponível', rota: 'Pátio da Secretaria', velocidade: '0 km/h', combustivel: 82, lat: -3.665, lng: -39.238, cor: CHART_COLORS.primary },
+  { id: 'CAR-12', tipo: 'Carro administrativo', motorista: 'João Batista', status: 'Manutenção', rota: 'Oficina credenciada', velocidade: '0 km/h', combustivel: 24, lat: -3.694, lng: -39.221, cor: CHART_COLORS.warning },
 ];
 
 const statusClass = (status) => {
@@ -39,36 +40,8 @@ const FrotasRastreio = () => {
 
         <div className="ep-grid-2 ep-gap-4">
           <div className="ep-card ep-card--flat ep-p-0 ep-overflow-hidden" style={{ minHeight: 460 }}>
-            <div style={{ height: 430, margin: 20, position: 'relative', borderRadius: 12, overflow: 'hidden', background: 'linear-gradient(135deg, #e8f3ff 0%, #f7fff9 100%)' }}>
-              <div style={{ position: 'absolute', inset: 0, backgroundImage: 'linear-gradient(rgba(0,0,0,0.045) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.045) 1px, transparent 1px)', backgroundSize: '34px 34px' }} />
-              <div style={{ position: 'absolute', left: '8%', right: '10%', top: '48%', height: 4, background: 'rgba(0, 122, 255, 0.22)', borderRadius: 999, transform: 'rotate(-8deg)' }} />
-              <div style={{ position: 'absolute', left: '18%', right: '16%', top: '33%', height: 4, background: 'rgba(0, 196, 140, 0.22)', borderRadius: 999, transform: 'rotate(18deg)' }} />
-              {veiculos.map((veiculo) => (
-                <button
-                  key={veiculo.id}
-                  onClick={() => setSelecionado(veiculo)}
-                  title={`${veiculo.id} · ${veiculo.status}`}
-                  style={{
-                    position: 'absolute',
-                    left: `${veiculo.x}%`,
-                    top: `${veiculo.y}%`,
-                    transform: 'translate(-50%, -50%)',
-                    width: 46,
-                    height: 46,
-                    border: selecionado.id === veiculo.id ? '3px solid white' : '2px solid rgba(255,255,255,0.82)',
-                    borderRadius: 12,
-                    background: veiculo.cor,
-                    color: 'white',
-                    boxShadow: '0 10px 24px rgba(0,0,0,0.18)',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    cursor: 'pointer',
-                  }}
-                >
-                  <FaAmbulance />
-                </button>
-              ))}
+            <div style={{ margin: 20, position: 'relative' }}>
+              <FleetMap vehicles={veiculos} selectedId={selecionado.id} onSelect={setSelecionado} height={430} />
               <div className="ep-card ep-card--flat" style={{ position: 'absolute', left: 16, bottom: 16, right: 16, background: 'rgba(255,255,255,0.94)' }}>
                 <div className="ep-flex ep-justify-between ep-items-center">
                   <div>

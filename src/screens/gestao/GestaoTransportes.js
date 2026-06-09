@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import {
-  FaAmbulance,
   FaCarSide,
-  FaCheck,
   FaGasPump,
   FaMapMarkedAlt,
   FaMapMarkerAlt,
@@ -12,6 +10,7 @@ import {
 } from 'react-icons/fa';
 import { Bar, Doughnut, Line } from 'react-chartjs-2';
 import HeaderTop from '../../HeaderTop';
+import FleetMap from '../../componets/FleetMap';
 import '../../utils/chartSetup';
 
 const CHART_COLORS = {
@@ -23,9 +22,9 @@ const CHART_COLORS = {
 };
 
 const veiculos = [
-  { id: 'AMB-01', tipo: 'Ambulância', motorista: 'Rafael Oliveira', status: 'Em rota', rota: 'Hemodiálise Fortaleza', velocidade: '62 km/h', combustivel: 68, x: 28, y: 38, cor: CHART_COLORS.success },
-  { id: 'VAN-04', tipo: 'Van sanitária', motorista: 'Cláudia Martins', status: 'Disponível', rota: 'Pátio da Secretaria', velocidade: '0 km/h', combustivel: 82, x: 58, y: 52, cor: CHART_COLORS.primary },
-  { id: 'CAR-12', tipo: 'Carro administrativo', motorista: 'João Batista', status: 'Manutenção', rota: 'Oficina credenciada', velocidade: '0 km/h', combustivel: 24, x: 76, y: 28, cor: CHART_COLORS.warning },
+  { id: 'AMB-01', tipo: 'Ambulância', motorista: 'Rafael Oliveira', status: 'Em rota', rota: 'Hemodiálise Fortaleza', velocidade: '62 km/h', combustivel: 68, lat: -3.673, lng: -39.258, cor: CHART_COLORS.success },
+  { id: 'VAN-04', tipo: 'Van sanitária', motorista: 'Cláudia Martins', status: 'Disponível', rota: 'Pátio da Secretaria', velocidade: '0 km/h', combustivel: 82, lat: -3.665, lng: -39.238, cor: CHART_COLORS.primary },
+  { id: 'CAR-12', tipo: 'Carro administrativo', motorista: 'João Batista', status: 'Manutenção', rota: 'Oficina credenciada', velocidade: '0 km/h', combustivel: 24, lat: -3.694, lng: -39.221, cor: CHART_COLORS.warning },
 ];
 
 const rotas = [
@@ -40,8 +39,6 @@ const manutencoes = [
   { item: 'Revisão AMB-01', previsao: '20 dias', custo: 'R$ 1.850,00', risco: 'Baixo' },
 ];
 
-const veiculosDisponiveis = ['AMB-01', 'VAN-04', 'VAN-07', 'CAR-12'];
-
 const statusClass = (status) => {
   if (['Manutenção', 'Alto'].includes(status)) return 'ep-badge--error';
   if (['Programada', 'Aguardando', 'Médio'].includes(status)) return 'ep-badge--warning';
@@ -52,27 +49,6 @@ const statusClass = (status) => {
 const GestaoTransportes = () => {
   const [veiculoSelecionado, setVeiculoSelecionado] = useState(veiculos[0]);
   const [popup, setPopup] = useState(null);
-  const [solicitacoes, setSolicitacoes] = useState([
-    { id: 101, paciente: 'Antônio Marcos', origem: 'Sítio das Pedras', destino: 'Hospital Municipal', data: '12/06', just: 'Hemodiálise', prioridade: 'Alta', status: 'pendente', veiculo: 'AMB-01' },
-    { id: 102, paciente: 'Lúcia Silva', origem: 'Bairro Alto', destino: 'Clínica Visão', data: '13/06', just: 'Cirurgia Catarata', prioridade: 'Normal', status: 'aprovado', veiculo: 'VAN-04' },
-    { id: 103, paciente: 'Maria de Lourdes', origem: 'Centro', destino: 'Fortaleza', data: '14/06', just: 'Consulta cardiologia', prioridade: 'Normal', status: 'pendente', veiculo: 'VAN-07' },
-  ]);
-
-  const handleStatus = (id, status) => {
-    setSolicitacoes(solicitacoes.map((solicitacao) => (
-      solicitacao.id === id ? { ...solicitacao, status } : solicitacao
-    )));
-  };
-
-  const handleVeiculo = (id, veiculo) => {
-    setSolicitacoes(solicitacoes.map((solicitacao) => (
-      solicitacao.id === id ? { ...solicitacao, veiculo } : solicitacao
-    )));
-  };
-
-  const pendentes = solicitacoes.filter((s) => s.status === 'pendente');
-  const aprovados = solicitacoes.filter((s) => s.status === 'aprovado');
-  const recusados = solicitacoes.filter((s) => s.status === 'recusado');
 
   const chartOptions = {
     maintainAspectRatio: false,
@@ -88,6 +64,7 @@ const GestaoTransportes = () => {
     border: '1.5px solid var(--color-n200)',
     cursor: 'pointer',
     textAlign: 'left',
+    width: '100%',
   };
 
   return (
@@ -209,36 +186,8 @@ const GestaoTransportes = () => {
               <span className="ep-badge ep-badge--primary">{veiculoSelecionado.id}</span>
             </div>
 
-            <div style={{ height: 290, margin: 20, position: 'relative', borderRadius: 12, overflow: 'hidden', background: 'linear-gradient(135deg, #e8f3ff 0%, #f7fff9 100%)' }}>
-              <div style={{ position: 'absolute', inset: 0, backgroundImage: 'linear-gradient(rgba(0,0,0,0.045) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.045) 1px, transparent 1px)', backgroundSize: '34px 34px' }} />
-              <div style={{ position: 'absolute', left: '8%', right: '10%', top: '48%', height: 4, background: 'rgba(0, 122, 255, 0.22)', borderRadius: 999, transform: 'rotate(-8deg)' }} />
-              <div style={{ position: 'absolute', left: '18%', right: '16%', top: '33%', height: 4, background: 'rgba(0, 196, 140, 0.22)', borderRadius: 999, transform: 'rotate(18deg)' }} />
-              {veiculos.map((veiculo) => (
-                <button
-                  key={veiculo.id}
-                  onClick={() => setVeiculoSelecionado(veiculo)}
-                  title={`${veiculo.id} · ${veiculo.status}`}
-                  style={{
-                    position: 'absolute',
-                    left: `${veiculo.x}%`,
-                    top: `${veiculo.y}%`,
-                    transform: 'translate(-50%, -50%)',
-                    width: 44,
-                    height: 44,
-                    border: veiculoSelecionado.id === veiculo.id ? '3px solid white' : '2px solid rgba(255,255,255,0.82)',
-                    borderRadius: 12,
-                    background: veiculo.cor,
-                    color: 'white',
-                    boxShadow: '0 10px 24px rgba(0,0,0,0.18)',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    cursor: 'pointer',
-                  }}
-                >
-                  <FaAmbulance />
-                </button>
-              ))}
+            <div style={{ margin: 20, position: 'relative' }}>
+              <FleetMap vehicles={veiculos} selectedId={veiculoSelecionado.id} onSelect={setVeiculoSelecionado} height={290} />
               <div className="ep-card ep-card--flat" style={{ position: 'absolute', left: 16, bottom: 16, right: 16, background: 'rgba(255,255,255,0.94)' }}>
                 <div className="ep-flex ep-justify-between ep-items-center">
                   <div>
@@ -389,87 +338,6 @@ const GestaoTransportes = () => {
           </div>
         </div>
 
-        <div className="ep-section-header">
-          <h3 className="ep-section-title">Solicitações pendentes ({pendentes.length})</h3>
-        </div>
-
-        <div className="ep-flex-col ep-gap-4">
-          {pendentes.map((s) => (
-            <div key={s.id} className="ep-card ep-card--flat">
-              <div className="ep-flex ep-justify-between ep-gap-4">
-                <div>
-                  <div className="ep-fw-bold">{s.paciente}</div>
-                  <div className="ep-text-sm ep-text-muted ep-mt-1">Data: {s.data} · Prioridade: {s.prioridade}</div>
-                  <div className="ep-text-sm ep-mt-2"><strong>De:</strong> {s.origem}<br /><strong>Para:</strong> {s.destino}</div>
-                  <div className="ep-text-sm ep-mt-2 ep-p-2" style={{ background: 'var(--color-n50)', borderRadius: 4 }}>
-                    <strong>Justificativa:</strong> {s.just}
-                  </div>
-                </div>
-                <div style={{ minWidth: 180 }}>
-                  <label className="ep-label">Veículo sugerido</label>
-                  <select className="ep-select" value={s.veiculo || 'VAN-04'} onChange={(event) => handleVeiculo(s.id, event.target.value)}>
-                    {veiculosDisponiveis.map((veiculo) => <option key={veiculo}>{veiculo}</option>)}
-                  </select>
-                </div>
-              </div>
-              <div className="ep-flex ep-gap-2 ep-mt-4">
-                <button className="ep-btn ep-btn--ghost ep-btn--full" style={{ color: 'var(--color-error)' }} onClick={() => handleStatus(s.id, 'recusado')}><FaTimes /> Recusar</button>
-                <button className="ep-btn ep-btn--primary ep-btn--full" onClick={() => handleStatus(s.id, 'aprovado')}><FaCheck /> Aprovar e Alocar</button>
-              </div>
-            </div>
-          ))}
-          {pendentes.length === 0 && (
-            <div className="ep-alert ep-alert--success">Todas as solicitações foram tratadas.</div>
-          )}
-        </div>
-
-        <div className="ep-section-header ep-mt-6">
-          <h3 className="ep-section-title">Aprovados recentes</h3>
-        </div>
-        <div className="ep-flex-col ep-gap-3">
-          {aprovados.map((s) => (
-            <button
-              key={s.id}
-              className="ep-card ep-card--flat ep-flex ep-justify-between ep-items-center"
-              style={clickableCardStyle}
-              onClick={() => openPopup(s.paciente, <FaCheck />, (
-                <p className="ep-text-sm ep-text-muted">Solicitação aprovada para {s.destino}, saindo de {s.origem}, alocada no veículo {s.veiculo || 'VAN-04'}.</p>
-              ), CHART_COLORS.success)}
-            >
-              <div>
-                <div className="ep-fw-bold">{s.paciente}</div>
-                <div className="ep-text-xs ep-text-muted">{s.origem} → {s.destino}</div>
-              </div>
-              <span className="ep-badge ep-badge--success">{s.veiculo || 'VAN-04'}</span>
-            </button>
-          ))}
-        </div>
-
-        {recusados.length > 0 && (
-          <>
-            <div className="ep-section-header ep-mt-6">
-              <h3 className="ep-section-title">Recusados</h3>
-            </div>
-            <div className="ep-flex-col ep-gap-3">
-              {recusados.map((s) => (
-                <button
-                  key={s.id}
-                  className="ep-card ep-card--flat ep-flex ep-justify-between ep-items-center"
-                  style={clickableCardStyle}
-                  onClick={() => openPopup(s.paciente, <FaTimes />, (
-                    <p className="ep-text-sm ep-text-muted">Solicitação recusada para {s.destino}. Mantida no histórico para auditoria da regulação.</p>
-                  ), CHART_COLORS.error)}
-                >
-                  <div>
-                    <div className="ep-fw-bold">{s.paciente}</div>
-                    <div className="ep-text-xs ep-text-muted">{s.origem} → {s.destino}</div>
-                  </div>
-                  <span className="ep-badge ep-badge--error">Recusado</span>
-                </button>
-              ))}
-            </div>
-          </>
-        )}
       </div>
 
       {popup && (

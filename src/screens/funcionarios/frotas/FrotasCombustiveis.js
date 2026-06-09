@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Bar, Doughnut, Line } from 'react-chartjs-2';
 import { FaGasPump, FaPlus, FaReceipt } from 'react-icons/fa';
-import HeaderTop from '../../HeaderTop';
-import '../../utils/chartSetup';
+import HeaderTop from '../../../HeaderTop';
+import '../../../utils/chartSetup';
 
 const CHART_COLORS = {
   primary: '#007AFF',

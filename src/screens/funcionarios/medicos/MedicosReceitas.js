@@ -1,5 +1,5 @@
 import React from 'react';
-import FuncionarioPage from './FuncionarioPage';
+import FuncionarioPage from '../FuncionarioPage';
 
 const MedicosReceitas = () => <FuncionarioPage moduleKey="medicos" actionKey="receitas" />;
 

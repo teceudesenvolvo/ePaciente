@@ -8,6 +8,7 @@ import {
     MdOutlineWarehouse,
     MdOutlineVideocam,
     MdOutlineDirectionsBus,
+    MdOutlineDirectionsCar,
     MdOutlineMap,
     MdOutlineHistoryEdu,
     MdOutlinePeopleAlt,
@@ -26,6 +27,8 @@ import {
     MdOutlineSummarize,
     MdOutlinePersonSearch,
     MdOutlineAccountCircle,
+    MdMenu,
+    MdClose,
     MdLogout
 } from "react-icons/md";
 
@@ -35,6 +38,7 @@ const MenuDashboard = () => {
     const currentPath = location.pathname;
 
     const [isDesktop, setIsDesktop] = React.useState(window.innerWidth >= 768);
+    const [isOpen, setIsOpen] = React.useState(false);
     React.useEffect(() => {
         const handleResize = () => setIsDesktop(window.innerWidth >= 768);
         window.addEventListener('resize', handleResize);
@@ -46,9 +50,6 @@ const MenuDashboard = () => {
     if (currentPath.includes('/ubs/')) role = 'ubs';
     else if (currentPath.includes('/gestao/')) role = 'gestao';
     else if (currentPath.includes('/executivo/')) role = 'executivo';
-
-    // Se não for desktop ou não estiver em uma rota administrativa, não renderiza
-    if (!isDesktop || !role) return null;
 
     const roleConfigs = {
         ubs: {
@@ -97,12 +98,98 @@ const MenuDashboard = () => {
                 { path: '/executivo/alertas', icon: <MdOutlineNotificationsActive />, label: 'Alertas Med.' },
                 { path: '/executivo/planos', icon: <MdOutlineAssignment />, label: 'Planos de Ação' },
                 { path: '/executivo/analises', icon: <MdOutlineAnalytics />, label: 'Análises' },
+                { path: '/executivo/frotas', icon: <MdOutlineDirectionsCar />, label: 'Frotas' },
                 { path: '/executivo/perfil', icon: <MdOutlineAccountCircle />, label: 'Perfil Prefeito' },
             ]
         }
     };
 
     const config = roleConfigs[role];
+
+    if (!role) return null;
+
+    const handleNavigate = (path) => {
+        history.push(path);
+        setIsOpen(false);
+    };
+
+    if (!isDesktop) {
+        if (!['gestao', 'executivo'].includes(role)) return null;
+
+        return (
+            <>
+                <button
+                    aria-label="Abrir menu"
+                    onClick={() => setIsOpen(true)}
+                    style={{
+                        position: 'fixed',
+                        top: '14px',
+                        left: '14px',
+                        width: 44,
+                        height: 44,
+                        border: 'none',
+                        borderRadius: 12,
+                        background: 'var(--gradient-primary)',
+                        color: 'white',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        fontSize: 24,
+                        zIndex: 1200,
+                        boxShadow: '0 8px 24px rgba(0,0,0,0.18)',
+                    }}
+                >
+                    <MdMenu />
+                </button>
+
+                {isOpen && (
+                    <div style={{ position: 'fixed', inset: 0, zIndex: 1300 }}>
+                        <button aria-label="Fechar menu" onClick={() => setIsOpen(false)} style={{ position: 'absolute', inset: 0, border: 0, background: 'rgba(0,0,0,0.38)' }} />
+                        <nav style={{ position: 'absolute', top: 0, left: 0, bottom: 0, width: 292, maxWidth: '86vw', background: 'var(--gradient-primary)', padding: '22px 14px', display: 'flex', flexDirection: 'column', gap: 14, boxShadow: '20px 0 45px rgba(0,0,0,0.24)' }}>
+                            <div className="ep-flex ep-items-center ep-justify-between ep-mb-3">
+                                <div className="ep-flex ep-items-center ep-gap-3">
+                                    <div className="ep-avatar ep-avatar--md" style={{ background: config.color, color: 'white', fontWeight: 'bold' }}>{config.label.charAt(0)}</div>
+                                    <div className="ep-flex-col">
+                                        <span className="ep-text-sm ep-fw-bold" style={{ color: 'white' }}>{config.title}</span>
+                                        <span className="ep-text-xs" style={{ color: 'rgba(255,255,255,0.65)' }}>São Luís do Curu</span>
+                                    </div>
+                                </div>
+                                <button onClick={() => setIsOpen(false)} style={{ width: 36, height: 36, border: 0, borderRadius: 10, background: 'rgba(255,255,255,0.14)', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 22 }}>
+                                    <MdClose />
+                                </button>
+                            </div>
+
+                            <div className="ep-flex-col ep-gap-2" style={{ overflowY: 'auto', paddingBottom: 18 }}>
+                                {config.items.map((item) => {
+                                    const isActive = currentPath === item.path;
+                                    return (
+                                        <button
+                                            key={item.path}
+                                            onClick={() => handleNavigate(item.path)}
+                                            className="ep-flex ep-items-center ep-gap-3"
+                                            style={{
+                                                width: '100%',
+                                                border: 'none',
+                                                background: isActive ? config.color : 'rgba(255,255,255,0.08)',
+                                                color: 'white',
+                                                cursor: 'pointer',
+                                                borderRadius: 10,
+                                                padding: '13px 14px',
+                                                textAlign: 'left',
+                                            }}
+                                        >
+                                            <span style={{ fontSize: 22, display: 'flex' }}>{item.icon}</span>
+                                            <span style={{ fontWeight: isActive ? 700 : 500 }}>{item.label}</span>
+                                        </button>
+                                    );
+                                })}
+                            </div>
+                        </nav>
+                    </div>
+                )}
+            </>
+        );
+    }
 
     return (
         <nav className='menuDesktop ep-animate-fade-in' style={{ background: 'var(--gradient-primary)', borderRight: '1px solid rgba(255,255,255,0.16)' }}>

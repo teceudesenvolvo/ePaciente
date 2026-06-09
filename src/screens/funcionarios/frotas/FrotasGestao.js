@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Doughnut } from 'react-chartjs-2';
 import { FaCheck, FaGasPump, FaMapMarkedAlt, FaRoute, FaTools, FaTimes } from 'react-icons/fa';
-import HeaderTop from '../../HeaderTop';
-import '../../utils/chartSetup';
+import HeaderTop from '../../../HeaderTop';
+import '../../../utils/chartSetup';
 
 const solicitacoesBase = [
   { id: 101, paciente: 'Antônio Marcos', origem: 'Sítio das Pedras', destino: 'Hospital Municipal', data: '12/06', just: 'Hemodiálise', prioridade: 'Alta', status: 'pendente' },

@@ -13,12 +13,17 @@ import {
   MdOutlineLocalPharmacy,
   MdOutlineMedicalServices,
   MdOutlineNotificationsActive,
+  MdOutlinePersonAddAlt,
   MdOutlinePersonSearch,
   MdOutlinePinDrop,
   MdOutlineSick,
+  MdOutlineScreenshotMonitor,
   MdOutlineSummarize,
   MdOutlineBuild,
   MdOutlineWarehouse,
+  MdMenu,
+  MdClose,
+  MdOutlineVideoCall,
 } from 'react-icons/md';
 
 const menuSections = [
@@ -26,6 +31,7 @@ const menuSections = [
     title: 'Médico',
     items: [
       { path: '/funcionarios/medicos/consultas', icon: <MdOutlineMedicalServices />, label: 'Consultas' },
+      { path: '/funcionarios/medicos/online', icon: <MdOutlineVideoCall />, label: 'Online' },
       { path: '/funcionarios/medicos/receitas', icon: <MdOutlineSummarize />, label: 'Receitas' },
       { path: '/funcionarios/medicos/exames', icon: <MdOutlineBloodtype />, label: 'Exames' },
       { path: '/funcionarios/medicos/encaminhamentos', icon: <MdOutlineAssignment />, label: 'Encaminhamentos' },
@@ -42,9 +48,11 @@ const menuSections = [
   {
     title: 'Recepção',
     items: [
+      { path: '/funcionarios/recepcao/pacientes', icon: <MdOutlinePersonAddAlt />, label: 'Pacientes' },
       { path: '/funcionarios/recepcao/agendamentos', icon: <MdOutlineCalendarMonth />, label: 'Agendamentos' },
       { path: '/funcionarios/recepcao/exames', icon: <MdOutlineBloodtype />, label: 'Exames' },
       { path: '/funcionarios/recepcao/fila', icon: <MdOutlineGroups />, label: 'Fila' },
+      { path: '/funcionarios/recepcao/painel', icon: <MdOutlineScreenshotMonitor />, label: 'Painel TV' },
     ],
   },
   {
@@ -88,6 +96,7 @@ const MenuFunc = () => {
   const history = useHistory();
   const currentPath = location.pathname;
   const [isDesktop, setIsDesktop] = React.useState(window.innerWidth >= 768);
+  const [isOpen, setIsOpen] = React.useState(false);
 
   React.useEffect(() => {
     const handleResize = () => setIsDesktop(window.innerWidth >= 768);
@@ -95,7 +104,93 @@ const MenuFunc = () => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  if (!isDesktop || !currentPath.includes('/funcionarios/')) return null;
+  if (!currentPath.includes('/funcionarios/')) return null;
+
+  const handleNavigate = (path) => {
+    history.push(path);
+    setIsOpen(false);
+  };
+
+  if (!isDesktop) {
+    return (
+      <>
+        <button
+          aria-label="Abrir menu"
+          onClick={() => setIsOpen(true)}
+          style={{
+            position: 'fixed',
+            top: '14px',
+            left: '14px',
+            width: 44,
+            height: 44,
+            border: 'none',
+            borderRadius: 12,
+            background: 'var(--gradient-primary)',
+            color: 'white',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            fontSize: 24,
+            zIndex: 1200,
+            boxShadow: '0 8px 24px rgba(0,0,0,0.18)',
+          }}
+        >
+          <MdMenu />
+        </button>
+
+        {isOpen && (
+          <div style={{ position: 'fixed', inset: 0, zIndex: 1300 }}>
+            <button aria-label="Fechar menu" onClick={() => setIsOpen(false)} style={{ position: 'absolute', inset: 0, border: 0, background: 'rgba(0,0,0,0.38)' }} />
+            <nav style={{ position: 'absolute', top: 0, left: 0, bottom: 0, width: 304, maxWidth: '88vw', background: 'var(--gradient-primary)', padding: '22px 14px', display: 'flex', flexDirection: 'column', gap: 14, boxShadow: '20px 0 45px rgba(0,0,0,0.24)' }}>
+              <div className="ep-flex ep-items-center ep-justify-between ep-mb-3">
+                <div className="ep-flex ep-items-center ep-gap-3">
+                  <div className="ep-avatar ep-avatar--md" style={{ background: 'var(--color-primary)', color: 'white', fontWeight: 'bold' }}>F</div>
+                  <div className="ep-flex-col">
+                    <span className="ep-text-sm ep-fw-bold" style={{ color: 'white' }}>Funcionários</span>
+                    <span className="ep-text-xs" style={{ color: 'rgba(255,255,255,0.65)' }}>São Luís do Curu</span>
+                  </div>
+                </div>
+                <button onClick={() => setIsOpen(false)} style={{ width: 36, height: 36, border: 0, borderRadius: 10, background: 'rgba(255,255,255,0.14)', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 22 }}>
+                  <MdClose />
+                </button>
+              </div>
+
+              <div className="ep-flex-col ep-gap-3" style={{ overflowY: 'auto', paddingBottom: 18 }}>
+                {menuSections.map((section) => (
+                  <div key={section.title} className="ep-flex-col ep-gap-2">
+                    <span style={{ fontSize: 11, fontWeight: 700, color: 'rgba(255,255,255,0.55)', textTransform: 'uppercase', letterSpacing: '0.08em', padding: '0 10px' }}>{section.title}</span>
+                    {section.items.map((item) => {
+                      const isActive = currentPath === item.path;
+                      return (
+                        <button
+                          key={item.path}
+                          onClick={() => handleNavigate(item.path)}
+                          className="ep-flex ep-items-center ep-gap-3"
+                          style={{
+                            width: '100%',
+                            border: 'none',
+                            background: isActive ? 'var(--color-primary)' : 'rgba(255,255,255,0.08)',
+                            color: 'white',
+                            cursor: 'pointer',
+                            borderRadius: 10,
+                            padding: '12px 14px',
+                            textAlign: 'left',
+                          }}
+                        >
+                          <span style={{ fontSize: 22, display: 'flex' }}>{item.icon}</span>
+                          <span style={{ fontWeight: isActive ? 700 : 500 }}>{item.label}</span>
+                        </button>
+                      );
+                    })}
+                  </div>
+                ))}
+              </div>
+            </nav>
+          </div>
+        )}
+      </>
+    );
+  }
 
   return (
     <nav className="menuDesktop ep-animate-fade-in" style={{ background: 'var(--gradient-primary)', borderRight: '1px solid rgba(255,255,255,0.16)' }}>

@@ -66,32 +66,37 @@ import ExecPlanos from './screens/executivo/ExecPlanos';
 import ExecAnalises from './screens/executivo/ExecAnalises';
 import ExecPerfil from './screens/executivo/ExecPerfil';
 import ExecNotificacoes from './screens/executivo/ExecNotificacoes';
+import ExecFrotas from './screens/executivo/ExecFrotas';
 
 // Funcionários Screens
-import MedicosConsultas from './screens/funcionarios/MedicosConsultas';
-import MedicosReceitas from './screens/funcionarios/MedicosReceitas';
-import MedicosExames from './screens/funcionarios/MedicosExames';
-import MedicosEncaminhamentos from './screens/funcionarios/MedicosEncaminhamentos';
-import FarmaciaEstoque from './screens/funcionarios/FarmaciaEstoque';
-import FarmaciaMedicamentos from './screens/funcionarios/FarmaciaMedicamentos';
-import FarmaciaSolicitacoes from './screens/funcionarios/FarmaciaSolicitacoes';
-import RecepcaoAgendamentos from './screens/funcionarios/RecepcaoAgendamentos';
-import RecepcaoExames from './screens/funcionarios/RecepcaoExames';
-import RecepcaoFila from './screens/funcionarios/RecepcaoFila';
-import EnfermeirosTriagem from './screens/funcionarios/EnfermeirosTriagem';
-import EnfermeirosProcedimentos from './screens/funcionarios/EnfermeirosProcedimentos';
-import EnfermeirosAcompanhamentos from './screens/funcionarios/EnfermeirosAcompanhamentos';
-import DentistasConsultas from './screens/funcionarios/DentistasConsultas';
-import DentistasReceitas from './screens/funcionarios/DentistasReceitas';
-import DentistasExames from './screens/funcionarios/DentistasExames';
-import DentistasEncaminhamentos from './screens/funcionarios/DentistasEncaminhamentos';
-import ACSResidencias from './screens/funcionarios/ACSResidencias';
-import ACSVisitas from './screens/funcionarios/ACSVisitas';
-import ACSAlertas from './screens/funcionarios/ACSAlertas';
-import FrotasGestao from './screens/funcionarios/FrotasGestao';
-import FrotasCombustiveis from './screens/funcionarios/FrotasCombustiveis';
-import FrotasManutencao from './screens/funcionarios/FrotasManutencao';
-import FrotasRastreio from './screens/funcionarios/FrotasRastreio';
+import MedicosConsultas from './screens/funcionarios/medicos/MedicosConsultas';
+import MedicosOnline from './screens/funcionarios/medicos/MedicosOnline';
+import MedicosReceitas from './screens/funcionarios/medicos/MedicosReceitas';
+import MedicosExames from './screens/funcionarios/medicos/MedicosExames';
+import MedicosEncaminhamentos from './screens/funcionarios/medicos/MedicosEncaminhamentos';
+import FarmaciaEstoque from './screens/funcionarios/farmacia/FarmaciaEstoque';
+import FarmaciaMedicamentos from './screens/funcionarios/farmacia/FarmaciaMedicamentos';
+import FarmaciaSolicitacoes from './screens/funcionarios/farmacia/FarmaciaSolicitacoes';
+import RecepcaoAgendamentos from './screens/funcionarios/recepcao/RecepcaoAgendamentos';
+import RecepcaoExames from './screens/funcionarios/recepcao/RecepcaoExames';
+import RecepcaoFila from './screens/funcionarios/recepcao/RecepcaoFila';
+import RecepcaoPacientes from './screens/funcionarios/recepcao/RecepcaoPacientes';
+import PainelChamadas from './screens/funcionarios/recepcao/PainelChamadas';
+import EnfermeirosTriagem from './screens/funcionarios/enfermeiros/EnfermeirosTriagem';
+import EnfermeirosProcedimentos from './screens/funcionarios/enfermeiros/EnfermeirosProcedimentos';
+import EnfermeirosAcompanhamentos from './screens/funcionarios/enfermeiros/EnfermeirosAcompanhamentos';
+import DentistasConsultas from './screens/funcionarios/dentistas/DentistasConsultas';
+import DentistasReceitas from './screens/funcionarios/dentistas/DentistasReceitas';
+import DentistasExames from './screens/funcionarios/dentistas/DentistasExames';
+import DentistasEncaminhamentos from './screens/funcionarios/dentistas/DentistasEncaminhamentos';
+import ACSResidencias from './screens/funcionarios/acs/ACSResidencias';
+import ACSVisitas from './screens/funcionarios/acs/ACSVisitas';
+import ACSAlertas from './screens/funcionarios/acs/ACSAlertas';
+import FrotasGestao from './screens/funcionarios/frotas/FrotasGestao';
+import FrotasCombustiveis from './screens/funcionarios/frotas/FrotasCombustiveis';
+import FrotasManutencao from './screens/funcionarios/frotas/FrotasManutencao';
+import FrotasRastreio from './screens/funcionarios/frotas/FrotasRastreio';
+import AtendimentoPaciente from './screens/funcionarios/AtendimentoPaciente';
 
 const AppContent = () => {
   const location = useLocation();
@@ -161,10 +166,13 @@ const AppContent = () => {
         <Route path="/executivo/alertas" component={ExecAlertas} />
         <Route path="/executivo/planos" component={ExecPlanos} />
         <Route path="/executivo/analises" component={ExecAnalises} />
+        <Route path="/executivo/frotas" component={ExecFrotas} />
         <Route path="/executivo/perfil" component={ExecPerfil} />
         <Route path="/executivo/notificacoes" component={ExecNotificacoes} />
 
         {/* Funcionários */}
+        <Route path="/funcionarios/:tipo/consultas/:paciente" component={AtendimentoPaciente} />
+        <Route path="/funcionarios/medicos/online" component={MedicosOnline} />
         <Route path="/funcionarios/medicos/consultas" component={MedicosConsultas} />
         <Route path="/funcionarios/medicos/receitas" component={MedicosReceitas} />
         <Route path="/funcionarios/medicos/exames" component={MedicosExames} />
@@ -172,6 +180,8 @@ const AppContent = () => {
         <Route path="/funcionarios/farmacia/estoque" component={FarmaciaEstoque} />
         <Route path="/funcionarios/farmacia/medicamentos" component={FarmaciaMedicamentos} />
         <Route path="/funcionarios/farmacia/solicitacoes" component={FarmaciaSolicitacoes} />
+        <Route path="/funcionarios/recepcao/pacientes" component={RecepcaoPacientes} />
+        <Route path="/funcionarios/recepcao/painel" component={PainelChamadas} />
         <Route path="/funcionarios/recepcao/agendamentos" component={RecepcaoAgendamentos} />
         <Route path="/funcionarios/recepcao/exames" component={RecepcaoExames} />
         <Route path="/funcionarios/recepcao/fila" component={RecepcaoFila} />

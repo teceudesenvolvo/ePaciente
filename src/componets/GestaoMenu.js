@@ -1,6 +1,6 @@
 import React from 'react';
 import { useLocation, useHistory } from 'react-router-dom';
-import { FaBus, FaCalculator, FaChartLine, FaClinicMedical, FaClock, FaCommentDots, FaMapMarkerAlt, FaUserCircle, FaUserTie, FaUsers } from 'react-icons/fa';
+import { FaBus, FaChartLine, FaClinicMedical, FaUserCircle, FaUsers } from 'react-icons/fa';
 
 const GestaoMenu = () => {
   const location = useLocation();
@@ -22,12 +22,7 @@ const GestaoMenu = () => {
     { path: '/gestao/dashboard', icon: <FaChartLine />, label: 'Dashboard' },
     { path: '/gestao/usuarios', icon: <FaUsers />, label: 'Usuários' },
     { path: '/gestao/unidades', icon: <FaClinicMedical />, label: 'Unidades' },
-    { path: '/gestao/rh', icon: <FaUserTie />, label: 'RH' },
-    { path: '/gestao/contabilidade', icon: <FaCalculator />, label: 'Contábil' },
-    { path: '/gestao/ponto-eletronico', icon: <FaClock />, label: 'Ponto' },
-    { path: '/gestao/ponto-geolocalizacao', icon: <FaMapMarkerAlt />, label: 'Geo' },
-    { path: '/gestao/transportes', icon: <FaBus />, label: 'Transporte' },
-    { path: '/gestao/ouvidoria', icon: <FaCommentDots />, label: 'Ouvidoria' },
+    { path: '/gestao/transportes', icon: <FaBus />, label: 'Frotas' },
     { path: '/gestao/perfil', icon: <FaUserCircle />, label: 'Perfil' },
   ];
 
@@ -39,11 +34,10 @@ const GestaoMenu = () => {
       height: 'var(--nav-height-mobile)',
       backgroundColor: 'var(--color-primary-dark)',
       display: 'flex',
-      justifyContent: 'flex-start',
+      justifyContent: 'space-around',
       alignItems: 'center',
       zIndex: 900,
       paddingBottom: 'var(--safe-bottom)',
-      overflowX: 'auto',
     }}>
       {navItems.map((item) => {
         const isActive = currentPath === item.path;
@@ -53,7 +47,7 @@ const GestaoMenu = () => {
             onClick={() => history.push(item.path)}
             style={{
               display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
-              background: 'none', border: 'none', height: '100%', flex: '0 0 72px', gap: '4px',
+              background: 'none', border: 'none', height: '100%', flex: 1, gap: '4px',
               color: isActive ? 'var(--color-white)' : 'rgba(255,255,255,0.6)',
               cursor: 'pointer', WebkitTapHighlightColor: 'transparent', position: 'relative'
             }}
