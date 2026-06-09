@@ -61,6 +61,8 @@ const MedicosOnline = () => {
   const [activeTab, setActiveTab] = useState('rosto');
   const [busca, setBusca] = useState('');
   const [statusFiltro, setStatusFiltro] = useState('Todos');
+  const [dataFiltro, setDataFiltro] = useState(teleconsultas[0]?.data || '');
+  const [filaTab, setFilaTab] = useState('agendamentos');
   const [soap, setSoap] = useState({
     subjetivo: 'Paciente relata acompanhamento de hipertensão e diabetes, sem queixas agudas no momento.',
     objetivo: 'PA 120/80 · Glicemia 108 mg/dL · IMC 27,4',
@@ -70,11 +72,14 @@ const MedicosOnline = () => {
   const [evolucao, setEvolucao] = useState('Teleconsulta realizada com identificação confirmada, revisão do histórico e orientações registradas no prontuário.');
   const [receitaMedicamentos] = useState([{ medicamento: 'Losartana 50mg', uso: 'Tomar 1 comprimido pela manhã por 30 dias.' }]);
   const [atestado, setAtestado] = useState({ dias: '1', cid: '', finalidade: 'Compareceu a consulta médica online, necessitando afastamento conforme avaliação clínica.' });
+  const dataOptions = Array.from(new Set(teleconsultas.map((consulta) => consulta.data)));
+  const selectedData = dataOptions.includes(dataFiltro) ? dataFiltro : dataOptions[0];
   const filteredConsultas = teleconsultas.filter((consulta) => {
     const query = `${consulta.paciente} ${consulta.motivo} ${consulta.status} ${consulta.prioridade} ${consulta.data} ${consulta.origem}`.toLowerCase();
     const matchesBusca = query.includes(busca.toLowerCase());
     const matchesStatus = statusFiltro === 'Todos' || consulta.status === statusFiltro;
-    return matchesBusca && matchesStatus;
+    const matchesData = consulta.data === selectedData;
+    return matchesBusca && matchesStatus && matchesData;
   });
   const roomName = activeConsultation
     ? `ePaciente-${activeConsultation.paciente.replace(/\s+/g, '-')}-${activeConsultation.id}`
@@ -279,7 +284,7 @@ const MedicosOnline = () => {
 
         <div className="ep-card ep-card--flat ep-mb-6">
           <div className="ep-flex ep-items-center ep-gap-2 ep-mb-4" style={{ color: 'var(--color-primary)' }}><FaFilter /> <strong>Filtros</strong></div>
-          <div className="ep-grid-2 ep-gap-4">
+          <div className="ep-grid-3 ep-gap-4">
             <div className="ep-input-group ep-mb-0">
               <label className="ep-label">Buscar</label>
               <div className="ep-flex ep-items-center ep-gap-2 ep-input"><FaSearch className="ep-text-muted" /><input value={busca} onChange={(e) => setBusca(e.target.value)} placeholder="Paciente, motivo ou prioridade" style={{ border: 0, outline: 0, width: '100%', background: 'transparent' }} /></div>
@@ -288,14 +293,29 @@ const MedicosOnline = () => {
               <label className="ep-label">Status</label>
               <select className="ep-select" value={statusFiltro} onChange={(e) => setStatusFiltro(e.target.value)}><option>Todos</option><option>Em atendimento</option><option>Aguardando paciente</option><option>Agendada</option></select>
             </div>
+            <div className="ep-input-group ep-mb-0">
+              <label className="ep-label">Data</label>
+              <select className="ep-select" value={selectedData || ''} onChange={(e) => setDataFiltro(e.target.value)}>
+                {dataOptions.map((data) => <option key={data}>{data}</option>)}
+              </select>
+            </div>
           </div>
         </div>
 
         <div className="ep-flex-col ep-gap-5">
-          {Object.entries(agendamentosPorData).map(([data, registros]) => (
+          <div className="ep-record-tabs">
+            <button className={filaTab === 'agendamentos' ? 'active' : ''} onClick={() => setFilaTab('agendamentos')}>
+              Agendamentos
+            </button>
+            <button className={filaTab === 'demanda' ? 'active' : ''} onClick={() => setFilaTab('demanda')}>
+              Demanda espontânea
+            </button>
+          </div>
+
+          {filaTab === 'agendamentos' && Object.entries(agendamentosPorData).map(([data, registros]) => (
             <section key={data}>
               <div className="ep-flex ep-justify-between ep-items-center ep-mb-3">
-                <div>
+                <div style={{ textAlign: 'left', marginBottom: '20px' }}>
                   <div className="ep-text-xs ep-text-muted">Consultas online agendadas</div>
                   <h3 className="ep-font-md ep-fw-bold">{data}</h3>
                 </div>
@@ -324,9 +344,14 @@ const MedicosOnline = () => {
             </section>
           ))}
 
+          {filaTab === 'agendamentos' && Object.keys(agendamentosPorData).length === 0 && (
+            <div className="ep-alert ep-alert--info" style={{ margin: 0 }}>Nenhuma consulta online agendada encontrada com os filtros selecionados.</div>
+          )}
+
+          {filaTab === 'demanda' && (
           <section>
             <div className="ep-flex ep-justify-between ep-items-center ep-mb-3">
-              <div>
+              <div style={{ textAlign: 'left', marginBottom: '20px' }}>
                 <div className="ep-text-xs ep-text-muted">Fila separada</div>
                 <h3 className="ep-font-md ep-fw-bold">Demandas espontâneas online</h3>
               </div>
@@ -356,6 +381,7 @@ const MedicosOnline = () => {
               <div className="ep-alert ep-alert--info" style={{ margin: 0 }}>Nenhuma demanda espontânea online encontrada com os filtros selecionados.</div>
             )}
           </section>
+          )}
 
           {filteredConsultas.length === 0 && (
             <div className="ep-alert ep-alert--info" style={{ margin: 0 }}>Nenhuma teleconsulta encontrada com os filtros selecionados.</div>

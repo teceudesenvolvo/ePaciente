@@ -376,6 +376,8 @@ const FuncionarioPage = ({ moduleKey, actionKey }) => {
   const [busca, setBusca] = useState('');
   const [statusFiltro, setStatusFiltro] = useState('Todos');
   const [unidadeFiltro, setUnidadeFiltro] = useState('Todas');
+  const [dataFiltro, setDataFiltro] = useState('');
+  const [filaTab, setFilaTab] = useState('agendamentos');
   const [selectedPatient, setSelectedPatient] = useState(null);
   const [activeTab, setActiveTab] = useState('resumo');
   const [evolucao, setEvolucao] = useState('Paciente avaliado em consulta. Conduta registrada conforme queixa principal, exame físico e histórico do prontuário.');
@@ -389,6 +391,8 @@ const FuncionarioPage = ({ moduleKey, actionKey }) => {
     setBusca('');
     setStatusFiltro('Todos');
     setUnidadeFiltro('Todas');
+    setDataFiltro('');
+    setFilaTab('agendamentos');
     setSelectedPatient(null);
     setActiveTab('resumo');
   }, [action]);
@@ -405,14 +409,18 @@ const FuncionarioPage = ({ moduleKey, actionKey }) => {
     origem: getOrigemAtendimento(item),
   }));
 
+  const isConsulta = actionKey === 'consultas';
   const statusOptions = ['Todos', ...Array.from(new Set(enrichedItems.map((item) => item.status)))];
   const unidadeOptions = ['Todas', ...Array.from(new Set(enrichedItems.map((item) => item.unidade)))];
+  const dataOptions = Array.from(new Set(enrichedItems.map((item) => item.data)));
+  const selectedData = dataOptions.includes(dataFiltro) ? dataFiltro : dataOptions[0];
   const filteredItems = enrichedItems.filter((item) => {
     const query = `${item.paciente} ${item.title} ${item.meta} ${item.status} ${item.unidade} ${item.data} ${item.origem}`.toLowerCase();
     const matchesBusca = query.includes(busca.toLowerCase());
     const matchesStatus = statusFiltro === 'Todos' || item.status === statusFiltro;
     const matchesUnidade = unidadeFiltro === 'Todas' || item.unidade === unidadeFiltro;
-    return matchesBusca && matchesStatus && matchesUnidade;
+    const matchesData = !isConsulta || item.data === selectedData;
+    return matchesBusca && matchesStatus && matchesUnidade && matchesData;
   });
 
   const resumo = {
@@ -430,12 +438,14 @@ const FuncionarioPage = ({ moduleKey, actionKey }) => {
         unidade: 'UBS Centro',
         status: 'Pendente',
         tipo: getTipo({ title: action.primary }, action.title),
+        data: 'Hoje',
+        horario: 'Encaixe',
+        origem: 'Agendamento',
       },
       ...items,
     ]);
   };
 
-  const isConsulta = actionKey === 'consultas';
   const consultasAgendadasPorData = filteredItems
     .filter((item) => item.origem !== 'Demanda espontânea')
     .reduce((acc, item) => {
@@ -509,7 +519,7 @@ const FuncionarioPage = ({ moduleKey, actionKey }) => {
             <FaFilter />
             <span className="ep-text-sm ep-fw-bold">Filtros</span>
           </div>
-          <div className="ep-grid-3 ep-gap-4">
+          <div className={isConsulta ? 'ep-grid-4 ep-gap-4' : 'ep-grid-3 ep-gap-4'}>
             <div className="ep-input-group ep-mb-0">
               <label className="ep-label">Buscar</label>
               <div className="ep-flex ep-items-center ep-gap-2 ep-input">
@@ -529,15 +539,32 @@ const FuncionarioPage = ({ moduleKey, actionKey }) => {
                 {unidadeOptions.map((unidade) => <option key={unidade}>{unidade}</option>)}
               </select>
             </div>
+            {isConsulta && (
+              <div className="ep-input-group ep-mb-0">
+                <label className="ep-label">Data</label>
+                <select className="ep-select" value={selectedData || ''} onChange={(event) => setDataFiltro(event.target.value)}>
+                  {dataOptions.map((data) => <option key={data}>{data}</option>)}
+                </select>
+              </div>
+            )}
           </div>
         </div>
 
         {isConsulta ? (
           <div className="ep-flex-col ep-gap-5">
-            {Object.entries(consultasAgendadasPorData).map(([data, registros]) => (
+            <div className="ep-record-tabs">
+              <button className={filaTab === 'agendamentos' ? 'active' : ''} onClick={() => setFilaTab('agendamentos')}>
+                Agendamentos
+              </button>
+              <button className={filaTab === 'demanda' ? 'active' : ''} onClick={() => setFilaTab('demanda')}>
+                Demanda espontânea
+              </button>
+            </div>
+
+            {filaTab === 'agendamentos' && Object.entries(consultasAgendadasPorData).map(([data, registros]) => (
               <section key={data}>
                 <div className="ep-flex ep-justify-between ep-items-center ep-mb-3">
-                  <div>
+                  <div style={{ textAlign: 'left', marginBottom: '20px' }}>
                     <div className="ep-text-xs ep-text-muted">Agendamentos</div>
                     <h3 className="ep-font-md ep-fw-bold">{data}</h3>
                   </div>
@@ -574,9 +601,14 @@ const FuncionarioPage = ({ moduleKey, actionKey }) => {
               </section>
             ))}
 
+            {filaTab === 'agendamentos' && Object.keys(consultasAgendadasPorData).length === 0 && (
+              <div className="ep-alert ep-alert--info" style={{ margin: 0 }}>Nenhum agendamento encontrado com os filtros selecionados.</div>
+            )}
+
+            {filaTab === 'demanda' && (
             <section>
               <div className="ep-flex ep-justify-between ep-items-center ep-mb-3">
-                <div>
+                <div style={{ textAlign: 'left', marginBottom: '20px' }}>
                   <div className="ep-text-xs ep-text-muted">Fila separada</div>
                   <h3 className="ep-font-md ep-fw-bold">Demandas espontâneas</h3>
                 </div>
@@ -599,7 +631,7 @@ const FuncionarioPage = ({ moduleKey, actionKey }) => {
                     style={{ cursor: 'pointer' }}
                   >
                     <div className="ep-flex ep-justify-between ep-items-center">
-                      <div>
+                      <div style={{ textAlign: 'left', marginBottom: '30px'}} >
                         <div className="ep-text-xs ep-text-muted">{item.unidade} · {item.data} · {item.horario}</div>
                         <div className="ep-fw-bold ep-mt-1">{item.paciente}</div>
                         <div className="ep-text-sm ep-mt-1">{item.title}</div>
@@ -614,6 +646,7 @@ const FuncionarioPage = ({ moduleKey, actionKey }) => {
                 )}
               </div>
             </section>
+            )}
 
             {filteredItems.length === 0 && (
               <div className="ep-alert ep-alert--info" style={{ margin: 0 }}>Nenhum registro encontrado com os filtros selecionados.</div>
