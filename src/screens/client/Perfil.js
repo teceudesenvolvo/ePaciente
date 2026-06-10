@@ -106,13 +106,13 @@ const Perfil = () => {
         </button>
       </HeaderTop>
 
-      <div className="ep-content ep-animate-fade-up">
-        <div className="ep-grid-12" style={{ gap: '20px' }}>
+      <div className="ep-content ep-profile-page ep-animate-fade-up">
+        <div className="ep-grid-12 ep-profile-layout" style={{ gap: '20px' }}>
           
           {/* Lado Esquerdo: Card de Identificação (Inspirado no Painel Admin) */}
           <div className="ep-col-12 ep-col-md-4">
-            <div className="ep-card ep-card--flat ep-flex-col ep-items-start" style={{ padding: '40px 24px', textAlign: 'left' }}>
-              <div style={{ position: 'relative', marginBottom: '24px', textAlign: 'left' }}>
+            <div className="ep-card ep-card--flat ep-profile-summary ep-flex-col ep-items-start" style={{ padding: '40px 24px', textAlign: 'left' }}>
+              <div className="ep-profile-avatar-wrap" style={{ position: 'relative', marginBottom: '24px', textAlign: 'left' }}>
                 <div className="ep-avatar ep-avatar--xl" style={{ width: '120px', height: '120px', fontSize: '48px', background: 'var(--color-primary)', color: 'white', textAlign: 'left' }}>
                   {user.nome.charAt(0)}
                 </div>
@@ -123,7 +123,7 @@ const Perfil = () => {
                   </label>
                 )}
               </div>
-              <h2 className="ep-font-xl ep-fw-bold">{user.nome}</h2>
+              <h2 className="ep-font-xl ep-fw-bold ep-profile-name">{user.nome}</h2>
               <p className="ep-text-sm ep-text-muted ep-mb-4">{user.email}</p>
               <span className="ep-badge ep-badge--neutral" style={{ padding: '6px 16px', borderRadius: '20px' }}>Cidadão Curuense</span>
               
@@ -303,7 +303,7 @@ const Perfil = () => {
           </div>
 
           {/* Botões de Ação Final */}
-          <div className="ep-col-12 ep-flex ep-justify-center ep-gap-4 ep-mt-10 ep-mb-10">
+          <div className="ep-col-12 ep-profile-actions ep-flex ep-justify-center ep-gap-4 ep-mt-10 ep-mb-10">
             <button 
               className="ep-btn ep-btn--secondary ep-flex ep-items-center ep-gap-2" 
               onClick={() => setShowPasswordModal(true)}

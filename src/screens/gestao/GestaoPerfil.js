@@ -95,11 +95,11 @@ const GestaoPerfil = () => {
         </button>
       </HeaderTop>
 
-      <div className="ep-content ep-animate-fade-up">
-        <div className="ep-grid-12" style={{ gap: '20px' }}>
+      <div className="ep-content ep-profile-page ep-animate-fade-up">
+        <div className="ep-grid-12 ep-profile-layout" style={{ gap: '20px' }}>
           <div className="ep-col-12 ep-col-md-4">
-            <div className="ep-card ep-card--flat ep-flex-col ep-items-start" style={{ padding: '40px 24px' }}>
-              <div style={{ position: 'relative', marginBottom: '24px' }}>
+            <div className="ep-card ep-card--flat ep-profile-summary ep-flex-col ep-items-start" style={{ padding: '40px 24px' }}>
+              <div className="ep-profile-avatar-wrap" style={{ position: 'relative', marginBottom: '24px' }}>
                 <div className="ep-avatar ep-avatar--xl" style={{ width: '120px', height: '120px', fontSize: '42px', background: 'var(--color-success)', color: 'white' }}>
                   {secretario.nome.split(' ').map((name) => name.charAt(0)).slice(0, 2).join('')}
                 </div>
@@ -111,7 +111,7 @@ const GestaoPerfil = () => {
                 )}
               </div>
 
-              <h2 className="ep-font-xl ep-fw-bold">{secretario.nome}</h2>
+              <h2 className="ep-font-xl ep-fw-bold ep-profile-name">{secretario.nome}</h2>
               <p className="ep-text-sm ep-text-muted ep-mb-4">{secretario.email}</p>
               <span className="ep-badge ep-badge--success" style={{ padding: '6px 16px', borderRadius: '20px' }}>
                 {secretario.cargo}
@@ -251,7 +251,7 @@ const GestaoPerfil = () => {
             </div>
           </div>
 
-          <div className="ep-col-12 ep-flex ep-justify-center ep-gap-4 ep-mt-10 ep-mb-10">
+          <div className="ep-col-12 ep-profile-actions ep-flex ep-justify-center ep-gap-4 ep-mt-10 ep-mb-10">
             <button
               className="ep-btn ep-btn--secondary ep-flex ep-items-center ep-gap-2"
               onClick={() => setShowPasswordModal(true)}

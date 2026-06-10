@@ -45,14 +45,14 @@ const ExecPerfil = () => {
         </button>
       </HeaderTop>
 
-      <div className="ep-content ep-animate-fade-up">
-        <div className="ep-grid-12" style={{ gap: '20px' }}>
+      <div className="ep-content ep-profile-page ep-animate-fade-up">
+        <div className="ep-grid-12 ep-profile-layout" style={{ gap: '20px' }}>
           <div className="ep-col-12 ep-col-md-4">
-            <div className="ep-card ep-card--flat ep-flex-col ep-items-start" style={{ padding: '40px 24px' }}>
+            <div className="ep-card ep-card--flat ep-profile-summary ep-flex-col ep-items-start" style={{ padding: '40px 24px' }}>
               <div className="ep-avatar ep-avatar--xl" style={{ width: 120, height: 120, fontSize: 42, background: 'var(--color-warning)', color: 'white', marginBottom: 24 }}>
                 {prefeito.nome.split(' ').map((name) => name.charAt(0)).slice(0, 2).join('')}
               </div>
-              <h2 className="ep-font-xl ep-fw-bold">{prefeito.nome}</h2>
+              <h2 className="ep-font-xl ep-fw-bold ep-profile-name">{prefeito.nome}</h2>
               <p className="ep-text-sm ep-text-muted ep-mb-4">{prefeito.email}</p>
               <span className="ep-badge ep-badge--warning" style={{ padding: '6px 16px', borderRadius: '20px' }}>{prefeito.cargo}</span>
             </div>
@@ -102,7 +102,7 @@ const ExecPerfil = () => {
             </div>
           </div>
 
-          <div className="ep-col-12 ep-flex ep-justify-center ep-gap-4 ep-mt-10 ep-mb-10">
+          <div className="ep-col-12 ep-profile-actions ep-flex ep-justify-center ep-gap-4 ep-mt-10 ep-mb-10">
             <button className="ep-btn ep-btn--secondary ep-flex ep-items-center ep-gap-2" onClick={() => setShowPasswordModal(true)} style={{ padding: '12px 32px', borderRadius: '16px' }}>
               <FaLock /> Alterar Senha
             </button>
