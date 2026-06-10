@@ -130,7 +130,7 @@ const ExecDashboard = () => {
     <div className="ep-page" style={{ background: 'var(--color-n100)' }}>
       <HeaderTop />
       
-      <div className="ep-content ep-animate-fade-up" style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+      <div className="ep-content ep-animate-fade-up" style={{ display: 'flex', flexDirection: 'column', gap: '20px', maxWidth: 1600 }}>
         
         {/* Painel de Filtros Superiores */}
         <div className="ep-card ep-card--flat ep-flex-col ep-gap-4 ep-mb-2" style={{ padding: '16px 24px', background: 'white' }}>
@@ -273,7 +273,7 @@ const ExecDashboard = () => {
           </div>
 
           {/* Gráfico 6: Telemedicina */}
-          <div className="ep-card ep-card--flat ep-col-12">
+          <div className="ep-card ep-card--flat" style={{ gridColumn: '1 / -1' }}>
             <h4 className="ep-fw-bold ep-mb-4 ep-text-sm">Adesão à Telemedicina (Consultas Online)</h4>
             <div style={{ height: '260px' }}>
               <Line data={dataTelemedicina} options={{
