@@ -3588,6 +3588,11 @@ button[aria-label="Fechar menu"] svg {
     grid-column: auto;
     margin: 0 !important;
   }
+  .ep-grid-12 > .ep-col-12,
+  .ep-grid-12 > .ep-col-md-4,
+  .ep-grid-12 > .ep-col-md-8 {
+    grid-column: 1 / -1;
+  }
   .ep-modal-overlay {
     align-items: flex-end;
     padding: var(--sp-3);
