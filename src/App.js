@@ -18,6 +18,7 @@ import Transporte from './screens/client/Transporte';
 import Notificacoes from './screens/client/Notificacoes';
 import Perfil from './screens/client/Perfil';
 import Medicamentos from './screens/client/Medicamentos';
+import Ouvidoria from './screens/client/Ouvidoria';
 
 // SingIn / SignUp
 import login from './screens/client/login';
@@ -83,6 +84,7 @@ import RecepcaoFila from './screens/funcionarios/recepcao/RecepcaoFila';
 import RecepcaoPacientes from './screens/funcionarios/recepcao/RecepcaoPacientes';
 import PainelChamadas from './screens/funcionarios/recepcao/PainelChamadas';
 import EnfermeirosTriagem from './screens/funcionarios/enfermeiros/EnfermeirosTriagem';
+import TriagemAtendimento from './screens/funcionarios/enfermeiros/TriagemAtendimento';
 import EnfermeirosProcedimentos from './screens/funcionarios/enfermeiros/EnfermeirosProcedimentos';
 import EnfermeirosAcompanhamentos from './screens/funcionarios/enfermeiros/EnfermeirosAcompanhamentos';
 import DentistasConsultas from './screens/funcionarios/dentistas/DentistasConsultas';
@@ -134,6 +136,7 @@ const AppContent = () => {
         <Route path="/receitas" component={Receitas} />
         <Route path="/perfil" component={Perfil} />
         <Route path="/medicamentos" component={Medicamentos} />
+        <Route path="/ouvidoria" component={Ouvidoria} />
         <Route path="/Notificacoes" component={Notificacoes} />
 
         {/* UBS */}
@@ -185,6 +188,7 @@ const AppContent = () => {
         <Route path="/funcionarios/recepcao/agendamentos" component={RecepcaoAgendamentos} />
         <Route path="/funcionarios/recepcao/exames" component={RecepcaoExames} />
         <Route path="/funcionarios/recepcao/fila" component={RecepcaoFila} />
+        <Route path="/funcionarios/enfermeiros/triagem/:paciente" component={TriagemAtendimento} />
         <Route path="/funcionarios/enfermeiros/triagem" component={EnfermeirosTriagem} />
         <Route path="/funcionarios/enfermeiros/procedimentos" component={EnfermeirosProcedimentos} />
         <Route path="/funcionarios/enfermeiros/acompanhamentos" component={EnfermeirosAcompanhamentos} />

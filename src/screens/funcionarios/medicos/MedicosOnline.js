@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FaCalendarAlt, FaDownload, FaExclamationTriangle, FaFileAlt, FaFileMedical, FaFilter, FaHeartbeat, FaIdCard, FaInfoCircle, FaPills, FaPrint, FaSave, FaSearch, FaSignature, FaStethoscope, FaTasks, FaUserMd, FaVideo } from 'react-icons/fa';
 import HeaderTop from '../../../HeaderTop';
 import { getPatientRecord, statusClass } from '../FuncionarioPage';
@@ -72,6 +72,12 @@ const MedicosOnline = () => {
   const [evolucao, setEvolucao] = useState('Teleconsulta realizada com identificação confirmada, revisão do histórico e orientações registradas no prontuário.');
   const [receitaMedicamentos] = useState([{ medicamento: 'Losartana 50mg', uso: 'Tomar 1 comprimido pela manhã por 30 dias.' }]);
   const [atestado, setAtestado] = useState({ dias: '1', cid: '', finalidade: 'Compareceu a consulta médica online, necessitando afastamento conforme avaliação clínica.' });
+  const [videoWindow, setVideoWindow] = useState({
+    x: 24,
+    y: 120,
+    width: 440,
+    height: 280,
+  });
   const dataOptions = Array.from(new Set(teleconsultas.map((consulta) => consulta.data)));
   const selectedData = dataOptions.includes(dataFiltro) ? dataFiltro : dataOptions[0];
   const filteredConsultas = teleconsultas.filter((consulta) => {
@@ -105,6 +111,76 @@ const MedicosOnline = () => {
     { key: 'arquivos', label: 'Arquivos' },
   ];
 
+  useEffect(() => {
+    if (!activeConsultation) return undefined;
+
+    const fitVideoWindow = () => {
+      const width = Math.min(440, Math.max(300, window.innerWidth - 24));
+      const height = Math.min(280, Math.max(220, window.innerHeight * 0.36));
+      setVideoWindow((frame) => ({
+        width,
+        height,
+        x: Math.min(Math.max(12, frame.x || window.innerWidth - width - 24), window.innerWidth - width - 12),
+        y: Math.min(Math.max(76, frame.y || window.innerHeight - height - 24), window.innerHeight - height - 12),
+      }));
+    };
+
+    fitVideoWindow();
+    window.addEventListener('resize', fitVideoWindow);
+    return () => window.removeEventListener('resize', fitVideoWindow);
+  }, [activeConsultation]);
+
+  const getPointer = (event) => (event.touches ? event.touches[0] : event);
+
+  const startVideoDrag = (event) => {
+    const pointer = getPointer(event);
+    const start = { pointerX: pointer.clientX, pointerY: pointer.clientY, frameX: videoWindow.x, frameY: videoWindow.y };
+    const move = (moveEvent) => {
+      if (moveEvent.cancelable) moveEvent.preventDefault();
+      const current = getPointer(moveEvent);
+      setVideoWindow((frame) => ({
+        ...frame,
+        x: Math.min(Math.max(12, start.frameX + current.clientX - start.pointerX), window.innerWidth - frame.width - 12),
+        y: Math.min(Math.max(76, start.frameY + current.clientY - start.pointerY), window.innerHeight - frame.height - 12),
+      }));
+    };
+    const stop = () => {
+      window.removeEventListener('mousemove', move);
+      window.removeEventListener('mouseup', stop);
+      window.removeEventListener('touchmove', move);
+      window.removeEventListener('touchend', stop);
+    };
+    window.addEventListener('mousemove', move);
+    window.addEventListener('mouseup', stop);
+    window.addEventListener('touchmove', move, { passive: false });
+    window.addEventListener('touchend', stop);
+  };
+
+  const startVideoResize = (event) => {
+    event.stopPropagation();
+    const pointer = getPointer(event);
+    const start = { pointerX: pointer.clientX, pointerY: pointer.clientY, width: videoWindow.width, height: videoWindow.height };
+    const move = (moveEvent) => {
+      if (moveEvent.cancelable) moveEvent.preventDefault();
+      const current = getPointer(moveEvent);
+      setVideoWindow((frame) => ({
+        ...frame,
+        width: Math.min(Math.max(320, start.width + current.clientX - start.pointerX), window.innerWidth - frame.x - 12),
+        height: Math.min(Math.max(210, start.height + current.clientY - start.pointerY), window.innerHeight - frame.y - 12),
+      }));
+    };
+    const stop = () => {
+      window.removeEventListener('mousemove', move);
+      window.removeEventListener('mouseup', stop);
+      window.removeEventListener('touchmove', move);
+      window.removeEventListener('touchend', stop);
+    };
+    window.addEventListener('mousemove', move);
+    window.addEventListener('mouseup', stop);
+    window.addEventListener('touchmove', move, { passive: false });
+    window.addEventListener('touchend', stop);
+  };
+
   if (activeConsultation) {
     return (
       <div className="ep-page">
@@ -135,15 +211,7 @@ const MedicosOnline = () => {
           <div className="ep-card ep-card--flat ep-mb-6">
             <div className="ep-alert ep-alert--info" style={{ marginBottom: 'var(--sp-4)' }}>
               <FaInfoCircle style={{ marginRight: 10 }} />
-              Teleatendimento sem gravação pelo aplicativo. Confirme câmera, microfone, privacidade do ambiente e identificação do paciente.
-            </div>
-            <div className="ep-video-wrapper" style={{ position: 'relative', paddingTop: '56.25%', borderRadius: 24, overflow: 'hidden', background: '#000' }}>
-              <iframe
-                title="Consulta online Jitsi"
-                src={jitsiUrl}
-                allow="camera; microphone; fullscreen; display-capture"
-                style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', border: 0 }}
-              />
+              A videochamada fica em uma janela flutuante. Arraste pela barra superior ou ajuste pelo canto inferior direito para consultar os dados do paciente com mais espaço.
             </div>
           </div>
 
@@ -254,6 +322,64 @@ const MedicosOnline = () => {
             </div>
           )}
         </div>
+
+        <div
+          style={{
+            position: 'fixed',
+            left: videoWindow.x,
+            top: videoWindow.y,
+            width: videoWindow.width,
+            height: videoWindow.height,
+            background: '#0b1220',
+            borderRadius: 18,
+            overflow: 'hidden',
+            boxShadow: '0 24px 60px rgba(15, 23, 42, 0.35)',
+            border: '1px solid rgba(255, 255, 255, 0.18)',
+            zIndex: 1200,
+          }}
+        >
+          <div
+            onMouseDown={startVideoDrag}
+            onTouchStart={startVideoDrag}
+            style={{
+              height: 42,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              padding: '0 14px',
+              color: 'white',
+              cursor: 'move',
+              background: 'linear-gradient(135deg, rgba(15, 23, 42, 0.96), rgba(37, 99, 235, 0.9))',
+              userSelect: 'none',
+            }}
+          >
+            <span className="ep-text-sm ep-fw-bold">Videochamada · {activeConsultation.paciente}</span>
+            <span className="ep-text-xs" style={{ opacity: 0.78 }}>Arrastar</span>
+          </div>
+          <iframe
+            title="Consulta online Jitsi"
+            src={jitsiUrl}
+            allow="camera; microphone; fullscreen; display-capture"
+            style={{ width: '100%', height: 'calc(100% - 42px)', border: 0, display: 'block' }}
+          />
+          <button
+            aria-label="Redimensionar videochamada"
+            onMouseDown={startVideoResize}
+            onTouchStart={startVideoResize}
+            style={{
+              position: 'absolute',
+              right: 6,
+              bottom: 6,
+              width: 22,
+              height: 22,
+              border: 0,
+              borderRight: '3px solid rgba(255,255,255,0.85)',
+              borderBottom: '3px solid rgba(255,255,255,0.85)',
+              background: 'transparent',
+              cursor: 'nwse-resize',
+            }}
+          />
+      </div>
       </div>
     );
   }

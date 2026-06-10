@@ -2465,6 +2465,10 @@ body {
   padding: var(--sp-6);
   overflow-y: auto; /* Allow content to scroll if it overflows */
   max-width: 100%;
+  width: min(100%, var(--max-width-content));
+  margin-left: auto;
+  margin-right: auto;
+  box-sizing: border-box;
 }
 
 /* ── Cards ── */
@@ -2475,6 +2479,8 @@ body {
   padding: var(--sp-5);
   text-align: left;
   transition: box-shadow var(--t-base);
+  min-width: 0;
+  box-sizing: border-box;
 }
 .ep-card:hover { box-shadow: var(--shadow-md); }
 
@@ -2483,6 +2489,7 @@ body {
   border-radius: var(--r-lg);
   border: 1.5px solid var(--color-n200);
   padding: var(--sp-5);
+  min-width: 0;
 }
 
 .ep-card--active { /* Used for selected items, e.g., in Minhas_Consultas */
@@ -2865,6 +2872,14 @@ body {
   color: var(--color-n600);
 }
 .ep-list-arrow { color: var(--color-n300); font-size: 18px; flex-shrink: 0; }
+.ep-grid-12 {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: var(--sp-4);
+}
+.ep-col-12 { grid-column: span 12; }
+.ep-col-md-4 { grid-column: span 4; }
+.ep-col-md-8 { grid-column: span 8; }
 /* ── Page Header (Mobile Only) ── */
 /* ── Page Header ── */
 .ep-page-header {
@@ -3037,6 +3052,30 @@ body {
 .ep-grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--sp-3); }
 .ep-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--sp-3); }
 .ep-grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--sp-3); }
+.ep-grid-2,
+.ep-grid-3,
+.ep-grid-4 {
+  min-width: 0;
+}
+
+img,
+video,
+iframe,
+canvas {
+  max-width: 100%;
+}
+
+.ep-sidebar-icon svg,
+.ep-sidebar-item svg,
+.menuDesktop svg,
+button[aria-label="Abrir menu"] svg,
+button[aria-label="Fechar menu"] svg {
+  width: 1em;
+  height: 1em;
+  min-width: 1em;
+  flex-shrink: 0;
+  display: block;
+}
 
 /* ── Modal ── */
 .ep-modal-overlay {
@@ -3058,6 +3097,7 @@ body {
   position: relative;
   box-shadow: 0 24px 48px rgba(0,0,0,0.15);
   max-height: 90vh; overflow-y: auto;
+  box-sizing: border-box;
 }
 .ep-modal__handle {
   width: 36px; height: 4px;
@@ -3504,6 +3544,72 @@ body {
 }
 
 @media (max-width: 760px) {
+  .ep-page {
+    padding-bottom: calc(var(--nav-height-mobile) + var(--sp-5) + var(--safe-bottom));
+    overflow-x: hidden;
+  }
+  .ep-content {
+    width: 100%;
+    padding: var(--sp-4);
+    overflow-x: hidden;
+  }
+  .ep-card,
+  .ep-card--flat,
+  .ep-card--active,
+  .ep-card--primary,
+  .ep-card--dark {
+    padding: var(--sp-4);
+    border-radius: var(--r-md);
+  }
+  .ep-grid-2,
+  .ep-grid-3,
+  .ep-grid-4,
+  .ep-grid-12 {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .ep-col-12,
+  .ep-col-md-4,
+  .ep-col-md-8 {
+    grid-column: auto;
+    margin: 0 !important;
+  }
+  .ep-modal-overlay {
+    align-items: flex-end;
+    padding: var(--sp-3);
+  }
+  .ep-modal {
+    max-width: 100%;
+    max-height: calc(100dvh - var(--sp-6));
+    padding: var(--sp-5);
+    border-radius: 24px;
+  }
+  .ep-page-header {
+    padding-left: var(--sp-4);
+    padding-right: var(--sp-4);
+  }
+  .ep-page-title {
+    font-size: var(--font-xl);
+    line-height: 1.15;
+  }
+  .ep-list-item {
+    align-items: flex-start;
+    gap: var(--sp-3);
+  }
+  .ep-list-title,
+  .ep-list-sub {
+    white-space: normal;
+    overflow: visible;
+    text-overflow: clip;
+  }
+  .ep-btn {
+    min-height: 44px;
+  }
+  .ep-flex.ep-justify-between {
+    min-width: 0;
+  }
+  .ep-flex.ep-justify-between:not(.ep-call-panel__header) {
+    flex-wrap: wrap;
+  }
   .ep-patient-modal {
     padding: var(--sp-5);
     border-radius: 24px;
@@ -3526,6 +3632,24 @@ body {
   .ep-record-hero__main {
     flex-direction: column;
   }
+  .ep-record-hero {
+    padding: var(--sp-4);
+    gap: var(--sp-4);
+  }
+  .ep-record-hero h1 {
+    font-size: var(--font-2xl);
+    overflow-wrap: anywhere;
+  }
+  .ep-record-tabs,
+  .ep-patient-tabs {
+    margin-left: calc(var(--sp-4) * -1);
+    margin-right: calc(var(--sp-4) * -1);
+    border-left: 0;
+    border-right: 0;
+    border-radius: 0;
+    padding-left: var(--sp-4);
+    padding-right: var(--sp-4);
+  }
   .ep-record-hero__actions,
   .ep-record-actions {
     align-items: stretch;
@@ -3539,6 +3663,7 @@ body {
   .ep-record-grid--3,
   .ep-record-grid--4 {
     grid-template-columns: 1fr;
+    gap: var(--sp-4);
   }
   .ep-call-panel {
     min-height: 100vh;
@@ -3565,11 +3690,25 @@ body {
     border-radius: 24px;
   }
   .ep-form-section .ep-grid-3,
-  .ep-form-section .ep-grid-2 {
+  .ep-form-section .ep-grid-2,
+  .ep-form-section .ep-grid-4 {
     grid-template-columns: 1fr;
   }
   .ep-form-section .ep-input-group[style] {
     grid-column: auto !important;
+  }
+  .ep-file-row,
+  .ep-problem-row,
+  .ep-prescription-item {
+    overflow-wrap: anywhere;
+  }
+  .ep-modal-footer,
+  .ep-record-actions {
+    flex-direction: column;
+  }
+  .ep-modal-footer .ep-btn,
+  .ep-record-actions .ep-btn {
+    width: 100%;
   }
 }
 

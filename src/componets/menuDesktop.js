@@ -7,6 +7,7 @@ import {
     MdOutlineVaccines,
     MdOutlineMedication,
     MdOutlineFireTruck,
+    MdOutlineRateReview,
     MdOutlineSummarize,
     MdOutlineNotifications,
     MdLogout
@@ -63,6 +64,7 @@ const MenuDesktop = () => {
             title: 'Serviços',
             items: [
                 { path: '/transporte', icon: <MdOutlineFireTruck />, label: 'Transporte' },
+                { path: '/ouvidoria', icon: <MdOutlineRateReview />, label: 'Ouvidoria' },
             ]
         }
     ];
